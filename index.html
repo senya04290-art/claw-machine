@@ -6,83 +6,79 @@
 <title>我的小小娃娃机 ♡</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#fff5f8,#f5efff);
+  font-family:Arial,"Noto Sans SC",sans-serif;
+  color:#66536d;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #fff4f8, #f5efff);
-    font-family: Arial, "Noto Sans SC", sans-serif;
-    color: #67536d;
+header{
+  text-align:center;
+  padding:24px 15px 12px;
 }
 
-header {
-    text-align: center;
-    padding: 25px 15px 12px;
+h1{
+  margin:0;
+  font-size:28px;
+  color:#9b6fa8;
 }
 
-h1 {
-    margin: 0;
-    font-size: 28px;
-    color: #9b6fa8;
+.subtitle{
+  margin-top:7px;
+  font-size:13px;
+  color:#aa94b1;
 }
 
-.subtitle {
-    margin-top: 7px;
-    font-size: 13px;
-    color: #aa94b1;
+.container{
+  width:min(94%,520px);
+  margin:auto;
 }
 
-.container {
-    width: min(94%, 520px);
-    margin: auto;
+.machine{
+  position:relative;
+  height:560px;
+  overflow:hidden;
+  border:8px solid #d29abb;
+  border-radius:30px;
+  background:
+    linear-gradient(
+      to bottom,
+      #dff7ff 0%,
+      #f5fcff 67%,
+      #d7a779 67%,
+      #c18c61 100%
+    );
+  box-shadow:
+    0 15px 35px rgba(120,90,130,.18),
+    inset 0 0 30px rgba(255,255,255,.65);
 }
 
-/* 娃娃机 */
-.machine {
-    position: relative;
-    height: 560px;
-    overflow: hidden;
-    border: 8px solid #d29abb;
-    border-radius: 30px;
-    background:
-        linear-gradient(
-            to bottom,
-            #dff7ff 0%,
-            #f3fbff 67%,
-            #d7a779 67%,
-            #c18c61 100%
-        );
-    box-shadow:
-        0 15px 35px rgba(120, 90, 130, .18),
-        inset 0 0 30px rgba(255,255,255,.6);
+.machine-title{
+  position:absolute;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.86);
+  padding:8px 24px;
+  border-radius:20px;
+  color:#a06da0;
+  font-weight:bold;
+  z-index:10;
+  white-space:nowrap;
 }
 
-/* 顶部装饰 */
-.machine-title {
-    position: absolute;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255,255,255,.8);
-    padding: 8px 24px;
-    border-radius: 20px;
-    color: #a06da0;
-    font-weight: bold;
-    z-index: 10;
-    white-space: nowrap;
-}
-
-.light {
-    position: absolute;
-    top: 4px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 12px #fff;
+.light{
+  position:absolute;
+  top:4px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 12px #fff;
 }
 
 .light:nth-child(1){left:25px}
@@ -90,219 +86,312 @@ h1 {
 .light:nth-child(3){right:55px}
 .light:nth-child(4){right:25px}
 
-/* 横向轨道 */
-.rail {
-    position: absolute;
-    top: 78px;
-    left: 6%;
-    width: 88%;
-    height: 10px;
-    border-radius: 10px;
-    background: #a984b4;
+.rail{
+  position:absolute;
+  top:78px;
+  left:6%;
+  width:88%;
+  height:10px;
+  border-radius:10px;
+  background:#a984b4;
 }
 
-/* 爪子 */
-.crane {
-    position: absolute;
-    top: 77px;
-    left: 50%;
-    width: 70px;
-    height: 180px;
-    transform: translateX(-50%);
-    transition: left .35s ease;
-    z-index: 8;
+.crane{
+  position:absolute;
+  top:77px;
+  left:50%;
+  width:70px;
+  height:180px;
+  transform:translateX(-50%);
+  transition:left .35s ease;
+  z-index:8;
 }
 
-.crane-head {
-    width: 42px;
-    height: 30px;
-    margin: auto;
-    background: #b88bc2;
-    border-radius: 10px 10px 6px 6px;
-    box-shadow: 0 3px 4px rgba(80,50,80,.2);
+.crane-head{
+  width:42px;
+  height:30px;
+  margin:auto;
+  background:#b88bc2;
+  border-radius:10px 10px 6px 6px;
 }
 
-.cable {
-    width: 4px;
-    height: 85px;
-    margin: auto;
-    background: #555;
+.cable{
+  width:4px;
+  height:85px;
+  margin:auto;
+  background:#555;
 }
 
-.claw {
-    position: relative;
-    width: 48px;
-    height: 42px;
-    margin: auto;
+.claw{
+  position:relative;
+  width:48px;
+  height:42px;
+  margin:auto;
 }
 
 .claw:before,
-.claw:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 8px;
-    height: 38px;
-    border: 4px solid #555;
-    border-top: 0;
-    border-radius: 0 0 15px 15px;
+.claw:after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:8px;
+  height:38px;
+  border:4px solid #555;
+  border-top:0;
+  border-radius:0 0 15px 15px;
 }
 
-.claw:before {
-    left: 5px;
-    transform: rotate(22deg);
+.claw:before{
+  left:5px;
+  transform:rotate(22deg);
 }
 
-.claw:after {
-    right: 5px;
-    transform: rotate(-22deg);
+.claw:after{
+  right:5px;
+  transform:rotate(-22deg);
 }
 
-/* 奖品区域 */
-.prizes {
-    position: absolute;
-    left: 7%;
-    right: 7%;
-    bottom: 14%;
-    height: 52%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 8px;
+.claw.open:before{transform:rotate(12deg)}
+.claw.open:after{transform:rotate(-12deg)}
+
+.claw.closed:before{transform:rotate(30deg)}
+.claw.closed:after{transform:rotate(-30deg)}
+
+.prizes{
+  position:absolute;
+  left:7%;
+  right:7%;
+  bottom:14%;
+  height:52%;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:center;
+  gap:9px;
 }
 
-.prize {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: white;
-    border: 4px solid white;
-    box-shadow: 0 5px 10px rgba(80,50,80,.2);
-    animation: float 2.5s ease-in-out infinite;
+.prize{
+  width:76px;
+  height:76px;
+  overflow:hidden;
+  background:rgba(255,255,255,.7);
+  border:3px solid white;
+  border-radius:12px;
+  box-shadow:0 5px 10px rgba(80,50,80,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.prize:nth-child(2n) {
-    animation-delay: .5s;
+.prize img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
 }
 
-.prize:nth-child(3n) {
-    animation-delay: 1s;
+.exit{
+  position:absolute;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:145px;
+  height:55px;
+  border-radius:15px 15px 5px 5px;
+  background:#725d76;
+  border:5px solid #aa8bb0;
+  color:white;
+  text-align:center;
+  padding-top:13px;
+  font-weight:bold;
 }
 
-.prize img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-@keyframes float {
-    50% {
-        transform: translateY(-3px);
-    }
-}
-
-/* 出奖口 */
-.exit {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 145px;
-    height: 55px;
-    border-radius: 15px 15px 5px 5px;
-    background: #725d76;
-    border: 5px solid #aa8bb0;
-    color: white;
-    text-align: center;
-    padding-top: 13px;
-    font-weight: bold;
-}
-
-/* 控制按钮 */
-.controls {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap: 9px;
-    margin-top: 14px;
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1.2fr 1fr;
+  gap:9px;
+  margin-top:14px;
 }
 
 button,
-.upload {
-    border: none;
-    border-radius: 15px;
-    padding: 13px 8px;
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-    background: #ad83b9;
-    box-shadow: 0 4px 8px rgba(100,70,110,.15);
-    cursor: pointer;
-    text-align: center;
+.upload{
+  border:none;
+  border-radius:15px;
+  padding:13px 8px;
+  font-size:15px;
+  font-weight:bold;
+  color:white;
+  background:#ad83b9;
+  box-shadow:0 4px 8px rgba(100,70,110,.15);
+  cursor:pointer;
+  text-align:center;
 }
 
 button:active,
-.upload:active {
-    transform: scale(.96);
+.upload:active{
+  transform:scale(.96);
 }
 
-.grab {
-    background: #df8fac;
+.grab{
+  background:#df8fac;
 }
 
-.upload {
-    background: #91a7c9;
+.upload{
+  background:#91a7c9;
 }
 
-input {
-    display: none;
+input{
+  display:none;
 }
 
-/* 下方区域 */
-.info {
-    margin-top: 12px;
-    padding: 13px;
-    background: rgba(255,255,255,.75);
-    border-radius: 15px;
-    text-align: center;
-    font-size: 14px;
+.info{
+  margin-top:12px;
+  padding:13px;
+  background:rgba(255,255,255,.78);
+  border-radius:15px;
+  text-align:center;
+  font-size:14px;
 }
 
-.result {
-    display: none;
-    margin-top: 15px;
-    padding: 20px;
-    background: white;
-    border-radius: 22px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(100,70,110,.12);
+.empty{
+  color:#aa94b1;
+  font-size:14px;
+  text-align:center;
+  padding-top:130px;
 }
 
-.result.show {
-    display: block;
+/* 抓取成功弹窗 */
+
+.result{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(82,60,90,.28);
+  backdrop-filter:blur(4px);
+  align-items:center;
+  justify-content:center;
+  padding:22px;
 }
 
-.result-title {
-    font-size: 21px;
-    font-weight: bold;
-    color: #d27f9d;
+.result.show{
+  display:flex;
 }
 
-.result img {
-    display: block;
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 25px;
-    margin: 15px auto;
+.result-card{
+  width:min(92vw,390px);
+  padding:24px 20px 20px;
+  background:#fff;
+  border:3px solid #f0c7d7;
+  border-radius:28px;
+  text-align:center;
+  box-shadow:0 20px 55px rgba(70,45,80,.25);
+  position:relative;
+  overflow:hidden;
 }
 
-.empty {
-    color: #aa94b1;
-    font-size: 14px;
-    text-align: center;
-    padding-top: 130px;
+.result-title{
+  font-size:25px;
+  font-weight:900;
+  color:#d27f9d;
+}
+
+.result-icon{
+  font-size:54px;
+  line-height:1;
+  margin:6px 0 2px;
+  animation:pop .55s ease;
+}
+
+@keyframes pop{
+  0%{
+    transform:scale(.3) rotate(-12deg);
+    opacity:0;
+  }
+  70%{
+    transform:scale(1.15);
+  }
+  100%{
+    transform:scale(1);
+  }
+}
+
+.result-img-wrap{
+  width:190px;
+  height:190px;
+  margin:12px auto;
+  border-radius:20px;
+  background:#faf6fb;
+  border:3px solid #ead9ee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.result-img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+.result-text{
+  font-size:14px;
+  color:#8e7893;
+  margin-bottom:10px;
+}
+
+.result button{
+  background:#df8fac;
+  padding:12px 25px;
+}
+
+.sparkles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  font-size:22px;
+}
+
+.sparkles span{
+  position:absolute;
+  animation:spark 1.5s ease-out forwards;
+}
+
+.sparkles span:nth-child(1){
+  left:10%;
+  top:15%;
+}
+
+.sparkles span:nth-child(2){
+  right:12%;
+  top:20%;
+}
+
+.sparkles span:nth-child(3){
+  left:18%;
+  bottom:18%;
+}
+
+.sparkles span:nth-child(4){
+  right:17%;
+  bottom:15%;
+}
+
+@keyframes spark{
+  0%{
+    transform:scale(.3);
+    opacity:0;
+  }
+  35%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(-25px) scale(1.3) rotate(180deg);
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -310,94 +399,124 @@ input {
 <body>
 
 <header>
-    <h1>🧸 我的小小娃娃机 ♡</h1>
-    <div class="subtitle">上传你喜欢的图片，开始抓取吧 ✦</div>
+  <h1>🧸 我的小小娃娃机 ♡</h1>
+  <div class="subtitle">
+    上传你喜欢的图片，开始抓取吧 ✦
+  </div>
 </header>
 
 <div class="container">
 
-    <div class="machine">
+  <div class="machine">
 
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
 
-        <div class="machine-title">
-            ✦ MY CLAW MACHINE ✦
-        </div>
-
-        <div class="rail"></div>
-
-        <div class="crane" id="crane">
-            <div class="crane-head"></div>
-            <div class="cable"></div>
-            <div class="claw"></div>
-        </div>
-
-        <div class="prizes" id="prizes">
-            <div class="empty" id="empty">
-                还没有奖品 ♡<br>
-                请先上传图片
-            </div>
-        </div>
-
-        <div class="exit">
-            🎁 出奖口
-        </div>
-
+    <div class="machine-title">
+      ✦ MY CLAW MACHINE ✦
     </div>
 
-    <div class="controls">
-        <button onclick="move(-1)">← 左</button>
+    <div class="rail"></div>
 
-        <button class="grab" onclick="grab()">
-            🪝 抓取
-        </button>
-
-        <button onclick="move(1)">右 →</button>
-
-        <label class="upload">
-            ＋ 上传图片
-            <input
-                type="file"
-                id="upload"
-                accept="image/*"
-                multiple
-            >
-        </label>
-
-        <button onclick="newGame()">
-            🔀 重新摆放
-        </button>
-
-        <button onclick="clearPrizes()">
-            🗑 清空
-        </button>
+    <div class="crane" id="crane">
+      <div class="crane-head"></div>
+      <div class="cable"></div>
+      <div class="claw" id="claw"></div>
     </div>
 
-    <div class="info">
-        当前奖品：<b id="count">0</b> 个
+    <div class="prizes" id="prizes"></div>
+
+    <div class="exit">
+      🎁 出奖口
     </div>
 
-    <div class="result" id="result">
-        <div class="result-title" id="resultTitle">
-            🎉 抓到了！
-        </div>
+  </div>
 
-        <img id="resultImg">
+  <div class="controls">
 
-        <div id="resultText"></div>
+    <button onclick="move(-1)">
+      ← 左
+    </button>
 
-        <button
-            style="margin-top:12px"
-            onclick="closeResult()"
-        >
-            再抓一次 ♡
-        </button>
-    </div>
+    <button class="grab" onclick="grab()">
+      🪝 抓取
+    </button>
+
+    <button onclick="move(1)">
+      右 →
+    </button>
+
+    <label class="upload">
+      ＋ 上传图片
+      <input
+        type="file"
+        id="upload"
+        accept="image/*"
+        multiple
+      >
+    </label>
+
+    <button onclick="newGame()">
+      🔀 重新摆放
+    </button>
+
+    <button onclick="clearPrizes()">
+      🗑 清空
+    </button>
+
+  </div>
+
+  <div class="info">
+    当前奖品：
+    <b id="count">0</b>
+    个
+  </div>
 
 </div>
+
+
+<!-- 抓取结果 -->
+
+<div class="result" id="result">
+
+  <div class="result-card">
+
+    <div class="sparkles">
+      <span>✦</span>
+      <span>♡</span>
+      <span>✧</span>
+      <span>✦</span>
+    </div>
+
+    <div class="result-icon" id="resultIcon">
+      🎉
+    </div>
+
+    <div class="result-title" id="resultTitle">
+      抓取成功！
+    </div>
+
+    <div class="result-img-wrap" id="resultImgWrap">
+      <img
+        class="result-img"
+        id="resultImg"
+      >
+    </div>
+
+    <div class="result-text" id="resultText">
+      恭喜你获得了这个奖品 ♡
+    </div>
+
+    <button onclick="closeResult()">
+      再抓一次 ♡
+    </button>
+
+  </div>
+
+</div>
+
 
 <script>
 
@@ -405,231 +524,292 @@ let prizes = [];
 let position = 50;
 let busy = false;
 
-const crane = document.getElementById("crane");
-const prizeBox = document.getElementById("prizes");
-const count = document.getElementById("count");
-const upload = document.getElementById("upload");
+const crane =
+  document.getElementById("crane");
 
-upload.addEventListener("change", function(e) {
+const claw =
+  document.getElementById("claw");
 
-    const files = [...e.target.files];
+const prizeBox =
+  document.getElementById("prizes");
 
-    files.forEach(file => {
+const count =
+  document.getElementById("count");
 
-        const reader = new FileReader();
+const upload =
+  document.getElementById("upload");
 
-        reader.onload = function(event) {
+const result =
+  document.getElementById("result");
 
-            prizes.push({
-                image: event.target.result,
-                name: file.name
-            });
 
-            renderPrizes();
+/* 上传图片 */
 
-        };
+upload.addEventListener("change", function(e){
 
-        reader.readAsDataURL(file);
+  [...e.target.files].forEach(function(file){
 
-    });
+    const reader = new FileReader();
 
-    upload.value = "";
+    reader.onload = function(event){
+
+      prizes.push({
+        image:event.target.result,
+        name:file.name
+      });
+
+      renderPrizes();
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+  upload.value="";
 
 });
 
 
-function renderPrizes() {
+/* 显示奖品 */
 
-    prizeBox.innerHTML = "";
+function renderPrizes(){
 
-    if (prizes.length === 0) {
+  prizeBox.innerHTML="";
 
-        prizeBox.innerHTML = `
-            <div class="empty">
-                还没有奖品 ♡<br>
-                请先上传图片
-            </div>
-        `;
+  if(!prizes.length){
 
-    } else {
+    prizeBox.innerHTML =
+      '<div class="empty">还没有奖品 ♡<br>请先上传图片</div>';
 
-        prizes.forEach((prize, index) => {
+  }else{
 
-            const div = document.createElement("div");
+    prizes.forEach(function(prize){
 
-            div.className = "prize";
+      const div =
+        document.createElement("div");
 
-            div.innerHTML = `
-                <img src="${prize.image}">
-            `;
+      div.className="prize";
 
-            prizeBox.appendChild(div);
+      div.innerHTML =
+        '<img src="' +
+        prize.image +
+        '" alt="">';
 
-        });
+      prizeBox.appendChild(div);
+
+    });
+
+  }
+
+  count.textContent =
+    prizes.length;
+
+}
+
+
+/* 移动爪子 */
+
+function move(direction){
+
+  if(busy)return;
+
+  position += direction * 10;
+
+  position =
+    Math.max(
+      12,
+      Math.min(88,position)
+    );
+
+  crane.style.left =
+    position + "%";
+
+}
+
+
+/* 抓取 */
+
+function grab(){
+
+  if(busy)return;
+
+  if(!prizes.length){
+
+    alert(
+      "请先上传一些图片作为奖品 ♡"
+    );
+
+    return;
+  }
+
+  busy=true;
+
+  claw.className="claw open";
+
+  crane.style.transition =
+    "left .35s ease, top .45s ease";
+
+  crane.style.top="235px";
+
+
+  setTimeout(function(){
+
+    claw.className =
+      "claw closed";
+
+  },430);
+
+
+  setTimeout(function(){
+
+    crane.style.top="77px";
+
+  },700);
+
+
+  setTimeout(function(){
+
+    const success =
+      Math.random() < 0.65;
+
+    if(success){
+
+      const index =
+        Math.floor(
+          Math.random() *
+          prizes.length
+        );
+
+      const prize =
+        prizes[index];
+
+      showSuccess(prize);
+
+      prizes.splice(index,1);
+
+      renderPrizes();
+
+    }else{
+
+      showFail();
 
     }
 
-    count.textContent = prizes.length;
+    claw.className="claw";
+
+    busy=false;
+
+  },1200);
 
 }
 
 
-function move(direction) {
+/* 成功 */
 
-    if (busy) return;
+function showSuccess(prize){
 
-    position += direction * 10;
+  document.getElementById(
+    "resultIcon"
+  ).textContent="🎉";
 
-    if (position < 12) position = 12;
-    if (position > 88) position = 88;
+  document.getElementById(
+    "resultTitle"
+  ).textContent="抓取成功！";
 
-    crane.style.left = position + "%";
+  document.getElementById(
+    "resultImg"
+  ).src=prize.image;
 
-}
+  document.getElementById(
+    "resultImg"
+  ).alt=prize.name;
 
+  document.getElementById(
+    "resultImgWrap"
+  ).style.display="flex";
 
-function grab() {
+  document.getElementById(
+    "resultText"
+  ).textContent=
+    "恭喜你获得了这个奖品 ♡";
 
-    if (busy) return;
-
-    if (prizes.length === 0) {
-
-        alert("请先上传一些图片作为奖品 ♡");
-
-        return;
-
-    }
-
-    busy = true;
-
-    const oldTop = crane.style.top;
-
-    crane.style.transition = "top .45s ease";
-    crane.style.top = "240px";
-
-    setTimeout(() => {
-
-        crane.style.top = "77px";
-
-    }, 650);
-
-    setTimeout(() => {
-
-        const success = Math.random() < 0.65;
-
-        if (success) {
-
-            const index =
-                Math.floor(Math.random() * prizes.length);
-
-            const prize = prizes[index];
-
-            showResult(prize);
-
-            prizes.splice(index, 1);
-
-            renderPrizes();
-
-        } else {
-
-            showFail();
-
-        }
-
-        busy = false;
-
-    }, 1150);
+  result.classList.add("show");
 
 }
 
 
-function showResult(prize) {
+/* 没抓到 */
 
-    const result =
-        document.getElementById("result");
+function showFail(){
 
-    const img =
-        document.getElementById("resultImg");
+  document.getElementById(
+    "resultIcon"
+  ).textContent="💦";
 
-    const title =
-        document.getElementById("resultTitle");
+  document.getElementById(
+    "resultTitle"
+  ).textContent="差一点点！";
 
-    const text =
-        document.getElementById("resultText");
+  document.getElementById(
+    "resultImgWrap"
+  ).style.display="none";
 
-    title.textContent = "🎉 抓到了！";
+  document.getElementById(
+    "resultText"
+  ).textContent=
+    "这次没有抓到，再试一次吧 ♡";
 
-    img.src = prize.image;
-
-    img.style.display = "block";
-
-    text.textContent =
-        "恭喜你获得了这个奖品 ♡";
-
-    result.classList.add("show");
+  result.classList.add("show");
 
 }
 
 
-function showFail() {
+/* 关闭弹窗 */
 
-    const result =
-        document.getElementById("result");
+function closeResult(){
 
-    const img =
-        document.getElementById("resultImg");
+  result.classList.remove("show");
 
-    const title =
-        document.getElementById("resultTitle");
-
-    const text =
-        document.getElementById("resultText");
-
-    title.textContent = "💦 差一点！";
-
-    img.style.display = "none";
-
-    text.textContent =
-        "这次没有抓到，再试一次吧 ♡";
-
-    result.classList.add("show");
+  document.getElementById(
+    "resultImgWrap"
+  ).style.display="flex";
 
 }
 
 
-function closeResult() {
+/* 随机摆放 */
 
-    document
-        .getElementById("result")
-        .classList.remove("show");
+function newGame(){
 
-}
+  prizes.sort(
+    () => Math.random() - 0.5
+  );
 
+  renderPrizes();
 
-function newGame() {
+  position =
+    20 + Math.random() * 60;
 
-    prizes.sort(() => Math.random() - 0.5);
-
-    renderPrizes();
-
-    position =
-        20 + Math.random() * 60;
-
-    crane.style.left =
-        position + "%";
+  crane.style.left =
+    position + "%";
 
 }
 
 
-function clearPrizes() {
+/* 清空 */
 
-    if (!confirm("确定要清空所有奖品吗？")) {
-        return;
-    }
+function clearPrizes(){
 
-    prizes = [];
+  if(
+    !confirm(
+      "确定要清空所有奖品吗？"
+    )
+  )return;
 
-    renderPrizes();
+  prizes=[];
+
+  renderPrizes();
 
 }
 
