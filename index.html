@@ -393,6 +393,87 @@ input{
     opacity:0;
   }
 }
+/* ===== 更真实的娃娃机机械爪 ===== */
+
+.claw{
+  position:relative;
+  width:70px;
+  height:55px;
+  margin:auto;
+  filter:drop-shadow(0 4px 4px rgba(0,0,0,.25));
+}
+
+/* 爪子中间的金属连接部分 */
+.claw:before,
+.claw:after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:14px;
+  height:45px;
+  background:linear-gradient(
+    90deg,
+    #777 0%,
+    #ddd 35%,
+    #fff 50%,
+    #999 75%,
+    #555 100%
+  );
+  border:2px solid #555;
+  border-top:0;
+  border-radius:0 0 18px 18px;
+  box-shadow:
+    inset 2px 0 2px rgba(255,255,255,.6),
+    2px 3px 4px rgba(0,0,0,.25);
+}
+
+/* 左爪 */
+.claw:before{
+  left:5px;
+  transform:rotate(18deg);
+  transform-origin:top center;
+}
+
+/* 右爪 */
+.claw:after{
+  right:5px;
+  transform:rotate(-18deg);
+  transform-origin:top center;
+}
+
+/* 爪子顶部圆形机械关节 */
+.claw{
+  background:
+    radial-gradient(
+      circle at 50% 12px,
+      #fff 0,
+      #ddd 25%,
+      #999 50%,
+      #555 70%,
+      transparent 72%
+    );
+}
+
+/* 金属小圆球 */
+.claw-joint{
+  position:absolute;
+  left:50%;
+  top:3px;
+  transform:translateX(-50%);
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 35% 30%,
+    #fff,
+    #ddd 30%,
+    #999 65%,
+    #555
+  );
+  border:2px solid #555;
+  box-shadow:0 3px 5px rgba(0,0,0,.3);
+  z-index:3;
+}  
 </style>
 </head>
 
