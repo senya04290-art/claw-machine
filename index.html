@@ -6,7 +6,9 @@
 <title>我的小小娃娃机 ♡</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -37,6 +39,8 @@ h1{
   width:min(94%,520px);
   margin:auto;
 }
+
+/* ===== 娃娃机 ===== */
 
 .machine{
   position:relative;
@@ -96,6 +100,8 @@ h1{
   background:#a984b4;
 }
 
+/* ===== 吊爪 ===== */
+
 .crane{
   position:absolute;
   top:77px;
@@ -119,43 +125,111 @@ h1{
   width:4px;
   height:85px;
   margin:auto;
-  background:#555;
+  background:#d6b7c6;
+  border-radius:4px;
 }
+
+/* ===== 可爱粉白爪子 ===== */
 
 .claw{
   position:relative;
-  width:48px;
-  height:42px;
-  margin:auto;
+  width:64px;
+  height:58px;
+  margin:0 auto;
 }
 
-.claw:before,
-.claw:after{
+/* 中间的小连接块 */
+
+.claw-body{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:30px;
+  height:22px;
+  background:linear-gradient(
+    180deg,
+    #fffafd,
+    #ffeef6
+  );
+  border:3px solid #dfa8c0;
+  border-radius:9px;
+  box-shadow:
+    0 3px 5px rgba(190,120,160,.18),
+    inset 0 2px 3px rgba(255,255,255,.9);
+  z-index:4;
+}
+
+/* 中间的小圆点 */
+
+.claw-body::after{
   content:"";
   position:absolute;
-  top:0;
-  width:8px;
-  height:38px;
-  border:4px solid #555;
-  border-top:0;
-  border-radius:0 0 15px 15px;
+  left:50%;
+  top:50%;
+  width:9px;
+  height:9px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#f5d5e3;
+  border:2px solid #d99eb9;
 }
 
-.claw:before{
-  left:5px;
-  transform:rotate(22deg);
+/* 左右爪 */
+
+.claw-arm{
+  position:absolute;
+  top:14px;
+  width:18px;
+  height:40px;
+  background:linear-gradient(
+    90deg,
+    #f4c8da,
+    #fff8fb,
+    #f3c3d7
+  );
+  border:3px solid #dfa0ba;
+  box-shadow:
+    0 3px 4px rgba(190,110,150,.18),
+    inset 2px 1px 3px rgba(255,255,255,.85);
+  z-index:3;
 }
 
-.claw:after{
-  right:5px;
-  transform:rotate(-22deg);
+.claw-left{
+  left:6px;
+  border-radius:10px 10px 7px 14px;
+  transform:rotate(30deg);
+  transform-origin:top right;
 }
 
-.claw.open:before{transform:rotate(12deg)}
-.claw.open:after{transform:rotate(-12deg)}
+.claw-right{
+  right:6px;
+  border-radius:10px 10px 14px 7px;
+  transform:rotate(-30deg);
+  transform-origin:top left;
+}
 
-.claw.closed:before{transform:rotate(30deg)}
-.claw.closed:after{transform:rotate(-30deg)}
+/* 张开 */
+
+.claw.open .claw-left{
+  transform:rotate(17deg);
+}
+
+.claw.open .claw-right{
+  transform:rotate(-17deg);
+}
+
+/* 闭合 */
+
+.claw.closed .claw-left{
+  transform:rotate(38deg);
+}
+
+.claw.closed .claw-right{
+  transform:rotate(-38deg);
+}
+
+/* ===== 奖品 ===== */
 
 .prizes{
   position:absolute;
@@ -205,6 +279,8 @@ h1{
   padding-top:13px;
   font-weight:bold;
 }
+
+/* ===== 按钮 ===== */
 
 .controls{
   display:grid;
@@ -260,7 +336,7 @@ input{
   padding-top:130px;
 }
 
-/* 抓取成功弹窗 */
+/* ===== 抓取成功弹窗 ===== */
 
 .result{
   display:none;
@@ -308,11 +384,14 @@ input{
     transform:scale(.3) rotate(-12deg);
     opacity:0;
   }
+
   70%{
     transform:scale(1.15);
   }
+
   100%{
     transform:scale(1);
+    opacity:1;
   }
 }
 
@@ -347,6 +426,8 @@ input{
   background:#df8fac;
   padding:12px 25px;
 }
+
+/* ===== 闪闪特效 ===== */
 
 .sparkles{
   position:absolute;
@@ -385,180 +466,15 @@ input{
     transform:scale(.3);
     opacity:0;
   }
+
   35%{
     opacity:1;
   }
+
   100%{
     transform:translateY(-25px) scale(1.3) rotate(180deg);
     opacity:0;
   }
-/* =========================================
-   🌸 可爱娃娃机爪子 V3
-   粉白奶油风 · 圆润 · 非金属
-   ========================================= */
-
-/* 爪子整体 */
-.claw{
-    position:relative !important;
-    width:78px !important;
-    height:76px !important;
-    margin:auto;
-    filter:drop-shadow(0 4px 5px rgba(210,130,170,.22)) !important;
-}
-
-/* 中间连接小方块 */
-.claw::before{
-    content:"" !important;
-    position:absolute !important;
-    left:50% !important;
-    top:0 !important;
-    transform:translateX(-50%) !important;
-
-    width:24px !important;
-    height:22px !important;
-
-    background:linear-gradient(
-        145deg,
-        #fffaff 0%,
-        #ffeef7 55%,
-        #f8d5e6 100%
-    ) !important;
-
-    border:3px solid #e5a8c4 !important;
-    border-radius:9px !important;
-
-    box-shadow:
-        0 2px 4px rgba(190,120,160,.18),
-        inset 1px 1px 2px rgba(255,255,255,.9) !important;
-
-    z-index:5 !important;
-}
-
-/* 左爪 */
-.claw::after{
-    content:"" !important;
-    position:absolute !important;
-
-    left:17px !important;
-    top:17px !important;
-
-    width:16px !important;
-    height:43px !important;
-
-    background:linear-gradient(
-        90deg,
-        #f7c9dc 0%,
-        #fff2f8 48%,
-        #f5c2d8 100%
-    ) !important;
-
-    border:3px solid #df9fbb !important;
-    border-radius:12px 12px 10px 10px !important;
-
-    transform:rotate(32deg) !important;
-    transform-origin:top center !important;
-
-    box-shadow:
-        0 3px 5px rgba(190,110,150,.2),
-        inset 2px 1px 3px rgba(255,255,255,.85) !important;
-
-    z-index:3 !important;
-}
-
-
-/* =========================================
-   右爪
-   ========================================= */
-
-.claw-joint{
-    position:absolute !important;
-
-    left:50% !important;
-    top:0 !important;
-
-    transform:translateX(-50%) !important;
-
-    width:24px !important;
-    height:22px !important;
-
-    background:linear-gradient(
-        145deg,
-        #fffaff 0%,
-        #ffeef7 55%,
-        #f8d5e6 100%
-    ) !important;
-
-    border:3px solid #e5a8c4 !important;
-    border-radius:9px !important;
-
-    box-shadow:
-        0 2px 4px rgba(190,120,160,.18),
-        inset 1px 1px 2px rgba(255,255,255,.9) !important;
-
-    z-index:6 !important;
-}
-
-
-/* 右边爪子 */
-.claw-joint::after{
-    content:"" !important;
-
-    position:absolute !important;
-
-    left:28px !important;
-    top:17px !important;
-
-    width:16px !important;
-    height:43px !important;
-
-    background:linear-gradient(
-        90deg,
-        #f7c9dc 0%,
-        #fff2f8 48%,
-        #f5c2d8 100%
-    ) !important;
-
-    border:3px solid #df9fbb !important;
-    border-radius:12px 12px 10px 10px !important;
-
-    transform:rotate(-32deg) !important;
-    transform-origin:top center !important;
-
-    box-shadow:
-        0 3px 5px rgba(190,110,150,.2),
-        inset 2px 1px 3px rgba(255,255,255,.85) !important;
-
-    z-index:3 !important;
-}
-
-
-/* 防止旧的金属爪样式继续干扰 */
-.claw *,
-.claw-joint *{
-    box-sizing:border-box;
-}
-
-
-/* 如果旧代码给爪子加了金属滤镜，强制取消 */
-.claw,
-.claw::before,
-.claw::after,
-.claw-joint,
-.claw-joint::before,
-.claw-joint::after{
-    color:transparent !important;
-}
-
-
-/* =========================================
-   抓取时保持爪子结构
-   ========================================= */
-
-.claw.grabbing::before,
-.claw.grabbing::after,
-.claw.grabbing .claw-joint,
-.claw.grabbing .claw-joint::after{
-    transition:all .35s ease !important;
 }
 </style>
 </head>
@@ -567,6 +483,7 @@ input{
 
 <header>
   <h1>🧸 我的小小娃娃机 ♡</h1>
+
   <div class="subtitle">
     上传你喜欢的图片，开始抓取吧 ✦
   </div>
@@ -588,9 +505,21 @@ input{
     <div class="rail"></div>
 
     <div class="crane" id="crane">
+
       <div class="crane-head"></div>
+
       <div class="cable"></div>
-      <div class="claw" id="claw"></div>
+
+      <div class="claw" id="claw">
+
+        <div class="claw-body"></div>
+
+        <div class="claw-arm claw-left"></div>
+
+        <div class="claw-arm claw-right"></div>
+
+      </div>
+
     </div>
 
     <div class="prizes" id="prizes"></div>
@@ -600,6 +529,7 @@ input{
     </div>
 
   </div>
+
 
   <div class="controls">
 
@@ -617,6 +547,7 @@ input{
 
     <label class="upload">
       ＋ 上传图片
+
       <input
         type="file"
         id="upload"
@@ -635,10 +566,13 @@ input{
 
   </div>
 
+
   <div class="info">
+
     当前奖品：
     <b id="count">0</b>
     个
+
   </div>
 
 </div>
@@ -651,28 +585,44 @@ input{
   <div class="result-card">
 
     <div class="sparkles">
+
       <span>✦</span>
       <span>♡</span>
       <span>✧</span>
       <span>✦</span>
+
     </div>
 
-    <div class="result-icon" id="resultIcon">
+    <div
+      class="result-icon"
+      id="resultIcon"
+    >
       🎉
     </div>
 
-    <div class="result-title" id="resultTitle">
+    <div
+      class="result-title"
+      id="resultTitle"
+    >
       抓取成功！
     </div>
 
-    <div class="result-img-wrap" id="resultImgWrap">
+    <div
+      class="result-img-wrap"
+      id="resultImgWrap"
+    >
+
       <img
         class="result-img"
         id="resultImg"
       >
+
     </div>
 
-    <div class="result-text" id="resultText">
+    <div
+      class="result-text"
+      id="resultText"
+    >
       恭喜你获得了这个奖品 ♡
     </div>
 
@@ -688,8 +638,11 @@ input{
 <script>
 
 let prizes = [];
+
 let position = 50;
+
 let busy = false;
+
 
 const crane =
   document.getElementById("crane");
@@ -710,62 +663,82 @@ const result =
   document.getElementById("result");
 
 
-/* 上传图片 */
+/* ===== 上传图片 ===== */
 
-upload.addEventListener("change", function(e){
+upload.addEventListener(
+  "change",
+  function(e){
 
-  [...e.target.files].forEach(function(file){
+    [...e.target.files].forEach(
+      function(file){
 
-    const reader = new FileReader();
+        const reader =
+          new FileReader();
 
-    reader.onload = function(event){
+        reader.onload =
+          function(event){
 
-      prizes.push({
-        image:event.target.result,
-        name:file.name
-      });
+            prizes.push({
 
-      renderPrizes();
+              image:
+                event.target.result,
 
-    };
+              name:
+                file.name
 
-    reader.readAsDataURL(file);
+            });
 
-  });
+            renderPrizes();
 
-  upload.value="";
+          };
 
-});
+        reader.readAsDataURL(file);
+
+      }
+    );
+
+    upload.value = "";
+
+  }
+);
 
 
-/* 显示奖品 */
+/* ===== 显示奖品 ===== */
 
 function renderPrizes(){
 
-  prizeBox.innerHTML="";
+  prizeBox.innerHTML = "";
 
   if(!prizes.length){
 
     prizeBox.innerHTML =
-      '<div class="empty">还没有奖品 ♡<br>请先上传图片</div>';
+      '<div class="empty">' +
+      '还没有奖品 ♡<br>' +
+      '请先上传图片' +
+      '</div>';
 
-  }else{
+  }
 
-    prizes.forEach(function(prize){
+  else{
 
-      const div =
-        document.createElement("div");
+    prizes.forEach(
+      function(prize){
 
-      div.className="prize";
+        const div =
+          document.createElement("div");
 
-      div.innerHTML =
-        '<img src="' +
-        prize.image +
-        '" alt="">';
+        div.className =
+          "prize";
 
-      prizeBox.appendChild(div);
+        div.innerHTML =
+          '<img src="' +
+          prize.image +
+          '" alt="">';
 
-    });
+        prizeBox.appendChild(div);
+
+      }
+    );
 
   }
 
@@ -775,18 +748,22 @@ function renderPrizes(){
 }
 
 
-/* 移动爪子 */
+/* ===== 移动爪子 ===== */
 
 function move(direction){
 
   if(busy)return;
 
-  position += direction * 10;
+  position +=
+    direction * 10;
 
   position =
     Math.max(
       12,
-      Math.min(88,position)
+      Math.min(
+        88,
+        position
+      )
     );
 
   crane.style.left =
@@ -795,7 +772,7 @@ function move(direction){
 }
 
 
-/* 抓取 */
+/* ===== 抓取 ===== */
 
 function grab(){
 
@@ -808,155 +785,193 @@ function grab(){
     );
 
     return;
+
   }
 
-  busy=true;
+  busy = true;
 
-  claw.className="claw open";
+  claw.className =
+    "claw open";
 
   crane.style.transition =
     "left .35s ease, top .45s ease";
 
-  crane.style.top="235px";
+  crane.style.top =
+    "235px";
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    claw.className =
-      "claw closed";
+      claw.className =
+        "claw closed";
 
-  },430);
-
-
-  setTimeout(function(){
-
-    crane.style.top="77px";
-
-  },700);
+    },
+    430
+  );
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    const success =
-      Math.random() < 0.65;
+      crane.style.top =
+        "77px";
 
-    if(success){
+    },
+    700
+  );
 
-      const index =
-        Math.floor(
-          Math.random() *
-          prizes.length
+
+  setTimeout(
+    function(){
+
+      const success =
+        Math.random() < 0.65;
+
+
+      if(success){
+
+        const index =
+          Math.floor(
+            Math.random() *
+            prizes.length
+          );
+
+        const prize =
+          prizes[index];
+
+        showSuccess(prize);
+
+        prizes.splice(
+          index,
+          1
         );
 
-      const prize =
-        prizes[index];
+        renderPrizes();
 
-      showSuccess(prize);
+      }
 
-      prizes.splice(index,1);
+      else{
 
-      renderPrizes();
+        showFail();
 
-    }else{
+      }
 
-      showFail();
 
-    }
+      claw.className =
+        "claw";
 
-    claw.className="claw";
+      busy = false;
 
-    busy=false;
-
-  },1200);
+    },
+    1200
+  );
 
 }
 
 
-/* 成功 */
+/* ===== 成功 ===== */
 
 function showSuccess(prize){
 
   document.getElementById(
     "resultIcon"
-  ).textContent="🎉";
+  ).textContent =
+    "🎉";
 
   document.getElementById(
     "resultTitle"
-  ).textContent="抓取成功！";
+  ).textContent =
+    "抓取成功！";
 
   document.getElementById(
     "resultImg"
-  ).src=prize.image;
+  ).src =
+    prize.image;
 
   document.getElementById(
     "resultImg"
-  ).alt=prize.name;
+  ).alt =
+    prize.name;
 
   document.getElementById(
     "resultImgWrap"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
   document.getElementById(
     "resultText"
-  ).textContent=
+  ).textContent =
     "恭喜你获得了这个奖品 ♡";
 
-  result.classList.add("show");
+  result.classList.add(
+    "show"
+  );
 
 }
 
 
-/* 没抓到 */
+/* ===== 失败 ===== */
 
 function showFail(){
 
   document.getElementById(
     "resultIcon"
-  ).textContent="💦";
+  ).textContent =
+    "💦";
 
   document.getElementById(
     "resultTitle"
-  ).textContent="差一点点！";
+  ).textContent =
+    "差一点点！";
 
   document.getElementById(
     "resultImgWrap"
-  ).style.display="none";
+  ).style.display =
+    "none";
 
   document.getElementById(
     "resultText"
-  ).textContent=
+  ).textContent =
     "这次没有抓到，再试一次吧 ♡";
 
-  result.classList.add("show");
+  result.classList.add(
+    "show"
+  );
 
 }
 
 
-/* 关闭弹窗 */
+/* ===== 关闭弹窗 ===== */
 
 function closeResult(){
 
-  result.classList.remove("show");
+  result.classList.remove(
+    "show"
+  );
 
   document.getElementById(
     "resultImgWrap"
-  ).style.display="flex";
+  ).style.display =
+    "flex";
 
 }
 
 
-/* 随机摆放 */
+/* ===== 随机摆放 ===== */
 
 function newGame(){
 
   prizes.sort(
-    () => Math.random() - 0.5
+    () =>
+      Math.random() - 0.5
   );
 
   renderPrizes();
 
   position =
-    20 + Math.random() * 60;
+    20 +
+    Math.random() * 60;
 
   crane.style.left =
     position + "%";
@@ -964,7 +979,7 @@ function newGame(){
 }
 
 
-/* 清空 */
+/* ===== 清空 ===== */
 
 function clearPrizes(){
 
@@ -972,9 +987,13 @@ function clearPrizes(){
     !confirm(
       "确定要清空所有奖品吗？"
     )
-  )return;
+  ){
 
-  prizes=[];
+    return;
+
+  }
+
+  prizes = [];
 
   renderPrizes();
 
