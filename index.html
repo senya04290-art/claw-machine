@@ -392,43 +392,14 @@ input{
     transform:translateY(-25px) scale(1.3) rotate(180deg);
     opacity:0;
   }
-}
-/* ===== 可爱奶油系爪子 ===== */
+/* ===== 超可爱奶油系娃娃机爪 ===== */
 
 .claw{
     position:relative;
-    width:86px;
-    height:72px;
+    width:90px;
+    height:76px;
     margin:auto;
-    filter:drop-shadow(0 4px 5px rgba(170,120,160,.22));
-}
-
-
-/* 中间连接小方块 */
-.claw::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:0;
-    transform:translateX(-50%);
-
-    width:30px;
-    height:22px;
-
-    background:linear-gradient(
-        180deg,
-        #fffafd 0%,
-        #fff1f7 100%
-    );
-
-    border:3px solid #d9a9c3;
-    border-radius:10px;
-
-    box-shadow:
-        0 3px 5px rgba(180,130,165,.20),
-        inset 0 2px 3px rgba(255,255,255,.9);
-
-    z-index:5;
+    filter:drop-shadow(0 4px 5px rgba(190,130,165,.22));
 }
 
 
@@ -437,106 +408,99 @@ input{
     content:"";
     position:absolute;
 
-    left:9px;
-    top:16px;
+    left:10px;
+    top:17px;
 
-    width:23px;
+    width:22px;
     height:48px;
 
     background:linear-gradient(
         90deg,
-        #f2d8e5 0%,
-        #fff8fb 50%,
-        #f5dce8 100%
+        #f3d8e6 0%,
+        #fffafd 45%,
+        #f9e8f0 100%
     );
 
-    border:3px solid #d4a8bc;
-    border-radius:16px 16px 18px 18px;
+    border:3px solid #d6a7bd;
+    border-radius:18px;
 
     transform:rotate(34deg);
     transform-origin:top center;
 
     box-shadow:
-        2px 3px 5px rgba(180,130,165,.20),
-        inset 2px 0 3px rgba(255,255,255,.8);
+        2px 3px 5px rgba(180,120,160,.18),
+        inset 2px 0 3px rgba(255,255,255,.9);
 
     z-index:3;
 }
 
 
 /* 右边爪子 */
-.claw-joint{
-    position:absolute;
-
-    left:50%;
-    top:16px;
-    transform:translateX(-50%);
-
-    width:86px;
-    height:55px;
-
-    z-index:2;
-}
-
-
-.claw-joint::after{
+.claw::after{
     content:"";
     position:absolute;
 
-    right:9px;
-    top:0;
+    right:10px;
+    top:17px;
 
-    width:23px;
+    width:22px;
     height:48px;
 
     background:linear-gradient(
         90deg,
-        #f5dce8 0%,
-        #fff8fb 50%,
-        #f2d8e5 100%
+        #f9e8f0 0%,
+        #fffafd 55%,
+        #f3d8e6 100%
     );
 
-    border:3px solid #d4a8bc;
-    border-radius:16px 16px 18px 18px;
+    border:3px solid #d6a7bd;
+    border-radius:18px;
 
     transform:rotate(-34deg);
     transform-origin:top center;
 
     box-shadow:
-        -2px 3px 5px rgba(180,130,165,.20),
-        inset -2px 0 3px rgba(255,255,255,.8);
+        -2px 3px 5px rgba(180,120,160,.18),
+        inset -2px 0 3px rgba(255,255,255,.9);
 
     z-index:3;
 }
 
 
-/* 中间的小圆球 */
-.claw-joint::before{
-    content:"";
+/* 中间奶油色连接块 */
+.claw-joint{
     position:absolute;
 
     left:50%;
-    top:2px;
+    top:0;
+
     transform:translateX(-50%);
 
-    width:16px;
-    height:16px;
+    width:30px;
+    height:22px;
 
-    background:radial-gradient(
-        circle at 35% 30%,
+    background:linear-gradient(
+        180deg,
         #ffffff 0%,
-        #fff5fa 45%,
-        #f0d5e2 100%
+        #fff5f9 55%,
+        #f1dce6 100%
     );
 
-    border:2px solid #d4a8bc;
-    border-radius:50%;
+    border:3px solid #d6a7bd;
+    border-radius:10px;
 
     box-shadow:
-        0 2px 4px rgba(180,130,165,.20),
-        inset 1px 1px 2px rgba(255,255,255,.9);
+        0 3px 5px rgba(180,120,160,.20),
+        inset 0 2px 3px rgba(255,255,255,.9);
 
     z-index:6;
+}
+
+
+/* 防止旧的爪子伪元素干扰 */
+.claw-joint::before,
+.claw-joint::after{
+    content:none !important;
 }
 </style>
 </head>
