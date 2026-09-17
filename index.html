@@ -393,101 +393,67 @@ input{
     opacity:0;
   }
 }
-/* ===== 更真实的娃娃机机械爪 ===== */
-
-.claw{
-  position:relative;
-  width:70px;
-  height:55px;
-  margin:auto;
-  filter:drop-shadow(0 4px 4px rgba(0,0,0,.25));
-}
-/* ===== 可爱机械爪 ===== */
+/* ===== 参考图风格机械爪 ===== */
 
 .claw{
     position:relative;
     width:70px;
-    height:60px;
+    height:65px;
     margin:auto;
-    filter:drop-shadow(0 3px 3px rgba(0,0,0,.22));
+
+    /* 中间金属连接球 */
+    background:
+        radial-gradient(
+            circle at 50% 10px,
+            #ffffff 0%,
+            #dddddd 30%,
+            #999999 65%,
+            #666666 100%
+        );
+
+    filter:drop-shadow(0 3px 3px rgba(0,0,0,.25));
 }
 
-/* 中间连接头 */
-.claw::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:0;
-    transform:translateX(-50%);
-    width:16px;
-    height:14px;
-    background:linear-gradient(
-        90deg,
-        #777,
-        #fff 45%,
-        #aaa 70%,
-        #666
-    );
-    border:2px solid #777;
-    border-radius:5px 5px 3px 3px;
-    z-index:3;
-}
-
-/* 左爪 */
+/* 左右两只机械爪 */
+.claw::before,
 .claw::after{
     content:"";
     position:absolute;
-    left:16px;
     top:10px;
+
     width:22px;
     height:42px;
-    border-left:5px solid #888;
+
     border-bottom:5px solid #888;
-    border-radius:4px 0 12px 14px;
-    transform:rotate(-32deg);
+    border-radius:4px 4px 15px 15px;
+
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.2));
+}
+
+/* 左爪 */
+.claw::before{
+    left:12px;
+
+    border-left:5px solid #888;
+
+    transform:
+        rotate(-32deg);
+
     transform-origin:top right;
-    z-index:2;
 }
 
 /* 右爪 */
-.claw{
-    --claw-right:1;
-}
+.claw::after{
+    right:12px;
 
-/* 用额外元素画右爪 */
-.claw-joint{
-    position:absolute;
-    left:50%;
-    top:3px;
-    transform:translateX(-50%);
-    width:16px;
-    height:14px;
-    border-radius:50%;
-    background:radial-gradient(
-        circle at 35% 30%,
-        #fff,
-        #ddd 35%,
-        #999 70%,
-        #555
-    );
-    border:2px solid #777;
-    z-index:4;
-}
-
-/* 右侧爪臂 */
-.claw-joint::after{
-    content:"";
-    position:absolute;
-    left:4px;
-    top:7px;
-    width:22px;
-    height:42px;
     border-right:5px solid #888;
-    border-bottom:5px solid #888;
-    border-radius:0 4px 14px 12px;
-    transform:rotate(32deg);
+
+    transform:
+        rotate(32deg);
+
     transform-origin:top left;
-}  
+}
+
 </style>
 </head>
 
