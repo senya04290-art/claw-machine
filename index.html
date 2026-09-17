@@ -393,65 +393,78 @@ input{
     opacity:0;
   }
 }
-/* ===== 可爱奶油风机械爪 ===== */
+/* ===== 可爱画风机械爪 V2 ===== */
 
 .claw{
     position:relative;
-    width:80px;
+    width:76px;
     height:72px;
     margin:auto;
-    filter:drop-shadow(0 4px 3px rgba(100,80,100,.22));
+    filter:drop-shadow(0 3px 3px rgba(100,80,100,.18));
 }
 
-/* 左边爪子 */
+/* 左爪 */
 .claw::before{
     content:"";
     position:absolute;
-    left:12px;
-    top:18px;
-    width:25px;
-    height:43px;
 
-    border-left:6px solid #9b9297;
-    border-bottom:6px solid #9b9297;
+    left:21px;
+    top:14px;
 
-    border-radius:0 0 0 20px;
+    width:9px;
+    height:48px;
 
-    transform:rotate(-30deg);
-    transform-origin:top right;
+    background:linear-gradient(
+        90deg,
+        #aaa1a6 0%,
+        #eee9eb 45%,
+        #b8afb4 100%
+    );
 
-    filter:
-        drop-shadow(1px 2px 1px rgba(80,70,80,.18));
+    border-radius:8px;
+
+    transform:rotate(30deg);
+    transform-origin:top center;
+
+    box-shadow:
+        1px 2px 2px rgba(80,70,80,.18);
 
     z-index:2;
 }
 
-/* 右边爪子 */
+/* 右爪 */
 .claw::after{
     content:"";
     position:absolute;
-    right:12px;
-    top:18px;
-    width:25px;
-    height:43px;
 
-    border-right:6px solid #9b9297;
-    border-bottom:6px solid #9b9297;
+    right:21px;
+    top:14px;
 
-    border-radius:0 0 20px 0;
+    width:9px;
+    height:48px;
 
-    transform:rotate(30deg);
-    transform-origin:top left;
+    background:linear-gradient(
+        90deg,
+        #b8afb4 0%,
+        #eee9eb 50%,
+        #aaa1a6 100%
+    );
 
-    filter:
-        drop-shadow(-1px 2px 1px rgba(80,70,80,.18));
+    border-radius:8px;
+
+    transform:rotate(-30deg);
+    transform-origin:top center;
+
+    box-shadow:
+        -1px 2px 2px rgba(80,70,80,.18);
 
     z-index:2;
 }
 
-/* 中间奶白色连接头 */
+/* 中间连接头 */
 .claw-joint{
     position:absolute;
+
     left:50%;
     top:0;
 
@@ -462,43 +475,39 @@ input{
 
     background:linear-gradient(
         180deg,
-        #ffffff 0%,
-        #f1ecef 45%,
+        #fffefe 0%,
+        #f1edef 45%,
         #d2cbd0 100%
     );
 
     border:2px solid #a49a9f;
+
     border-radius:8px 8px 10px 10px;
 
     box-shadow:
         inset 2px 2px 3px rgba(255,255,255,.9),
-        0 2px 3px rgba(90,75,90,.2);
+        0 2px 3px rgba(90,75,90,.18);
 
     z-index:5;
 }
 
-/* 中间小圆形转轴 */
+/* 中间的小圆形转轴 */
 .claw-joint::before{
     content:"";
 
     position:absolute;
+
     left:50%;
     top:50%;
 
     transform:translate(-50%,-50%);
 
-    width:9px;
-    height:9px;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
 
-    background:radial-gradient(
-        circle at 35% 30%,
-        #ffffff 0%,
-        #eeeeee 35%,
-        #c5bdc2 75%,
-        #aaa1a6 100%
-    );
+    background:#c9c1c6;
 
     border:1px solid #999095;
 
@@ -508,7 +517,7 @@ input{
     z-index:6;
 }
 
-/* 禁用旧的右爪 */
+/* 不再用旧的伪元素画爪子 */
 .claw-joint::after{
     content:none;
 }
