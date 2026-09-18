@@ -1,1730 +1,1511 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>我的小小娃娃机 ♡</title>
 
-
 <style>
 
-/* =========================================================
+/* =========================
    基础
-========================================================= */
+========================= */
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
-html,
-body{
-  margin:0;
-  padding:0;
-  min-height:100%;
+html,body{
+    margin:0;
+    padding:0;
 }
 
 body{
+    min-height:100vh;
+    font-family:
+        "Arial Rounded MT Bold",
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
 
-  min-height:100vh;
+    background:
+        linear-gradient(
+            135deg,
+            #ffeaf5 0%,
+            #eee7ff 50%,
+            #e4f6ff 100%
+        );
 
-  background:
-    linear-gradient(
-      135deg,
-      #fff5f8,
-      #f5efff
-    );
-
-  font-family:
-    Arial,
-    "Noto Sans SC",
-    sans-serif;
-
-  color:#66536d;
-
-  overflow-x:hidden;
+    color:#6b5470;
+    display:flex;
+    justify-content:center;
+    padding:28px 15px 45px;
 }
 
 
-/* =========================================================
-   顶部
-========================================================= */
+/* =========================
+   页面
+========================= */
 
-header{
-
-  text-align:center;
-
-  padding:
-    24px
-    15px
-    12px;
-
+.page{
+    width:min(760px,100%);
 }
 
-h1{
-
-  margin:0;
-
-  font-size:28px;
-
-  color:#9b6fa8;
-
-  font-weight:900;
-
+.header{
+    text-align:center;
+    margin-bottom:18px;
 }
 
-.subtitle{
+.header h1{
+    margin:0;
+    font-size:30px;
+    color:#9b70b2;
+    letter-spacing:2px;
+}
 
-  margin-top:7px;
-
-  font-size:13px;
-
-  color:#aa94b1;
-
+.header p{
+    margin:8px 0 0;
+    color:#a78eaa;
+    font-size:14px;
 }
 
 
-/* =========================================================
-   页面容器
-========================================================= */
-
-.container{
-
-  width:min(94%,520px);
-
-  margin:auto;
-
-}
-
-
-/* =========================================================
-   娃娃机主体
-========================================================= */
+/* =========================
+   娃娃机
+========================= */
 
 .machine{
+    position:relative;
 
-  position:relative;
+    width:100%;
+    height:560px;
 
-  height:560px;
+    overflow:hidden;
 
-  overflow:hidden;
+    border:6px solid #e8a7cf;
+    border-radius:30px;
 
-  border:
-    8px solid
-    #d29abb;
+    background:
+        linear-gradient(
+            to bottom,
+            #eaf7ff 0%,
+            #e9f6ff 61%,
+            #f9dbea 61%,
+            #f9dbea 100%
+        );
 
-  border-radius:30px;
-
-  background:
-
-    linear-gradient(
-      to bottom,
-
-      #dff7ff 0%,
-
-      #f5fcff 67%,
-
-      #e0a36f 67%,
-
-      #c98f60 100%
-    );
-
-  box-shadow:
-
-    0 15px 35px
-    rgba(120,90,130,.18),
-
-    inset 0 0 30px
-    rgba(255,255,255,.65);
-
+    box-shadow:
+        0 15px 35px rgba(139,91,142,.18),
+        inset 0 0 0 3px rgba(255,255,255,.7);
 }
 
 
-/* =========================================================
-   机器顶部标题
-========================================================= */
+/* 顶部装饰 */
 
 .machine-title{
+    position:absolute;
+    left:50%;
+    top:15px;
 
-  position:absolute;
+    transform:translateX(-50%);
 
-  top:18px;
+    z-index:10;
 
-  left:50%;
+    padding:6px 22px;
 
-  transform:
-    translateX(-50%);
+    border-radius:999px;
 
-  background:
-    rgba(255,255,255,.86);
+    background:rgba(255,255,255,.78);
 
-  padding:
-    8px 24px;
+    color:#9a6baa;
 
-  border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
 
-  color:#a06da0;
+    letter-spacing:2px;
 
-  font-weight:bold;
-
-  z-index:20;
-
-  white-space:nowrap;
-
+    box-shadow:
+        0 4px 10px rgba(137,100,145,.1);
 }
 
 
-/* =========================================================
-   顶部灯
-========================================================= */
-
-.light{
-
-  position:absolute;
-
-  top:4px;
-
-  width:12px;
-
-  height:12px;
-
-  border-radius:50%;
-
-  background:#fff;
-
-  box-shadow:
-    0 0 12px #fff;
-
-  z-index:5;
-
-}
-
-.light:nth-child(1){
-  left:25px;
-}
-
-.light:nth-child(2){
-  left:55px;
-}
-
-.light:nth-child(3){
-  right:55px;
-}
-
-.light:nth-child(4){
-  right:25px;
-}
-
-
-/* =========================================================
-   横向轨道
-   ★ 保持固定
-========================================================= */
+/* =========================
+   横轨
+========================= */
 
 .rail{
+    position:absolute;
 
-  position:absolute;
+    left:34px;
+    right:34px;
 
-  top:78px;
+    top:75px;
 
-  left:6%;
+    height:10px;
 
-  width:88%;
+    border-radius:999px;
 
-  height:10px;
+    background:
+        linear-gradient(
+            to bottom,
+            #b98bc9,
+            #9566ae
+        );
 
-  border-radius:10px;
+    box-shadow:
+        0 3px 0 #7e5595,
+        0 5px 10px rgba(111,76,126,.18);
 
-  background:#a984b4;
-
-  box-shadow:
-    inset 0 2px 3px
-    rgba(255,255,255,.3),
-
-    0 2px 4px
-    rgba(120,80,130,.15);
-
-  z-index:6;
-
+    z-index:5;
 }
 
 
-/* =========================================================
-   吊车整体
-   ★ 这里只负责左右移动
-   ★ TOP 永远保持 77px
-========================================================= */
+/* =========================
+   整个横向移动组件
+========================= */
 
 .crane{
+    position:absolute;
 
-  position:absolute;
+    top:78px;
+    left:50%;
 
-  top:77px;
+    width:78px;
+    height:280px;
 
-  left:50%;
+    transform:translateX(-50%);
 
-  width:70px;
+    transition:left .35s ease;
 
-  height:auto;
+    z-index:20;
 
-  transform:
-    translateX(-50%);
+    /*
+       非常重要：
 
-  transition:
-    left .35s ease;
+       crane 的 top 永远不改变。
 
-  z-index:10;
-
+       抓取的时候绝对不能修改 crane.top，
+       这样滑块和绳索就不会跟着往下跑。
+    */
 }
 
 
-/* =========================================================
-   滑块
-   ★ 固定在轨道
-   ★ 不会跟着绳索下降
-========================================================= */
+/* =========================
+   紫色滑块
+========================= */
 
 .crane-head{
+    position:absolute;
 
-  position:relative;
+    top:-1px;
+    left:50%;
 
-  width:84px;
+    transform:translateX(-50%);
 
-  height:58px;
+    width:48px;
+    height:34px;
 
-  margin-left:-7px;
+    border-radius:11px 11px 8px 8px;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #c995cf,
-      #b77fc0
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #c99ade,
+            #9a67b3
+        );
 
-  border-radius:
-    17px
-    17px
-    12px
-    12px;
+    border:3px solid #8b5ca3;
 
-  box-shadow:
-
-    0 4px 8px
-    rgba(130,90,140,.18),
-
-    inset 0 5px 7px
-    rgba(255,255,255,.25);
-
-  z-index:15;
-
+    box-shadow:
+        0 4px 0 #7d5294,
+        0 6px 10px rgba(105,69,124,.2);
 }
 
 
-/* 滑块顶部高光 */
+/* 滑块里面的小高光 */
 
 .crane-head::before{
+    content:"";
 
-  content:"";
+    position:absolute;
 
-  position:absolute;
+    left:8px;
+    right:8px;
+    top:5px;
 
-  left:16px;
+    height:6px;
 
-  top:9px;
+    border-radius:999px;
 
-  width:56px;
-
-  height:7px;
-
-  border-radius:10px;
-
-  background:
-    rgba(255,255,255,.25);
-
+    background:rgba(255,255,255,.35);
 }
 
 
-/* =========================================================
-   绳索
-   ★ 从滑块下面开始
-   ★ 抓取时只改变高度
-   ★ 滑块完全不动
-========================================================= */
+/* 滑轮 */
+
+.crane-head::after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-7px;
+
+    transform:translateX(-50%);
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    border:3px solid #8d61a5;
+}
+
+
+/* =========================
+   固定绳索
+========================= */
 
 .cable{
+    position:absolute;
 
-  position:relative;
+    left:50%;
+    top:33px;
 
-  width:4px;
+    transform:translateX(-50%);
 
-  height:125px;
+    width:4px;
+    height:118px;
 
-  margin-left:33px;
+    border-radius:999px;
 
-  background:
-    linear-gradient(
-      to right,
-      #e49ab6,
-      #f3b5cb,
-      #e49ab6
-    );
+    background:
+        linear-gradient(
+            to right,
+            #d99abf,
+            #f2c2db,
+            #c984b1
+        );
 
-  border-radius:5px;
+    box-shadow:
+        1px 0 2px rgba(126,77,115,.18);
 
-  box-shadow:
-
-    0 0 2px
-    rgba(255,255,255,.95),
-
-    1px 0 3px
-    rgba(190,120,150,.2);
-
-  z-index:8;
-
-  transition:
-    height .5s
-    cubic-bezier(.4,0,.2,1);
-
+    z-index:2;
 }
 
 
-/* 绳索底部小连接点 */
+/*
+   绳索底部固定连接点
+*/
 
 .cable::after{
+    content:"";
 
-  content:"";
+    position:absolute;
 
-  position:absolute;
+    left:50%;
+    bottom:-7px;
 
-  left:50%;
+    transform:translateX(-50%);
 
-  bottom:-4px;
+    width:16px;
+    height:16px;
 
-  transform:
-    translateX(-50%);
+    border-radius:50%;
 
-  width:8px;
+    background:#fff;
 
-  height:8px;
+    border:3px solid #b27fc2;
 
-  border-radius:50%;
-
-  background:#efa4c0;
-
+    box-shadow:
+        0 2px 4px rgba(102,69,120,.15);
 }
 
 
-/* =========================================================
-   抓取下降
-   ★ 只让绳索变长
-========================================================= */
+/* =========================
+   爪子区域
+========================= */
 
-.crane.dropping .cable{
+/*
+   这个位置固定在绳索末端。
 
-  height:245px;
+   注意：
+   它不会随着抓取改变 top。
 
+   真正向下移动的是 claw-body。
+*/
+
+.claw-anchor{
+    position:absolute;
+
+    left:50%;
+    top:150px;
+
+    transform:translateX(-50%);
+
+    width:72px;
+    height:120px;
+
+    z-index:4;
 }
 
 
-/* =========================================================
-   🪝 爪子主体
-   ★ 两爪
-   ★ 不是三爪
-   ★ 每边都有上半段 + 下半段
-========================================================= */
+/* 固定的小连接杆 */
 
-.claw{
+.claw-neck{
+    position:absolute;
 
-  position:relative;
+    left:50%;
+    top:0;
 
-  width:82px;
+    transform:translateX(-50%);
 
-  height:82px;
+    width:8px;
+    height:20px;
 
-  margin-left:-6px;
+    border-radius:5px;
 
-  margin-top:0;
+    background:
+        linear-gradient(
+            to right,
+            #aa78bb,
+            #d9b0e5,
+            #9866ad
+        );
 
-  transform-origin:
-    41px 0;
-
-  filter:
-    drop-shadow(
-      0 4px 4px
-      rgba(180,100,145,.18)
-    );
-
-  z-index:12;
-
+    box-shadow:
+        0 2px 3px rgba(101,67,118,.15);
 }
 
 
-/* =========================================================
-   中央连接圆
-========================================================= */
+/* =========================
+   爪子本体
+========================= */
 
-.joint{
+.claw-body{
+    position:absolute;
 
-  position:absolute;
+    left:50%;
+    top:13px;
 
-  left:50%;
+    width:78px;
+    height:105px;
 
-  top:0;
+    transform:
+        translateX(-50%)
+        translateY(0);
 
-  width:30px;
+    transform-origin:top center;
 
-  height:30px;
+    transition:
+        transform .48s cubic-bezier(.2,.75,.3,1);
 
-  transform:
-    translateX(-50%);
-
-  background:#fff8fc;
-
-  border:
-    4px solid
-    #e39ab9;
-
-  border-radius:50%;
-
-  box-shadow:
-
-    0 2px 5px
-    rgba(180,100,145,.18),
-
-    inset
-    1px 1px 3px
-    rgba(255,255,255,.9);
-
-  z-index:10;
-
+    z-index:5;
 }
 
 
-/* 中央内圈 */
+/*
+   抓取时：
 
-.joint::after{
+   只有 claw-body 向下。
+   crane / crane-head / cable 全部不动。
+*/
 
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-
-  top:50%;
-
-  width:13px;
-
-  height:13px;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:#fff4f9;
-
-  border:
-    2px solid
-    #e7a7c1;
-
+.claw-anchor.grabbing .claw-body{
+    transform:
+        translateX(-50%)
+        translateY(68px);
 }
 
 
-/* =========================================================
-   左爪 —— 上半段
-========================================================= */
+/* =========================
+   爪子中心连接块
+========================= */
+
+.claw-core{
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    transform:translateX(-50%);
+
+    width:24px;
+    height:24px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #f6e7fb,
+            #c08bd1 60%,
+            #9460a9 100%
+        );
+
+    border:3px solid #87579f;
+
+    box-shadow:
+        0 3px 4px rgba(92,60,110,.2);
+
+    z-index:10;
+}
+
+
+/* =========================
+   爪子两侧
+========================= */
+
+
+/*
+   左边上半部分
+*/
 
 .arm-left-upper{
+    position:absolute;
 
-  position:absolute;
+    left:29px;
+    top:17px;
 
-  left:22px;
+    width:9px;
+    height:34px;
 
-  top:23px;
+    border-radius:999px;
 
-  width:10px;
+    background:
+        linear-gradient(
+            to right,
+            #a86cbd,
+            #d4a0df,
+            #9560aa
+        );
 
-  height:37px;
+    transform:
+        rotate(34deg);
 
-  background:
-    linear-gradient(
-      90deg,
-      #f3b5cf,
-      #fff6fa,
-      #eaa4c2
-    );
+    transform-origin:top center;
 
-  border:
-    3px solid
-    #df94b5;
-
-  border-radius:
-    8px;
-
-  transform:
-    rotate(35deg);
-
-  transform-origin:
-    top center;
-
-  box-shadow:
-
-    0 2px 4px
-    rgba(180,100,145,.15),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  transition:
-    transform .35s ease;
-
-  z-index:7;
-
+    box-shadow:
+        1px 2px 3px rgba(93,61,111,.18);
 }
 
 
-/* =========================================================
-   左爪 —— 下半段
-   ★ 这是你要求的下半部分
-========================================================= */
-
-.arm-left-lower{
-
-  position:absolute;
-
-  left:3px;
-
-  top:54px;
-
-  width:10px;
-
-  height:29px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #efafd0,
-      #fff6fa,
-      #eaa2c1
-    );
-
-  border:
-    3px solid
-    #df94b5;
-
-  border-radius:
-    8px;
-
-  transform:
-    rotate(-32deg);
-
-  transform-origin:
-    top center;
-
-  box-shadow:
-
-    0 2px 4px
-    rgba(180,100,145,.15),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  transition:
-    transform .35s ease;
-
-  z-index:6;
-
-}
-
-
-/* =========================================================
-   右爪 —— 上半段
-========================================================= */
+/*
+   右边上半部分
+*/
 
 .arm-right-upper{
+    position:absolute;
 
-  position:absolute;
+    right:29px;
+    top:17px;
 
-  right:22px;
+    width:9px;
+    height:34px;
 
-  top:23px;
+    border-radius:999px;
 
-  width:10px;
+    background:
+        linear-gradient(
+            to right,
+            #a86cbd,
+            #d4a0df,
+            #9560aa
+        );
 
-  height:37px;
+    transform:
+        rotate(-34deg);
 
-  background:
-    linear-gradient(
-      90deg,
-      #eaa4c2,
-      #fff6fa,
-      #f3b5cf
-    );
+    transform-origin:top center;
 
-  border:
-    3px solid
-    #df94b5;
-
-  border-radius:
-    8px;
-
-  transform:
-    rotate(-35deg);
-
-  transform-origin:
-    top center;
-
-  box-shadow:
-
-    0 2px 4px
-    rgba(180,100,145,.15),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  transition:
-    transform .35s ease;
-
-  z-index:7;
-
+    box-shadow:
+        -1px 2px 3px rgba(93,61,111,.18);
 }
 
 
-/* =========================================================
-   右爪 —— 下半段
-   ★ 这是第二个下半部分
-========================================================= */
+/* =========================
+   左右下半部分
+========================= */
+
+.arm-left-lower{
+    position:absolute;
+
+    left:14px;
+    top:42px;
+
+    width:9px;
+    height:43px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            to right,
+            #a66abc,
+            #d4a0df,
+            #925fa8
+        );
+
+    transform:
+        rotate(-30deg);
+
+    transform-origin:top center;
+
+    transition:
+        transform .35s ease;
+
+    box-shadow:
+        1px 2px 3px rgba(93,61,111,.18);
+}
+
 
 .arm-right-lower{
+    position:absolute;
 
-  position:absolute;
+    right:14px;
+    top:42px;
 
-  right:3px;
+    width:9px;
+    height:43px;
 
-  top:54px;
+    border-radius:999px;
 
-  width:10px;
+    background:
+        linear-gradient(
+            to right,
+            #a66abc,
+            #d4a0df,
+            #925fa8
+        );
 
-  height:29px;
+    transform:
+        rotate(30deg);
 
-  background:
-    linear-gradient(
-      90deg,
-      #eaa2c1,
-      #fff6fa,
-      #efafd0
-    );
+    transform-origin:top center;
 
-  border:
-    3px solid
-    #df94b5;
+    transition:
+        transform .35s ease;
 
-  border-radius:
-    8px;
-
-  transform:
-    rotate(32deg);
-
-  transform-origin:
-    top center;
-
-  box-shadow:
-
-    0 2px 4px
-    rgba(180,100,145,.15),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  transition:
-    transform .35s ease;
-
-  z-index:6;
-
+    box-shadow:
+        -1px 2px 3px rgba(93,61,111,.18);
 }
 
 
-/* =========================================================
-   爪子默认张开
-========================================================= */
+/* =========================
+   抓取闭合
+========================= */
 
-.claw.open .arm-left-upper{
-
-  transform:
-    rotate(43deg);
-
-}
-
-.claw.open .arm-left-lower{
-
-  transform:
-    rotate(-38deg);
-
-}
-
-.claw.open .arm-right-upper{
-
-  transform:
-    rotate(-43deg);
-
-}
-
-.claw.open .arm-right-lower{
-
-  transform:
-    rotate(38deg);
-
+.claw-anchor.closed .arm-left-lower{
+    transform:
+        rotate(-5deg);
 }
 
 
-/* =========================================================
-   爪子闭合
-========================================================= */
-
-.claw.closed .arm-left-upper{
-
-  transform:
-    rotate(24deg);
-
-}
-
-.claw.closed .arm-left-lower{
-
-  transform:
-    rotate(-12deg);
-
-}
-
-.claw.closed .arm-right-upper{
-
-  transform:
-    rotate(-24deg);
-
-}
-
-.claw.closed .arm-right-lower{
-
-  transform:
-    rotate(12deg);
-
+.claw-anchor.closed .arm-right-lower{
+    transform:
+        rotate(5deg);
 }
 
 
-/* =========================================================
-   爪尖小圆
-========================================================= */
+/* =========================
+   两个爪尖
+========================= */
 
-.arm-left-lower::after,
-.arm-right-lower::after{
+.tip-left{
+    position:absolute;
 
-  content:"";
+    left:3px;
+    top:76px;
 
-  position:absolute;
+    width:20px;
+    height:10px;
 
-  width:15px;
+    border-radius:
+        3px
+        8px
+        8px
+        3px;
 
-  height:15px;
+    background:
+        linear-gradient(
+            to bottom,
+            #c78ad4,
+            #9660aa
+        );
 
-  border-radius:50%;
+    transform:
+        rotate(-18deg);
 
-  background:
-    linear-gradient(
-      135deg,
-      #fff7fb,
-      #ef9fbe
-    );
+    transition:
+        transform .35s ease;
 
-  border:
-    2px solid
-    #df94b5;
-
-  box-shadow:
-    0 2px 3px
-    rgba(180,100,145,.15);
-
+    box-shadow:
+        0 2px 3px rgba(90,57,108,.18);
 }
 
 
-/* 左爪尖 */
+.tip-right{
+    position:absolute;
 
-.arm-left-lower::after{
+    right:3px;
+    top:76px;
 
-  left:-5px;
+    width:20px;
+    height:10px;
 
-  bottom:-10px;
+    border-radius:
+        8px
+        3px
+        3px
+        8px;
 
+    background:
+        linear-gradient(
+            to bottom,
+            #c78ad4,
+            #9660aa
+        );
+
+    transform:
+        rotate(18deg);
+
+    transition:
+        transform .35s ease;
+
+    box-shadow:
+        0 2px 3px rgba(90,57,108,.18);
 }
 
 
-/* 右爪尖 */
+/* 闭合时两个爪尖向中间 */
 
-.arm-right-lower::after{
+.claw-anchor.closed .tip-left{
+    transform:
+        rotate(8deg);
+}
 
-  right:-5px;
-
-  bottom:-10px;
-
+.claw-anchor.closed .tip-right{
+    transform:
+        rotate(-8deg);
 }
 
 
-/* =========================================================
+/* =========================
    奖品区域
-========================================================= */
+========================= */
 
-.prizes{
+.prize-area{
+    position:absolute;
 
-  position:absolute;
+    left:35px;
+    right:35px;
 
-  left:7%;
+    top:235px;
+    bottom:74px;
 
-  right:7%;
+    display:flex;
 
-  bottom:14%;
+    align-items:flex-end;
+    justify-content:center;
 
-  height:52%;
+    gap:12px;
 
-  display:flex;
+    flex-wrap:wrap;
 
-  flex-wrap:wrap;
+    padding:10px 12px;
 
-  align-items:flex-end;
-
-  justify-content:center;
-
-  gap:9px;
-
-  z-index:4;
-
+    z-index:3;
 }
 
 
-/* =========================================================
-   奖品
-========================================================= */
+/*
+   奖品卡片
+
+   不再强制圆形。
+   保持图片自己的矩形外观。
+*/
 
 .prize{
+    position:relative;
 
-  width:76px;
+    width:92px;
+    height:92px;
 
-  height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  overflow:hidden;
+    animation:
+        prizeFloat 2.5s ease-in-out infinite;
 
-  background:
-    rgba(255,255,255,.72);
-
-  border:
-    3px solid white;
-
-  border-radius:12px;
-
-  box-shadow:
-    0 5px 10px
-    rgba(80,50,80,.2);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
+    animation-delay:
+        calc(var(--i) * -.3s);
 }
 
-
-/* 图片保持原本比例 */
 
 .prize img{
+    display:block;
 
-  width:100%;
+    max-width:92px;
+    max-height:92px;
 
-  height:100%;
+    width:auto;
+    height:auto;
 
-  object-fit:contain;
+    object-fit:contain;
 
-  display:block;
+    border-radius:8px;
 
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(103,70,95,.18)
+        );
 }
 
 
-/* 没有奖品 */
+@keyframes prizeFloat{
 
-.empty{
+    0%,100%{
+        transform:translateY(0);
+    }
 
-  color:#aa94b1;
-
-  font-size:14px;
-
-  text-align:center;
-
-  padding-top:130px;
-
+    50%{
+        transform:translateY(-5px);
+    }
 }
 
 
-/* =========================================================
-   出奖口
-========================================================= */
+/* =========================
+   掉落出口
+========================= */
 
 .exit{
+    position:absolute;
 
-  position:absolute;
+    left:50%;
+    bottom:17px;
 
-  bottom:12px;
+    transform:translateX(-50%);
 
-  left:50%;
+    width:180px;
+    height:43px;
 
-  transform:
-    translateX(-50%);
+    border-radius:
+        18px
+        18px
+        25px
+        25px;
 
-  width:145px;
+    background:
+        linear-gradient(
+            to bottom,
+            #bd83bc,
+            #96629c
+        );
 
-  height:55px;
+    border:4px solid #805486;
 
-  border-radius:
-    15px
-    15px
-    5px
-    5px;
+    box-shadow:
+        inset 0 4px 5px rgba(255,255,255,.25),
+        0 5px 10px rgba(108,67,105,.18);
 
-  background:#725d76;
-
-  border:
-    5px solid
-    #aa8bb0;
-
-  color:white;
-
-  text-align:center;
-
-  padding-top:13px;
-
-  font-weight:bold;
-
-  z-index:8;
-
+    z-index:4;
 }
 
 
-/* =========================================================
-   按钮
-========================================================= */
+.exit::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:7px;
+
+    transform:translateX(-50%);
+
+    width:120px;
+    height:19px;
+
+    border-radius:999px;
+
+    background:#765071;
+}
+
+
+/* =========================
+   控制区
+========================= */
 
 .controls{
+    margin-top:18px;
 
-  display:grid;
+    display:flex;
 
-  grid-template-columns:
-    1fr
-    1.2fr
-    1fr;
+    justify-content:center;
+    align-items:center;
 
-  gap:9px;
+    gap:12px;
 
-  margin-top:14px;
-
+    flex-wrap:wrap;
 }
 
 
-button,
-.upload{
+.control-btn{
+    min-width:100px;
 
-  border:none;
+    border:none;
 
-  border-radius:15px;
+    padding:12px 20px;
 
-  padding:
-    13px
-    8px;
+    border-radius:999px;
 
-  font-size:15px;
+    background:#fff;
 
-  font-weight:bold;
+    color:#8c6595;
 
-  color:white;
+    font-size:15px;
+    font-weight:bold;
 
-  background:#ad83b9;
+    cursor:pointer;
 
-  box-shadow:
-    0 4px 8px
-    rgba(100,70,110,.15);
+    box-shadow:
+        0 5px 15px rgba(115,77,119,.13);
 
-  cursor:pointer;
-
-  text-align:center;
-
-  transition:
-    transform .12s ease;
-
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        background .15s ease;
 }
 
 
-button:active,
-.upload:active{
+.control-btn:hover{
+    transform:translateY(-2px);
 
-  transform:
-    scale(.96);
-
+    box-shadow:
+        0 8px 18px rgba(115,77,119,.18);
 }
 
 
-.grab{
-
-  background:#df8fac;
-
+.control-btn:active{
+    transform:translateY(1px);
 }
 
 
-.upload{
+.grab-btn{
+    padding:14px 34px;
 
-  background:#91a7c9;
+    background:
+        linear-gradient(
+            135deg,
+            #c792d6,
+            #a66bbb
+        );
 
+    color:#fff;
+
+    font-size:16px;
+
+    box-shadow:
+        0 7px 18px rgba(136,89,151,.25);
 }
 
 
-input{
-
-  display:none;
-
+.grab-btn:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #b983c9,
+            #965eac
+        );
 }
 
 
-/* =========================================================
-   信息
-========================================================= */
+/* =========================
+   上传区
+========================= */
+
+.panel{
+    margin-top:18px;
+
+    padding:20px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.75);
+
+    box-shadow:
+        0 10px 25px rgba(110,76,115,.09);
+
+    border:2px solid rgba(255,255,255,.8);
+}
+
+
+.panel-title{
+    text-align:center;
+
+    color:#90659d;
+
+    font-weight:bold;
+
+    margin-bottom:14px;
+}
+
+
+.upload-row{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+
+.upload-label{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:11px 18px;
+
+    border-radius:999px;
+
+    background:#f4e5f8;
+
+    color:#8b6195;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+
+.upload-label:hover{
+    background:#edd9f3;
+}
+
+
+#fileInput{
+    display:none;
+}
+
+
+.small-btn{
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    background:#fff;
+
+    color:#956d9b;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+
+.small-btn:hover{
+    background:#faf1fc;
+}
+
+
+/* =========================
+   提示
+========================= */
 
 .info{
+    margin-top:12px;
 
-  margin-top:12px;
+    text-align:center;
 
-  padding:13px;
+    font-size:12px;
 
-  background:
-    rgba(255,255,255,.78);
+    color:#ad94ad;
 
-  border-radius:15px;
-
-  text-align:center;
-
-  font-size:14px;
-
+    line-height:1.7;
 }
 
 
-/* =========================================================
-   抓取结果弹窗
-========================================================= */
+/* =========================
+   结果弹窗
+========================= */
 
-.result{
+.modal{
+    position:fixed;
 
-  display:none;
+    inset:0;
 
-  position:fixed;
+    display:none;
 
-  inset:0;
+    align-items:center;
+    justify-content:center;
 
-  z-index:50;
+    padding:20px;
 
-  background:
-    rgba(82,60,90,.28);
+    background:
+        rgba(100,70,105,.35);
 
-  backdrop-filter:
-    blur(4px);
+    backdrop-filter:
+        blur(6px);
 
-  align-items:center;
-
-  justify-content:center;
-
-  padding:22px;
-
+    z-index:100;
 }
 
 
-.result.show{
-
-  display:flex;
-
+.modal.show{
+    display:flex;
 }
 
 
-.result-card{
+.modal-box{
+    width:min(360px,100%);
 
-  width:min(92vw,390px);
+    padding:28px 22px;
 
-  padding:
-    24px
-    20px
-    20px;
+    text-align:center;
 
-  background:#fff;
+    border-radius:28px;
 
-  border:
-    3px solid
-    #f0c7d7;
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #fff5fc
+        );
 
-  border-radius:28px;
+    box-shadow:
+        0 20px 50px rgba(70,43,73,.25);
 
-  text-align:center;
-
-  box-shadow:
-    0 20px 55px
-    rgba(70,45,80,.25);
-
-  position:relative;
-
-  overflow:hidden;
-
+    animation:
+        modalIn .35s ease;
 }
 
 
-.result-title{
+@keyframes modalIn{
 
-  font-size:25px;
+    from{
+        opacity:0;
+        transform:scale(.85) translateY(20px);
+    }
 
-  font-weight:900;
-
-  color:#d27f9d;
-
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
 
-.result-icon{
+.success-icon{
+    width:72px;
+    height:72px;
 
-  font-size:54px;
+    margin:0 auto 12px;
 
-  line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  margin:
-    6px 0
-    2px;
+    border-radius:50%;
 
-  animation:
-    pop .55s ease;
+    background:
+        linear-gradient(
+            135deg,
+            #f7c7e5,
+            #dcb8f1
+        );
 
+    font-size:38px;
+
+    box-shadow:
+        0 8px 20px rgba(158,100,166,.2);
 }
 
 
-@keyframes pop{
+.modal-box h2{
+    margin:6px 0;
 
-  0%{
-
-    transform:
-      scale(.3)
-      rotate(-12deg);
-
-    opacity:0;
-
-  }
-
-  70%{
-
-    transform:
-      scale(1.15);
-
-  }
-
-  100%{
-
-    transform:
-      scale(1);
-
-  }
-
+    color:#93609f;
 }
 
 
-.result-img-wrap{
+.modal-box p{
+    margin:8px 0 20px;
 
-  width:190px;
+    color:#a68ca5;
 
-  height:190px;
-
-  margin:
-    12px auto;
-
-  border-radius:20px;
-
-  background:#faf6fb;
-
-  border:
-    3px solid
-    #ead9ee;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  overflow:hidden;
-
+    font-size:14px;
 }
 
 
-.result-img{
+.modal-prize{
+    max-width:180px;
+    max-height:180px;
 
-  max-width:100%;
+    object-fit:contain;
 
-  max-height:100%;
+    border-radius:10px;
 
-  width:auto;
+    margin-bottom:15px;
 
-  height:auto;
-
-  object-fit:contain;
-
+    filter:
+        drop-shadow(
+            0 7px 8px rgba(103,70,95,.2)
+        );
 }
 
 
-.result-text{
+.modal-close{
+    border:none;
 
-  font-size:14px;
+    padding:11px 25px;
 
-  color:#8e7893;
+    border-radius:999px;
 
-  margin-bottom:10px;
+    background:#b984ca;
 
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
 
-.result button{
-
-  background:#df8fac;
-
-  padding:
-    12px
-    25px;
-
-}
-
-
-/* =========================================================
-   星星
-========================================================= */
-
-.sparkles{
-
-  position:absolute;
-
-  inset:0;
-
-  pointer-events:none;
-
-  font-size:22px;
-
-}
-
-
-.sparkles span{
-
-  position:absolute;
-
-  animation:
-    spark 1.5s ease-out
-    forwards;
-
-}
-
-
-.sparkles span:nth-child(1){
-
-  left:10%;
-
-  top:15%;
-
-}
-
-
-.sparkles span:nth-child(2){
-
-  right:12%;
-
-  top:20%;
-
-}
-
-
-.sparkles span:nth-child(3){
-
-  left:18%;
-
-  bottom:18%;
-
-}
-
-
-.sparkles span:nth-child(4){
-
-  right:17%;
-
-  bottom:15%;
-
-}
-
-
-@keyframes spark{
-
-  0%{
-
-    transform:
-      scale(.3);
-
-    opacity:0;
-
-  }
-
-  35%{
-
-    opacity:1;
-
-  }
-
-  100%{
-
-    transform:
-      translateY(-25px)
-      scale(1.3)
-      rotate(180deg);
-
-    opacity:0;
-
-  }
-
-}
-
-
-/* =========================================================
-   手机屏幕微调
-========================================================= */
-
-@media(max-width:380px){
-
-  .machine{
-
-    height:540px;
-
-  }
-
-  .prize{
-
-    width:68px;
-
-    height:68px;
-
-  }
-
-  h1{
-
-    font-size:25px;
-
-  }
-
+/* =========================
+   手机适配
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:15px 9px 30px;
+    }
+
+    .header h1{
+        font-size:24px;
+    }
+
+    .machine{
+        height:520px;
+
+        border-width:5px;
+    }
+
+    .rail{
+        left:25px;
+        right:25px;
+    }
+
+    .prize-area{
+        left:20px;
+        right:20px;
+        top:230px;
+        bottom:70px;
+
+        gap:7px;
+    }
+
+    .prize{
+        width:75px;
+        height:75px;
+    }
+
+    .prize img{
+        max-width:75px;
+        max-height:75px;
+    }
+
+    .exit{
+        width:150px;
+    }
+
+    .control-btn{
+        min-width:88px;
+        padding:11px 15px;
+    }
+
+    .grab-btn{
+        order:-1;
+
+        width:100%;
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
+<div class="page">
 
-<header>
+    <!-- =========================
+         标题
+    ========================== -->
 
-  <h1>
-    🧸 我的小小娃娃机 ♡
-  </h1>
+    <header class="header">
 
-  <div class="subtitle">
-    上传你喜欢的图片，开始抓取吧 ✦
-  </div>
+        <h1>🧸 我的小小娃娃机 ♡</h1>
 
-</header>
+        <p>
+            上传你喜欢的图片，开始抓取吧 ✦
+        </p>
 
-
-
-<div class="container">
-
-
-  <!-- =====================================================
-       娃娃机
-  ====================================================== -->
-
-  <div class="machine">
+    </header>
 
 
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
+    <!-- =========================
+         娃娃机
+    ========================== -->
+
+    <div class="machine" id="machine">
+
+        <div class="machine-title">
+            ✦ MY CLAW MACHINE ✦
+        </div>
 
 
-    <div class="machine-title">
-      ✦ MY CLAW MACHINE ✦
+        <!-- 横轨 -->
+
+        <div class="rail"></div>
+
+
+        <!-- =========================
+             整个吊钩横向组件
+        ========================== -->
+
+        <div class="crane" id="crane">
+
+            <!-- 紫色滑块 -->
+
+            <div class="crane-head"></div>
+
+
+            <!-- 固定绳索 -->
+
+            <div class="cable"></div>
+
+
+            <!-- =========================
+                 爪子固定连接点
+            ========================== -->
+
+            <div
+                class="claw-anchor"
+                id="clawAnchor"
+            >
+
+                <div class="claw-neck"></div>
+
+
+                <!-- 爪子本体 -->
+
+                <div class="claw-body">
+
+                    <div class="claw-core"></div>
+
+
+                    <!-- 左边上半部分 -->
+
+                    <div class="arm-left-upper"></div>
+
+
+                    <!-- 右边上半部分 -->
+
+                    <div class="arm-right-upper"></div>
+
+
+                    <!-- 左边下半部分 -->
+
+                    <div class="arm-left-lower"></div>
+
+
+                    <!-- 右边下半部分 -->
+
+                    <div class="arm-right-lower"></div>
+
+
+                    <!-- 左爪尖 -->
+
+                    <div class="tip-left"></div>
+
+
+                    <!-- 右爪尖 -->
+
+                    <div class="tip-right"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             奖品区域
+        ========================== -->
+
+        <div
+            class="prize-area"
+            id="prizeArea"
+        ></div>
+
+
+        <!-- 出口 -->
+
+        <div class="exit"></div>
+
     </div>
 
 
-    <!-- 固定轨道 -->
+    <!-- =========================
+         控制按钮
+    ========================== -->
 
-    <div class="rail"></div>
+    <div class="controls">
 
-
-    <!-- =================================================
-         吊车
-
-         ★ 这个东西只左右移动
-         ★ 不上下移动
-    ================================================== -->
-
-    <div
-      class="crane"
-      id="crane"
-    >
+        <button
+            class="control-btn"
+            onclick="move(-1)"
+        >
+            ◀ 左移
+        </button>
 
 
-      <!-- 固定滑块 -->
-
-      <div class="crane-head"></div>
-
-
-      <!-- 会伸缩的绳索 -->
-
-      <div class="cable"></div>
-
-
-      <!-- =================================================
-           两爪结构
-
-           左边：
-           上半段 + 下半段
-
-           右边：
-           上半段 + 下半段
-
-           一共就是两个爪子
-      ================================================== -->
-
-      <div
-        class="claw open"
-        id="claw"
-      >
+        <button
+            class="control-btn grab-btn"
+            id="grabButton"
+            onclick="grab()"
+        >
+            ✨ 抓取！
+        </button>
 
 
-        <!-- 中央连接件 -->
-
-        <div class="joint"></div>
-
-
-        <!-- 左爪 -->
-
-        <div
-          class="arm-left-upper"
-        ></div>
-
-        <div
-          class="arm-left-lower"
-        ></div>
-
-
-        <!-- 右爪 -->
-
-        <div
-          class="arm-right-upper"
-        ></div>
-
-        <div
-          class="arm-right-lower"
-        ></div>
-
-
-      </div>
-
+        <button
+            class="control-btn"
+            onclick="move(1)"
+        >
+            右移 ▶
+        </button>
 
     </div>
 
 
+    <!-- =========================
+         上传
+    ========================== -->
 
-    <!-- =================================================
-         奖品
-    ================================================== -->
+    <div class="panel">
 
-    <div
-      class="prizes"
-      id="prizes"
-    ></div>
+        <div class="panel-title">
+            ♡ 放入你的专属奖品 ♡
+        </div>
 
 
+        <div class="upload-row">
 
-    <!-- 出奖口 -->
+            <label
+                class="upload-label"
+                for="fileInput"
+            >
+                ＋ 上传图片
+            </label>
 
-    <div class="exit">
-      🎁 出奖口
+            <input
+                id="fileInput"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                multiple
+            >
+
+
+            <button
+                class="small-btn"
+                onclick="randomPrizes()"
+            >
+                🎲 随机摆放
+            </button>
+
+
+            <button
+                class="small-btn"
+                onclick="clearPrizes()"
+            >
+                🗑 清空
+            </button>
+
+        </div>
+
+
+        <div class="info">
+            可以一次上传多张图片 ♡<br>
+            图片会保持原本的比例，不会被裁成圆形。
+        </div>
+
     </div>
-
-
-  </div>
-
-
-
-  <!-- =====================================================
-       控制按钮
-  ====================================================== -->
-
-  <div class="controls">
-
-
-    <button onclick="move(-1)">
-      ← 左
-    </button>
-
-
-    <button
-      class="grab"
-      onclick="grab()"
-    >
-      🪝 抓取
-    </button>
-
-
-    <button onclick="move(1)">
-      右 →
-    </button>
-
-
-
-    <label class="upload">
-
-      ＋ 上传图片
-
-      <input
-        type="file"
-        id="upload"
-        accept="image/*"
-        multiple
-      >
-
-    </label>
-
-
-    <button onclick="newGame()">
-      🔀 重新摆放
-    </button>
-
-
-    <button onclick="clearPrizes()">
-      🗑 清空
-    </button>
-
-
-  </div>
-
-
-
-  <!-- =====================================================
-       奖品数量
-  ====================================================== -->
-
-  <div class="info">
-
-    当前奖品：
-    <b id="count">0</b>
-    个
-
-  </div>
-
 
 </div>
 
 
-
-<!-- =========================================================
+<!-- =========================
      抓取结果弹窗
-========================================================= -->
+========================== -->
 
 <div
-  class="result"
-  id="result"
+    class="modal"
+    id="resultModal"
 >
 
+    <div class="modal-box">
 
-  <div class="result-card">
+        <div class="success-icon">
+            🎉
+        </div>
 
+        <h2>
+            抓取成功！
+        </h2>
 
-    <div class="sparkles">
+        <p>
+            恭喜你获得了这个小可爱 ♡
+        </p>
 
-      <span>✦</span>
-      <span>♡</span>
-      <span>✧</span>
-      <span>✦</span>
+        <img
+            class="modal-prize"
+            id="modalPrize"
+            src=""
+            alt="抓取成功的奖品"
+        >
 
-    </div>
+        <br>
 
-
-    <div
-      class="result-icon"
-      id="resultIcon"
-    >
-      🎉
-    </div>
-
-
-    <div
-      class="result-title"
-      id="resultTitle"
-    >
-      抓取成功！
-    </div>
-
-
-    <div
-      class="result-img-wrap"
-      id="resultImgWrap"
-    >
-
-      <img
-        class="result-img"
-        id="resultImg"
-        alt=""
-      >
+        <button
+            class="modal-close"
+            onclick="closeModal()"
+        >
+            收下它 ♡
+        </button>
 
     </div>
-
-
-    <div
-      class="result-text"
-      id="resultText"
-    >
-      恭喜你获得了这个奖品 ♡
-    </div>
-
-
-    <button onclick="closeResult()">
-      再抓一次 ♡
-    </button>
-
-
-  </div>
-
 
 </div>
-
 
 
 <script>
 
-
-/* =========================================================
+/* =====================================================
    数据
-========================================================= */
+===================================================== */
 
 let prizes = [];
 
@@ -1733,505 +1514,515 @@ let position = 50;
 let busy = false;
 
 
-
-/* =========================================================
+/* =====================================================
    获取元素
-========================================================= */
+===================================================== */
 
 const crane =
-  document.getElementById("crane");
+    document.getElementById("crane");
 
-const claw =
-  document.getElementById("claw");
+const clawAnchor =
+    document.getElementById("clawAnchor");
 
-const prizeBox =
-  document.getElementById("prizes");
+const prizeArea =
+    document.getElementById("prizeArea");
 
-const count =
-  document.getElementById("count");
+const fileInput =
+    document.getElementById("fileInput");
 
-const upload =
-  document.getElementById("upload");
+const grabButton =
+    document.getElementById("grabButton");
 
-const result =
-  document.getElementById("result");
+const resultModal =
+    document.getElementById("resultModal");
 
-
-
-/* =========================================================
-   上传图片
-========================================================= */
-
-upload.addEventListener(
-  "change",
-  function(e){
-
-    const files =
-      [...e.target.files];
+const modalPrize =
+    document.getElementById("modalPrize");
 
 
-    files.forEach(
-      function(file){
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-          function(event){
-
-            prizes.push({
-
-              image:
-                event.target.result,
-
-              name:
-                file.name
-
-            });
-
-
-            renderPrizes();
-
-          };
-
-
-        reader.readAsDataURL(file);
-
-      }
-    );
-
-
-    upload.value = "";
-
-  }
-);
-
-
-
-/* =========================================================
-   显示奖品
-========================================================= */
-
-function renderPrizes(){
-
-  prizeBox.innerHTML = "";
-
-
-  if(!prizes.length){
-
-    prizeBox.innerHTML =
-      '<div class="empty">' +
-      '还没有奖品 ♡<br>' +
-      '请先上传图片' +
-      '</div>';
-
-  }
-
-  else{
-
-    prizes.forEach(
-      function(prize){
-
-        const div =
-          document.createElement("div");
-
-
-        div.className =
-          "prize";
-
-
-        const img =
-          document.createElement("img");
-
-
-        img.src =
-          prize.image;
-
-
-        img.alt =
-          prize.name;
-
-
-        div.appendChild(img);
-
-
-        prizeBox.appendChild(div);
-
-      }
-    );
-
-  }
-
-
-  count.textContent =
-    prizes.length;
-
-}
-
-
-
-/* =========================================================
+/* =====================================================
    左右移动
-   ★ 只改变 left
-   ★ 不改变 top
-========================================================= */
+===================================================== */
 
 function move(direction){
 
-  if(busy)return;
+    if(busy){
+        return;
+    }
 
+    position += direction * 9;
 
-  position +=
-    direction * 10;
+    /*
+       限制移动范围
+    */
 
+    position =
+        Math.max(
+            9,
+            Math.min(
+                91,
+                position
+            )
+        );
 
-  position =
-    Math.max(
-      12,
-      Math.min(
-        88,
-        position
-      )
-    );
-
-
-  crane.style.left =
-    position + "%";
-
+    crane.style.left =
+        position + "%";
 }
 
 
+/* =====================================================
+   键盘操作
+===================================================== */
 
-/* =========================================================
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "ArrowLeft"){
+            move(-1);
+        }
+
+        if(event.key === "ArrowRight"){
+            move(1);
+        }
+
+        if(
+            event.key === " " ||
+            event.key === "Enter"
+        ){
+            event.preventDefault();
+
+            grab();
+        }
+
+    }
+);
+
+
+/* =====================================================
    抓取
-========================================================= */
+===================================================== */
 
 function grab(){
 
-  if(busy)return;
+    if(busy){
+        return;
+    }
+
+    if(prizes.length === 0){
+
+        alert(
+            "先上传一些喜欢的图片吧 ♡"
+        );
+
+        return;
+    }
 
 
-  if(!prizes.length){
+    busy = true;
 
-    alert(
-      "请先上传一些图片作为奖品 ♡"
+    grabButton.disabled = true;
+
+
+    /*
+       第一步：
+
+       爪子打开。
+    */
+
+    clawAnchor.classList.remove("closed");
+
+
+    /*
+       第二步：
+
+       只有 claw-body 向下。
+
+       这里绝对没有：
+
+       crane.style.top = ...
+
+       所以：
+
+       紫色滑块不会动
+       绳索不会变长
+       横轨不会动
+    */
+
+    setTimeout(
+        function(){
+
+            clawAnchor.classList.add(
+                "grabbing"
+            );
+
+        },
+        100
     );
 
-    return;
 
-  }
+    /*
+       第三步：
 
+       到达下方之后闭合。
+    */
 
-  busy = true;
+    setTimeout(
+        function(){
 
+            clawAnchor.classList.add(
+                "closed"
+            );
 
-  /* -------------------------------------------------------
-     1. 爪子张开
-  ------------------------------------------------------- */
-
-  claw.className =
-    "claw open";
-
-
-  /* -------------------------------------------------------
-     2. 绳索向下伸长
-
-     ★ 滑块完全不会移动
-     ★ crane 的 top 不会改变
-  ------------------------------------------------------- */
-
-  setTimeout(
-    function(){
-
-      crane.classList.add(
-        "dropping"
-      );
-
-    },
-    100
-  );
+        },
+        650
+    );
 
 
-  /* -------------------------------------------------------
-     3. 到达下面以后闭合
-  ------------------------------------------------------- */
+    /*
+       第四步：
 
-  setTimeout(
-    function(){
+       稍微停一下，
+       然后判断抓取结果。
+    */
 
-      claw.className =
-        "claw closed";
+    setTimeout(
+        function(){
 
-    },
-    650
-  );
+            const success =
+                Math.random() < 0.75;
 
+            if(success){
 
-  /* -------------------------------------------------------
-     4. 稍微停顿
-  ------------------------------------------------------- */
+                /*
+                   随机抓一个奖品
+                */
 
-  setTimeout(
-    function(){
+                const index =
+                    Math.floor(
+                        Math.random() *
+                        prizes.length
+                    );
 
-      /* 闭合保持一小会儿 */
-
-    },
-    850
-  );
-
-
-  /* -------------------------------------------------------
-     5. 绳索收回
-  ------------------------------------------------------- */
-
-  setTimeout(
-    function(){
-
-      crane.classList.remove(
-        "dropping"
-      );
-
-    },
-    1000
-  );
+                const caught =
+                    prizes[index];
 
 
-  /* -------------------------------------------------------
-     6. 最后判断抓取结果
-  ------------------------------------------------------- */
+                /*
+                   删除奖品
+                */
 
-  setTimeout(
-    function(){
+                prizes.splice(
+                    index,
+                    1
+                );
 
-      const success =
-        Math.random() < 0.65;
-
-
-      if(success){
-
-        const index =
-          Math.floor(
-            Math.random() *
-            prizes.length
-          );
+                renderPrizes();
 
 
-        const prize =
-          prizes[index];
+                /*
+                   显示成功结果
+                */
+
+                modalPrize.src =
+                    caught.src;
+
+                resultModal.classList.add(
+                    "show"
+                );
+
+            }
+            else{
+
+                /*
+                   失败也会重新打开爪子
+                */
+
+                clawAnchor.classList.remove(
+                    "closed"
+                );
+
+            }
+
+        },
+        1050
+    );
 
 
-        showSuccess(prize);
+    /*
+       第五步：
+
+       爪子回到原来的高度。
+
+       注意：
+
+       还是只改变 claw-body，
+       不改变 crane。
+    */
+
+    setTimeout(
+        function(){
+
+            clawAnchor.classList.remove(
+                "grabbing"
+            );
+
+        },
+        1350
+    );
 
 
-        prizes.splice(
-          index,
-          1
+    /*
+       最后解除忙碌状态
+    */
+
+    setTimeout(
+        function(){
+
+            clawAnchor.classList.remove(
+                "closed"
+            );
+
+            busy = false;
+
+            grabButton.disabled =
+                false;
+
+        },
+        1900
+    );
+}
+
+
+/* =====================================================
+   上传图片
+===================================================== */
+
+fileInput.addEventListener(
+    "change",
+    function(event){
+
+        const files =
+            Array.from(
+                event.target.files
+            );
+
+
+        files.forEach(
+            function(file){
+
+                if(
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ){
+                    return;
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(e){
+
+                        prizes.push({
+
+                            src:e.target.result,
+
+                            id:
+                                Date.now() +
+                                Math.random()
+
+                        });
+
+                        renderPrizes();
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
         );
 
 
-        renderPrizes();
+        /*
+           允许再次选择同一张图片
+        */
 
-      }
-
-      else{
-
-        showFail();
-
-      }
+        fileInput.value = "";
+    }
+);
 
 
-      /* 回到张开状态 */
+/* =====================================================
+   显示奖品
+===================================================== */
 
-      claw.className =
-        "claw open";
+function renderPrizes(){
+
+    prizeArea.innerHTML = "";
 
 
-      busy = false;
+    prizes.forEach(
+        function(prize,index){
 
-    },
-    1450
-  );
+            const item =
+                document.createElement(
+                    "div"
+                );
 
+            item.className =
+                "prize";
+
+            item.style.setProperty(
+                "--i",
+                index
+            );
+
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+            img.src =
+                prize.src;
+
+            img.alt =
+                "奖品";
+
+
+            item.appendChild(
+                img
+            );
+
+
+            prizeArea.appendChild(
+                item
+            );
+
+        }
+    );
 }
 
 
-
-/* =========================================================
-   抓取成功
-========================================================= */
-
-function showSuccess(prize){
-
-  document.getElementById(
-    "resultIcon"
-  ).textContent =
-    "🎉";
-
-
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    "抓取成功！";
-
-
-  document.getElementById(
-    "resultImg"
-  ).src =
-    prize.image;
-
-
-  document.getElementById(
-    "resultImg"
-  ).alt =
-    prize.name;
-
-
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "flex";
-
-
-  document.getElementById(
-    "resultText"
-  ).textContent =
-    "恭喜你获得了这个奖品 ♡";
-
-
-  result.classList.add(
-    "show"
-  );
-
-}
-
-
-
-/* =========================================================
-   没抓到
-========================================================= */
-
-function showFail(){
-
-  document.getElementById(
-    "resultIcon"
-  ).textContent =
-    "💦";
-
-
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    "差一点点！";
-
-
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "none";
-
-
-  document.getElementById(
-    "resultText"
-  ).textContent =
-    "这次没有抓到，再试一次吧 ♡";
-
-
-  result.classList.add(
-    "show"
-  );
-
-}
-
-
-
-/* =========================================================
-   关闭结果
-========================================================= */
-
-function closeResult(){
-
-  result.classList.remove(
-    "show"
-  );
-
-
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "flex";
-
-}
-
-
-
-/* =========================================================
+/* =====================================================
    随机摆放
-========================================================= */
+===================================================== */
 
-function newGame(){
+function randomPrizes(){
 
-  prizes.sort(
-    function(){
+    if(prizes.length === 0){
 
-      return Math.random() - 0.5;
+        alert(
+            "还没有奖品哦，先上传一些图片吧 ♡"
+        );
+
+        return;
+    }
+
+
+    /*
+       随机打乱
+    */
+
+    for(
+        let i = prizes.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            prizes[i],
+            prizes[j]
+        ] =
+        [
+            prizes[j],
+            prizes[i]
+        ];
 
     }
-  );
 
 
-  renderPrizes();
-
-
-  position =
-    20 +
-    Math.random() * 60;
-
-
-  crane.style.left =
-    position + "%";
-
+    renderPrizes();
 }
 
 
-
-/* =========================================================
+/* =====================================================
    清空奖品
-========================================================= */
+===================================================== */
 
 function clearPrizes(){
 
-  if(
-    !confirm(
-      "确定要清空所有奖品吗？"
-    )
-  ){
-
-    return;
-
-  }
+    if(busy){
+        return;
+    }
 
 
-  prizes = [];
+    prizes = [];
 
-
-  renderPrizes();
-
+    renderPrizes();
 }
 
 
+/* =====================================================
+   关闭结果
+===================================================== */
 
-/* =========================================================
-   初始
-========================================================= */
+function closeModal(){
+
+    resultModal.classList.remove(
+        "show"
+    );
+}
+
+
+/* 点击背景关闭 */
+
+resultModal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target ===
+            resultModal
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   初始示例奖品
+===================================================== */
+
+/*
+   如果你不想网站打开时显示示例图片，
+   这里保持为空即可。
+
+   用户上传图片后会自动出现。
+*/
+
 
 renderPrizes();
 
-
 </script>
 
-
 </body>
-
 </html>
