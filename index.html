@@ -1,2568 +1,1693 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>我的小小娃娃机 ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY LITTLE CLAW MACHINE</title>
 
 <style>
-
-/* =========================================================
-   全局变量
-========================================================= */
-
-:root{
-
-  --main:#d89ab8;
-  --main-dark:#bd789c;
-  --main-light:#f3d4e2;
-
-  --accent:#9b82b5;
-  --accent-light:#ddd1ea;
-
-  --cream:#fffaf7;
-
-  --text:#66586a;
-  --sub:#a493a8;
-
-  --machine-border:#d89ab8;
-
-  --glass-top:#e9f9ff;
-  --glass-bottom:#f9fdff;
-
-  --wood:#d29a68;
-  --wood-dark:#b97e51;
-
-  --button:#ae8bbb;
-  --grab:#dc8eaa;
-  --upload:#91a8c9;
-
-}
-
-
-/* =========================================================
-   基础
-========================================================= */
-
 *{
   box-sizing:border-box;
-}
-
-html,
-body{
   margin:0;
   padding:0;
-  min-height:100%;
+}
+
+:root{
+  --pink:#f59bb8;
+  --pink-dark:#e77f9f;
+  --cream:#fffaf7;
+  --ink:#3d3540;
+  --muted:#9b9299;
+  --line:#eadfe4;
+  --panel:#ffffff;
+  --shadow:0 18px 50px rgba(111,75,91,.10);
 }
 
 body{
-
   min-height:100vh;
-
-  background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(255,255,255,.95),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 90% 20%,
-      rgba(231,215,245,.65),
-      transparent 28%
-    ),
-
-    linear-gradient(
-      135deg,
-      #fff5f8,
-      #f4efff
-    );
-
   font-family:
-    Arial,
-    "Noto Sans SC",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "PingFang SC",
+    "Microsoft YaHei",
     sans-serif;
-
-  color:var(--text);
-
-  overflow-x:hidden;
-
+  color:var(--ink);
+  background:#faf7f8;
 }
 
-
-/* =========================================================
-   页面装饰
-========================================================= */
-
-body::before{
-
-  content:"";
-
-  position:fixed;
-
-  width:180px;
-  height:180px;
-
-  left:-80px;
-  bottom:60px;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.45);
-
-  filter:blur(5px);
-
-  pointer-events:none;
-
-}
-
-
-body::after{
-
-  content:"";
-
-  position:fixed;
-
-  width:220px;
-  height:220px;
-
-  right:-110px;
-  top:120px;
-
-  border-radius:50%;
-
-  background:
-    rgba(231,211,243,.35);
-
-  filter:blur(8px);
-
-  pointer-events:none;
-
-}
-
-
-/* =========================================================
-   顶部
-========================================================= */
-
-header{
-
-  text-align:center;
-
-  padding:
-    30px
-    15px
-    15px;
-
-}
-
-
-.logo-small{
-
-  font-size:11px;
-
-  letter-spacing:
-    4px;
-
-  color:
-    var(--main-dark);
-
-  font-weight:bold;
-
-  opacity:.8;
-
-  margin-bottom:7px;
-
-}
-
-
-h1{
-
-  margin:0;
-
-  font-size:29px;
-
-  color:
-    var(--main-dark);
-
-  font-weight:900;
-
-  letter-spacing:
-    1px;
-
-}
-
-
-.subtitle{
-
-  margin-top:8px;
-
-  font-size:13px;
-
-  color:var(--sub);
-
-}
-
-
-.header-line{
-
-  width:65px;
-
-  height:3px;
-
-  margin:
-    12px
-    auto
-    0;
-
-  border-radius:10px;
-
-  background:
-    var(--main);
-
-  opacity:.5;
-
-}
-
-
-/* =========================================================
-   页面容器
-========================================================= */
-
-.container{
-
-  width:
-    min(94%,540px);
-
+/* =========================
+   PAGE
+========================= */
+
+.page{
+  width:min(1180px,92%);
   margin:auto;
-
 }
 
-
-/* =========================================================
-   自定义面板
-========================================================= */
-
-.custom-panel{
-
-  background:
-    rgba(255,255,255,.78);
-
-  border:
-    1px solid
-    rgba(255,255,255,.9);
-
-  border-radius:22px;
-
-  padding:17px;
-
-  margin-bottom:14px;
-
-  box-shadow:
-    0 8px 25px
-    rgba(110,80,120,.08);
-
-  backdrop-filter:
-    blur(10px);
-
-}
-
-
-.custom-head{
-
+.topbar{
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
-  cursor:pointer;
-
-}
-
-
-.custom-head-left{
-
-  display:flex;
-
   align-items:center;
-
-  gap:8px;
-
+  padding:28px 0 22px;
+  border-bottom:1px solid var(--line);
 }
 
-
-.custom-number{
-
-  font-size:10px;
-
-  letter-spacing:2px;
-
-  color:var(--main-dark);
-
-}
-
-
-.custom-title{
-
+.logo{
   font-size:15px;
-
   font-weight:900;
-
-  color:#755f78;
-
+  letter-spacing:2px;
 }
 
+.logo span{
+  color:var(--pink-dark);
+}
 
-.custom-arrow{
+.top-note{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
 
+.hero{
+  padding:62px 0 42px;
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--pink-dark);
+  font-weight:800;
+  margin-bottom:17px;
+}
+
+.hero h1{
+  font-size:clamp(40px,7vw,82px);
+  line-height:.94;
+  letter-spacing:-4px;
+  font-weight:900;
+  max-width:800px;
+}
+
+.hero h1 em{
+  color:var(--pink-dark);
+  font-style:normal;
+}
+
+.hero p{
+  margin-top:24px;
+  color:#8c838a;
+  line-height:1.8;
   font-size:14px;
-
-  color:var(--sub);
-
-  transition:
-    transform .25s ease;
-
+  max-width:560px;
 }
 
+/* =========================
+   MAIN LAYOUT
+========================= */
 
-.custom-panel.open
-.custom-arrow{
-
-  transform:
-    rotate(180deg);
-
+.workspace{
+  display:grid;
+  grid-template-columns:360px minmax(0,1fr);
+  gap:34px;
+  align-items:start;
 }
 
-
-.custom-content{
-
-  display:none;
-
-  margin-top:16px;
-
+.editor{
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
 }
 
-
-.custom-panel.open
-.custom-content{
-
-  display:block;
-
-}
-
-
-/* =========================================================
-   自定义项目
-========================================================= */
-
-.setting{
-
-  margin-bottom:15px;
-
-}
-
-
-.setting:last-child{
-
-  margin-bottom:0;
-
-}
-
-
-.setting-label{
-
-  display:block;
-
-  font-size:11px;
-
-  letter-spacing:1px;
-
-  color:#9b899f;
-
-  margin-bottom:7px;
-
-}
-
-
-.text-input{
-
-  width:100%;
-
-  border:
-    1px solid
-    #eaddea;
-
-  background:
-    #fffafd;
-
-  border-radius:12px;
-
-  padding:
-    10px
-    12px;
-
-  outline:none;
-
-  color:#6d5a70;
-
-  font-size:13px;
-
-  transition:
-    border .2s,
-    box-shadow .2s;
-
-}
-
-
-.text-input:focus{
-
-  border-color:
-    var(--main);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(216,154,184,.12);
-
-}
-
-
-/* =========================================================
-   主题颜色
-========================================================= */
-
-.colors{
-
+.editor-header{
+  padding:20px 22px;
+  border-bottom:1px solid var(--line);
   display:flex;
-
-  gap:9px;
-
-  flex-wrap:wrap;
-
+  justify-content:space-between;
+  align-items:center;
 }
 
+.editor-title{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+}
 
-.color-choice{
-
-  width:31px;
-  height:31px;
-
+.save-dot{
+  width:8px;
+  height:8px;
   border-radius:50%;
+  background:#8fd1a3;
+  box-shadow:0 0 0 4px #edf8f0;
+}
 
-  border:
-    3px solid
-    white;
+/* =========================
+   EDITOR SECTIONS
+========================= */
 
-  box-shadow:
-    0 2px 7px
-    rgba(80,50,80,.15);
+.section{
+  border-bottom:1px solid var(--line);
+  padding:22px;
+}
 
+.section:last-child{
+  border-bottom:0;
+}
+
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  margin-bottom:18px;
+}
+
+.section-number{
+  font-size:10px;
+  font-weight:900;
+  color:var(--pink-dark);
+  letter-spacing:1px;
+  padding-top:2px;
+}
+
+.section h2{
+  font-size:13px;
+  letter-spacing:1px;
+  margin-bottom:4px;
+}
+
+.section-desc{
+  color:#aaa1a7;
+  font-size:10px;
+  line-height:1.5;
+}
+
+.field{
+  margin-top:15px;
+}
+
+.field label{
+  display:block;
+  font-size:10px;
+  letter-spacing:1px;
+  color:#756c73;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+input[type="text"],
+input[type="number"],
+select{
+  width:100%;
+  height:40px;
+  border:1px solid var(--line);
+  background:#fcfafb;
+  border-radius:10px;
+  padding:0 12px;
+  color:var(--ink);
+  outline:none;
+  font-size:12px;
+  transition:.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 3px rgba(245,155,184,.12);
+}
+
+/* =========================
+   UPLOAD
+========================= */
+
+.upload-box{
+  border:1px dashed #dfcbd3;
+  border-radius:14px;
+  padding:18px;
+  text-align:center;
+  background:#fffafb;
   cursor:pointer;
-
-  transition:
-    transform .15s ease,
-    box-shadow .15s ease;
-
+  transition:.2s;
 }
 
-
-.color-choice:hover{
-
-  transform:
-    translateY(-2px);
-
+.upload-box:hover{
+  border-color:var(--pink);
+  background:#fff5f8;
 }
 
-
-.color-choice.active{
-
-  transform:
-    scale(1.12);
-
-  box-shadow:
-    0 0 0 2px
-    var(--main),
-    0 3px 8px
-    rgba(80,50,80,.18);
-
+.upload-icon{
+  font-size:23px;
+  margin-bottom:7px;
 }
 
-
-.color-pink{
-  background:#d89ab8;
+.upload-main{
+  font-size:12px;
+  font-weight:800;
 }
 
-.color-lavender{
-  background:#ad93c5;
+.upload-sub{
+  color:#aaa0a7;
+  font-size:9px;
+  margin-top:5px;
+  line-height:1.5;
 }
 
-.color-blue{
-  background:#8fb8cf;
+#fileInput{
+  display:none;
 }
 
-.color-mint{
-  background:#8fbfae;
+.prize-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:13px;
 }
 
-.color-yellow{
-  background:#e1b56f;
-}
-
-
-/* =========================================================
-   娃娃机主体
-========================================================= */
-
-.machine{
-
+.prize-thumb{
   position:relative;
-
-  height:560px;
-
+  aspect-ratio:1;
+  background:#f8f3f5;
+  border-radius:8px;
   overflow:hidden;
-
-  border:
-    8px solid
-    var(--machine-border);
-
-  border-radius:32px;
-
-  background:
-
-    linear-gradient(
-      to bottom,
-      var(--glass-top) 0%,
-      var(--glass-bottom) 67%,
-      var(--wood) 67%,
-      var(--wood-dark) 100%
-    );
-
-  box-shadow:
-
-    0 18px 40px
-    rgba(100,70,110,.16),
-
-    0 5px 10px
-    rgba(100,70,110,.08),
-
-    inset
-    0 0 30px
-    rgba(255,255,255,.7);
-
+  border:1px solid var(--line);
 }
 
-
-/* =========================================================
-   玻璃高光
-========================================================= */
-
-.machine::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:80px;
-  left:-30px;
-
-  width:55%;
-
-  height:60%;
-
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,.32),
-      transparent 65%
-    );
-
-  transform:
-    skewX(-10deg);
-
-  pointer-events:none;
-
-  z-index:3;
-
-}
-
-
-.machine::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  right:0;
-
+.prize-thumb img{
   width:100%;
   height:100%;
-
-  border-radius:24px;
-
-  box-shadow:
-    inset
-    -12px 0 25px
-    rgba(255,255,255,.18);
-
-  pointer-events:none;
-
-  z-index:3;
-
+  object-fit:contain;
 }
 
+.remove-prize{
+  position:absolute;
+  top:3px;
+  right:3px;
+  width:17px;
+  height:17px;
+  border:0;
+  border-radius:50%;
+  background:rgba(50,40,45,.72);
+  color:white;
+  font-size:10px;
+  cursor:pointer;
+}
 
-/* =========================================================
-   机器顶部装饰
-========================================================= */
+/* =========================
+   COLOR
+========================= */
+
+.color-row{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.color-btn{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:2px solid white;
+  box-shadow:0 0 0 1px #ded3d8;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.color-btn.active{
+  box-shadow:0 0 0 2px var(--ink);
+  transform:scale(1.08);
+}
+
+.color-custom{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.color-custom input{
+  width:42px;
+  height:34px;
+  padding:2px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+}
+
+/* =========================
+   STYLE CHOICES
+========================= */
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.choice{
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  padding:11px;
+  cursor:pointer;
+  font-size:10px;
+  text-align:center;
+  color:#837980;
+  transition:.2s;
+}
+
+.choice:hover{
+  border-color:#e8a6bb;
+}
+
+.choice.active{
+  border-color:var(--pink-dark);
+  background:#fff5f8;
+  color:#d36f91;
+  font-weight:800;
+}
+
+/* =========================
+   TOGGLE
+========================= */
+
+.toggle-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:13px;
+}
+
+.toggle-info{
+  font-size:11px;
+  color:#716870;
+}
+
+.switch{
+  position:relative;
+  width:40px;
+  height:22px;
+  flex:none;
+}
+
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+  background:#ddd4d9;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:16px;
+  height:16px;
+  left:3px;
+  top:3px;
+  background:white;
+  border-radius:50%;
+  transition:.25s;
+  box-shadow:0 1px 4px rgba(0,0,0,.15);
+}
+
+.switch input:checked + .slider{
+  background:var(--pink-dark);
+}
+
+.switch input:checked + .slider:before{
+  transform:translateX(18px);
+}
+
+/* =========================
+   PREVIEW
+========================= */
+
+.preview{
+  position:sticky;
+  top:25px;
+}
+
+.preview-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:15px;
+}
+
+.preview-label{
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:900;
+  color:#a49aa0;
+}
+
+.preview-status{
+  font-size:9px;
+  color:#b3aab0;
+}
+
+.machine-wrap{
+  background:#f3edf0;
+  padding:34px;
+  border-radius:24px;
+}
+
+.machine{
+  --machine-color:#f59bb8;
+  --machine-light:#fff4f7;
+
+  width:min(100%,570px);
+  height:610px;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:28px 28px 20px 20px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.96) 0%,
+      rgba(255,249,251,.94) 56%,
+      #ead9de 56%,
+      #dfc4cc 100%
+    );
+  border:8px solid var(--machine-color);
+  box-shadow:
+    0 28px 55px rgba(75,45,58,.17),
+    inset 0 0 0 2px rgba(255,255,255,.75);
+  transition:.3s;
+}
+
+.machine.round{
+  border-radius:40px 40px 22px 22px;
+}
+
+.machine.square{
+  border-radius:8px;
+}
+
+.machine.soft{
+  border-radius:28px;
+}
+
+/* machine top */
 
 .machine-top-label{
-
   position:absolute;
-
-  left:15px;
-
-  top:17px;
-
-  font-size:8px;
-
-  letter-spacing:2px;
-
-  color:
-    rgba(100,80,110,.35);
-
-  z-index:20;
-
-}
-
-
-.machine-number{
-
-  position:absolute;
-
-  right:15px;
-
-  top:17px;
-
-  font-size:8px;
-
-  letter-spacing:2px;
-
-  color:
-    rgba(100,80,110,.35);
-
-  z-index:20;
-
-}
-
-
-/* =========================================================
-   机器标题
-========================================================= */
-
-.machine-title{
-
-  position:absolute;
-
   top:17px;
   left:50%;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    rgba(255,255,255,.9);
-
-  padding:
-    9px
-    24px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.95);
-
-  border-radius:20px;
-
-  color:
-    var(--main-dark);
-
+  transform:translateX(-50%);
+  padding:7px 19px;
+  border-radius:30px;
+  background:white;
+  color:#685b62;
+  font-size:9px;
+  letter-spacing:2px;
   font-weight:900;
-
-  font-size:12px;
-
-  letter-spacing:1px;
-
-  box-shadow:
-    0 4px 12px
-    rgba(100,70,110,.08);
-
-  z-index:20;
-
   white-space:nowrap;
-
+  box-shadow:0 3px 10px rgba(100,70,80,.08);
+  z-index:5;
 }
 
-
-/* =========================================================
-   顶部灯
-========================================================= */
+.lights{
+  position:absolute;
+  top:13px;
+  left:20px;
+  right:20px;
+  display:flex;
+  justify-content:space-between;
+  z-index:5;
+}
 
 .light{
-
-  position:absolute;
-
-  top:5px;
-
-  width:12px;
-  height:12px;
-
+  width:10px;
+  height:10px;
   border-radius:50%;
-
-  background:#fff;
-
+  background:var(--machine-color);
   box-shadow:
-    0 0 10px
-    rgba(255,255,255,.95);
-
-  z-index:21;
-
-  animation:
-    lightPulse 2.4s
-    ease-in-out
-    infinite;
-
-}
-
-
-.light:nth-child(1){
-  left:25px;
-  animation-delay:0s;
+    0 0 0 3px rgba(255,255,255,.7),
+    0 0 12px var(--machine-color);
 }
 
 .light:nth-child(2){
-  left:55px;
-  animation-delay:.4s;
+  opacity:.75;
 }
 
 .light:nth-child(3){
-  right:55px;
-  animation-delay:.8s;
+  opacity:.55;
 }
 
 .light:nth-child(4){
-  right:25px;
-  animation-delay:1.2s;
+  opacity:.8;
 }
 
+/* glass */
 
-@keyframes lightPulse{
-
-  0%,
-  100%{
-
-    opacity:.65;
-
-    transform:
-      scale(.85);
-
-  }
-
-  50%{
-
-    opacity:1;
-
-    transform:
-      scale(1.12);
-
-  }
-
-}
-
-
-/* =========================================================
-   横向滑轨
-   保持原来的尺寸
-========================================================= */
-
-.rail{
-
+.glass{
   position:absolute;
-
-  top:78px;
-
-  left:7%;
-
-  width:86%;
-
-  height:9px;
-
-  border-radius:10px;
-
+  top:57px;
+  left:17px;
+  right:17px;
+  height:385px;
+  border:2px solid rgba(255,255,255,.88);
+  border-radius:19px;
   background:
     linear-gradient(
-      to bottom,
-      #b79ac1,
-      #9f7fab
+      115deg,
+      rgba(255,255,255,.38),
+      rgba(255,255,255,.08) 40%,
+      rgba(255,255,255,.23)
     );
-
-  box-shadow:
-
-    inset
-    0 2px 3px
-    rgba(255,255,255,.35),
-
-    0 3px 5px
-    rgba(100,70,110,.15);
-
-  z-index:6;
-
-}
-
-
-/* =========================================================
-   吊车
-========================================================= */
-
-.crane{
-
-  position:absolute;
-
-  top:77px;
-
-  left:50%;
-
-  width:58px;
-
-  height:auto;
-
-  transform:
-    translateX(-50%);
-
-  transition:
-    left .35s ease;
-
-  z-index:10;
-
-}
-
-
-/* =========================================================
-   紫色滑块
-========================================================= */
-
-.crane-head{
-
-  position:relative;
-
-  width:46px;
-
-  height:30px;
-
-  margin-left:6px;
-
-  background:
-
-    linear-gradient(
-      to bottom,
-      #c995cf,
-      #b77fc0
-    );
-
-  border-radius:
-    10px
-    10px
-    7px
-    7px;
-
-  box-shadow:
-
-    0 4px 8px
-    rgba(130,90,140,.18),
-
-    inset
-    0 4px 6px
-    rgba(255,255,255,.25);
-
-  z-index:15;
-
-}
-
-
-/* 滑块高光 */
-
-.crane-head::before{
-
-  content:"";
-
-  position:absolute;
-
-  left:8px;
-  top:5px;
-
-  width:30px;
-  height:3px;
-
-  border-radius:10px;
-
-  background:
-    rgba(255,255,255,.28);
-
-}
-
-
-/* =========================================================
-   绳索
-========================================================= */
-
-.cable{
-
-  position:relative;
-
-  width:3px;
-
-  height:45px;
-
-  margin-left:27px;
-
-  background:
-
-    linear-gradient(
-      to right,
-      #e49ab6,
-      #f3b5cb,
-      #e49ab6
-    );
-
-  border-radius:5px;
-
-  box-shadow:
-
-    0 0 2px
-    rgba(255,255,255,.95),
-
-    1px 0 3px
-    rgba(190,120,150,.2);
-
-  z-index:8;
-
-  transition:
-
-    height .5s
-    cubic-bezier(.4,0,.2,1);
-
-}
-
-
-/* 绳索连接点 */
-
-.cable::after{
-
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  bottom:-3px;
-
-  transform:
-    translateX(-50%);
-
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:#efa4c0;
-
-}
-
-
-/* =========================================================
-   绳索下降
-========================================================= */
-
-.crane.dropping .cable{
-
-  height:220px;
-
-}
-
-
-/* =========================================================
-   爪子
-   保持你之前调好的尺寸
-========================================================= */
-
-.claw{
-
-  position:relative;
-
-  width:52px;
-  height:52px;
-
-  margin-left:3px;
-  margin-top:0;
-
-  transform-origin:
-    26px 0;
-
-  filter:
-    drop-shadow(
-      0 3px 3px
-      rgba(180,100,145,.18)
-    );
-
-  z-index:12;
-
-}
-
-
-/* =========================================================
-   中央连接圆
-========================================================= */
-
-.joint{
-
-  position:absolute;
-
-  left:50%;
-  top:0;
-
-  width:19px;
-  height:19px;
-
-  transform:
-    translateX(-50%);
-
-  background:#fff8fc;
-
-  border:
-    3px solid
-    #e39ab9;
-
-  border-radius:50%;
-
-  box-shadow:
-
-    0 2px 4px
-    rgba(180,100,145,.18),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  z-index:20;
-
-}
-
-
-.joint::after{
-
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:7px;
-  height:7px;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:#fff4f9;
-
-  border:
-    2px solid
-    #e7a7c1;
-
-}
-
-
-/* =========================================================
-   爪子
-========================================================= */
-
-.arm-left-upper,
-.arm-left-lower,
-.arm-right-upper,
-.arm-right-lower{
-
-  background:
-    linear-gradient(
-      90deg,
-      #f3b5cf,
-      #fff6fa,
-      #eaa4c2
-    );
-
-  border:
-    2px solid
-    #df94b5;
-
-  border-radius:6px;
-
-  box-shadow:
-
-    0 2px 3px
-    rgba(180,100,145,.15),
-
-    inset
-    1px 1px 2px
-    rgba(255,255,255,.9);
-
-  transition:
-    transform .35s ease;
-
-}
-
-
-/* 左上 */
-
-.arm-left-upper{
-
-  position:absolute;
-
-  left:15px;
-  top:16px;
-
-  width:6px;
-  height:24px;
-
-  transform:
-    rotate(35deg);
-
-  transform-origin:
-    top center;
-
-  z-index:8;
-
-}
-
-
-/* 左下 */
-
-.arm-left-lower{
-
-  position:absolute;
-
-  left:4px;
-  top:36px;
-
-  width:6px;
-  height:22px;
-
-  transform:
-    rotate(-32deg);
-
-  transform-origin:
-    top center;
-
-  z-index:7;
-
-}
-
-
-/* 右上 */
-
-.arm-right-upper{
-
-  position:absolute;
-
-  right:15px;
-  top:16px;
-
-  width:6px;
-  height:24px;
-
-  transform:
-    rotate(-35deg);
-
-  transform-origin:
-    top center;
-
-  z-index:8;
-
-}
-
-
-/* 右下 */
-
-.arm-right-lower{
-
-  position:absolute;
-
-  right:4px;
-  top:36px;
-
-  width:6px;
-  height:22px;
-
-  transform:
-    rotate(32deg);
-
-  transform-origin:
-    top center;
-
-  z-index:7;
-
-}
-
-
-/* =========================================================
-   爪子张开
-========================================================= */
-
-.claw.open .arm-left-upper{
-  transform:rotate(43deg);
-}
-
-.claw.open .arm-left-lower{
-  transform:rotate(-38deg);
-}
-
-.claw.open .arm-right-upper{
-  transform:rotate(-43deg);
-}
-
-.claw.open .arm-right-lower{
-  transform:rotate(38deg);
-}
-
-
-/* =========================================================
-   爪子闭合
-========================================================= */
-
-.claw.closed .arm-left-upper{
-  transform:rotate(24deg);
-}
-
-.claw.closed .arm-left-lower{
-  transform:rotate(-12deg);
-}
-
-.claw.closed .arm-right-upper{
-  transform:rotate(-24deg);
-}
-
-.claw.closed .arm-right-lower{
-  transform:rotate(12deg);
-}
-
-
-/* =========================================================
-   奖品区域
-========================================================= */
-
-.prizes{
-
-  position:absolute;
-
-  left:7%;
-  right:7%;
-
-  bottom:14%;
-
-  height:52%;
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  gap:10px;
-
-  z-index:4;
-
-}
-
-
-/* =========================================================
-   奖品
-========================================================= */
-
-.prize{
-
-  width:76px;
-  height:76px;
-
   overflow:hidden;
-
-  background:
-    rgba(255,255,255,.82);
-
-  border:
-    3px solid white;
-
-  border-radius:13px;
-
-  box-shadow:
-
-    0 6px 12px
-    rgba(80,50,80,.16),
-
-    0 2px 4px
-    rgba(80,50,80,.08);
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease;
-
+  box-shadow:inset 0 0 25px rgba(255,255,255,.45);
 }
 
-
-.prize:hover{
-
-  transform:
-    translateY(-4px)
-    rotate(-1deg);
-
-  box-shadow:
-
-    0 10px 18px
-    rgba(80,50,80,.2);
-
-}
-
-
-.prize img{
-
+.glass:before{
+  content:"";
+  position:absolute;
   width:100%;
   height:100%;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0 35%,
+      rgba(255,255,255,.35) 35.5%,
+      transparent 37%
+    );
+  pointer-events:none;
+}
 
+/* rail */
+
+.rail{
+  position:absolute;
+  top:23px;
+  left:7%;
+  width:86%;
+  height:9px;
+  border-radius:20px;
+  background:linear-gradient(
+    180deg,
+    #fff,
+    #d6cdd1
+  );
+  box-shadow:
+    0 2px 4px rgba(70,50,60,.15),
+    inset 0 1px 2px white;
+  z-index:6;
+}
+
+/* crane */
+
+.crane{
+  position:absolute;
+  top:22px;
+  left:50%;
+  width:58px;
+  height:300px;
+  transform:translateX(-50%);
+  z-index:10;
+  transition:left .35s ease;
+}
+
+.crane-head{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:46px;
+  height:30px;
+  transform:translateX(-50%);
+  border-radius:8px 8px 5px 5px;
+  background:linear-gradient(
+    180deg,
+    var(--machine-color),
+    var(--machine-color)
+  );
+  box-shadow:
+    0 4px 8px rgba(80,50,60,.15),
+    inset 0 2px 2px rgba(255,255,255,.35);
+}
+
+.crane-head:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:5px;
+  left:50%;
+  bottom:-4px;
+  transform:translateX(-50%);
+  border-radius:5px;
+  background:#d4c8cd;
+}
+
+.cable{
+  position:absolute;
+  top:27px;
+  left:50%;
+  width:3px;
+  height:45px;
+  transform:translateX(-50%);
+  background:linear-gradient(
+    90deg,
+    #9c9197,
+    #f5f2f3,
+    #9c9197
+  );
+  border-radius:5px;
+  transition:height .55s ease;
+}
+
+.crane.dropping .cable{
+  height:220px;
+}
+
+/* claw */
+
+.claw{
+  position:absolute;
+  top:67px;
+  left:50%;
+  width:52px;
+  height:52px;
+  transform:translateX(-50%);
+  transition:top .55s ease;
+}
+
+.crane.dropping .claw{
+  top:242px;
+}
+
+.joint{
+  position:absolute;
+  left:50%;
+  top:3px;
+  width:13px;
+  height:13px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:#9e9399;
+  border:2px solid #fff;
+  z-index:3;
+}
+
+.arm{
+  position:absolute;
+  top:10px;
+  left:50%;
+  width:6px;
+  height:38px;
+  border-radius:8px;
+  background:linear-gradient(
+    90deg,
+    #aaa0a5,
+    #eee9eb,
+    #999096
+  );
+  transform-origin:top center;
+  transition:transform .3s ease;
+}
+
+.arm.left1{
+  transform:translateX(-50%) rotate(27deg);
+}
+
+.arm.left2{
+  transform:translateX(-50%) rotate(47deg);
+}
+
+.arm.right1{
+  transform:translateX(-50%) rotate(-27deg);
+}
+
+.arm.right2{
+  transform:translateX(-50%) rotate(-47deg);
+}
+
+.claw.closed .left1{
+  transform:translateX(-50%) rotate(13deg);
+}
+
+.claw.closed .left2{
+  transform:translateX(-50%) rotate(30deg);
+}
+
+.claw.closed .right1{
+  transform:translateX(-50%) rotate(-13deg);
+}
+
+.claw.closed .right2{
+  transform:translateX(-50%) rotate(-30deg);
+}
+
+/* prizes */
+
+.prizes{
+  position:absolute;
+  left:25px;
+  right:25px;
+  bottom:18px;
+  height:175px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  overflow:hidden;
+}
+
+.prize{
+  width:75px;
+  height:75px;
+  flex:none;
+  padding:4px;
+  border-radius:12px;
+  background:rgba(255,255,255,.88);
+  box-shadow:
+    0 5px 10px rgba(75,55,65,.12),
+    inset 0 0 0 1px rgba(255,255,255,.7);
+  transition:.3s;
+}
+
+.prize img{
+  width:100%;
+  height:100%;
   object-fit:contain;
-
-  display:block;
-
+  border-radius:8px;
 }
 
+/* bottom */
 
-/* =========================================================
-   空奖品
-========================================================= */
-
-.empty{
-
-  color:#aa94b1;
-
-  font-size:14px;
-
-  text-align:center;
-
-  padding-top:130px;
-
-  line-height:1.8;
-
+.machine-bottom{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:130px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.08),
+      rgba(150,110,125,.12)
+    );
+  border-top:2px solid rgba(255,255,255,.5);
 }
-
-
-/* =========================================================
-   出奖口
-========================================================= */
 
 .exit{
-
   position:absolute;
-
-  bottom:12px;
   left:50%;
-
-  transform:
-    translateX(-50%);
-
-  width:145px;
-  height:55px;
-
-  border-radius:
-    15px
-    15px
-    5px
-    5px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #806783,
-      #66516a
-    );
-
-  border:
-    5px solid
-    #aa8bb0;
-
-  color:white;
-
-  text-align:center;
-
-  padding-top:13px;
-
-  font-weight:bold;
-
-  font-size:13px;
-
-  letter-spacing:.5px;
-
+  top:25px;
+  transform:translateX(-50%);
+  width:155px;
+  height:57px;
+  border-radius:14px;
+  background:#faf5f6;
+  border:4px solid rgba(100,75,85,.18);
   box-shadow:
-
-    inset
-    0 3px 5px
-    rgba(255,255,255,.12),
-
-    0 4px 7px
-    rgba(70,50,80,.16);
-
-  z-index:8;
-
+    inset 0 4px 8px rgba(70,50,60,.08),
+    0 4px 8px rgba(70,50,60,.10);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#7b6d74;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:900;
 }
 
+/* =========================
+   PREVIEW CONTROLS
+========================= */
 
-/* =========================================================
-   操作按钮
-========================================================= */
-
-.controls{
-
+.preview-actions{
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1.2fr
-    1fr;
-
-  gap:9px;
-
-  margin-top:14px;
-
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  margin-top:15px;
 }
 
-
-button,
-.upload{
-
-  border:none;
-
-  border-radius:15px;
-
-  padding:
-    13px
-    8px;
-
-  font-size:14px;
-
-  font-weight:bold;
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #b99ac3,
-      #a783b4
-    );
-
-  box-shadow:
-
-    0 5px 10px
-    rgba(100,70,110,.13),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.25);
-
+.action{
+  height:46px;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:12px;
   cursor:pointer;
-
-  text-align:center;
-
-  transition:
-    transform .12s ease,
-    box-shadow .12s ease;
-
+  color:#756b72;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
+  transition:.2s;
 }
 
-
-button:hover,
-.upload:hover{
-
-  box-shadow:
-
-    0 7px 14px
-    rgba(100,70,110,.17),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.3);
-
+.action:hover{
+  border-color:var(--pink);
+  color:var(--pink-dark);
+  transform:translateY(-1px);
 }
 
-
-button:active,
-.upload:active{
-
-  transform:
-    translateY(2px)
-    scale(.97);
-
-  box-shadow:
-    0 2px 5px
-    rgba(100,70,110,.12);
-
+.action.primary{
+  background:var(--pink-dark);
+  border-color:var(--pink-dark);
+  color:white;
+  box-shadow:0 7px 18px rgba(231,127,159,.23);
 }
 
-
-.grab{
-
-  background:
-    linear-gradient(
-      135deg,
-      #e9a4ba,
-      #d882a1
-    );
-
+.action.primary:hover{
+  color:white;
+  transform:translateY(-2px);
 }
 
+/* =========================
+   SUCCESS MODAL
+========================= */
 
-.upload{
-
-  background:
-    linear-gradient(
-      135deg,
-      #a8bddc,
-      #8da5c7
-    );
-
-}
-
-
-input{
-
+.result-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(54,40,48,.35);
+  backdrop-filter:blur(8px);
   display:none;
-
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
 }
 
-
-/* =========================================================
-   信息
-========================================================= */
-
-.info{
-
-  margin-top:13px;
-
-  padding:12px;
-
-  background:
-    rgba(255,255,255,.72);
-
-  border:
-    1px solid
-    rgba(255,255,255,.85);
-
-  border-radius:15px;
-
-  text-align:center;
-
-  font-size:13px;
-
-  color:#8c7b91;
-
-  box-shadow:
-    0 5px 15px
-    rgba(100,70,110,.06);
-
+.result-overlay.show{
+  display:flex;
 }
-
-
-.info b{
-
-  color:
-    var(--main-dark);
-
-  font-size:15px;
-
-}
-
-
-/* =========================================================
-   小提示
-========================================================= */
-
-.tip{
-
-  text-align:center;
-
-  margin:
-    13px
-    0
-    28px;
-
-  color:#a493a8;
-
-  font-size:10px;
-
-  letter-spacing:1px;
-
-}
-
-
-/* =========================================================
-   抓取结果弹窗
-========================================================= */
 
 .result{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:50;
-
-  background:
-    rgba(82,60,90,.28);
-
-  backdrop-filter:
-    blur(7px);
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:22px;
-
-}
-
-
-.result.show{
-
-  display:flex;
-
-  animation:
-    fadeIn .25s ease;
-
-}
-
-
-@keyframes fadeIn{
-
-  from{
-    opacity:0;
-  }
-
-  to{
-    opacity:1;
-  }
-
-}
-
-
-/* =========================================================
-   结果卡片
-========================================================= */
-
-.result-card{
-
-  width:
-    min(92vw,390px);
-
-  padding:
-    24px
-    20px
-    20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff,
-      #fff9fc
-    );
-
-  border:
-    3px solid
-    var(--main-light);
-
-  border-radius:28px;
-
+  width:min(370px,100%);
+  background:white;
+  border-radius:24px;
+  padding:30px;
   text-align:center;
-
-  box-shadow:
-    0 20px 55px
-    rgba(70,45,80,.25);
-
-  position:relative;
-
-  overflow:hidden;
-
-  animation:
-    resultCard .4s
-    cubic-bezier(.2,.8,.2,1);
-
+  box-shadow:0 30px 80px rgba(45,30,38,.2);
+  animation:pop .3s ease;
 }
-
-
-@keyframes resultCard{
-
-  0%{
-
-    opacity:0;
-
-    transform:
-      translateY(25px)
-      scale(.92);
-
-  }
-
-  100%{
-
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-}
-
-
-/* =========================================================
-   结果顶部小字
-========================================================= */
-
-.result-small{
-
-  font-size:9px;
-
-  letter-spacing:3px;
-
-  color:
-    var(--main-dark);
-
-  margin-bottom:4px;
-
-  font-weight:bold;
-
-}
-
-
-.result-title{
-
-  font-size:25px;
-
-  font-weight:900;
-
-  color:
-    var(--main-dark);
-
-}
-
-
-.result-icon{
-
-  font-size:54px;
-
-  line-height:1;
-
-  margin:
-    6px 0
-    2px;
-
-  animation:
-    pop .55s ease;
-
-}
-
 
 @keyframes pop{
-
-  0%{
-
-    transform:
-      scale(.3)
-      rotate(-12deg);
-
+  from{
     opacity:0;
-
+    transform:scale(.92) translateY(15px);
   }
-
-  70%{
-
-    transform:
-      scale(1.15);
-
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
   }
-
-  100%{
-
-    transform:
-      scale(1);
-
-  }
-
 }
 
-
-/* =========================================================
-   结果图片
-========================================================= */
-
-.result-img-wrap{
-
-  width:190px;
-  height:190px;
-
-  margin:
-    12px auto;
-
-  border-radius:20px;
-
-  background:
-    #faf6fb;
-
-  border:
-    3px solid
-    #ead9ee;
-
+.result-icon{
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  background:#fff1f5;
   display:flex;
-
   align-items:center;
   justify-content:center;
-
-  overflow:hidden;
-
+  margin:0 auto 15px;
+  font-size:31px;
 }
 
+.result h3{
+  font-size:22px;
+  letter-spacing:-1px;
+}
 
-.result-img{
+.result p{
+  margin-top:7px;
+  color:#9a9096;
+  font-size:12px;
+  line-height:1.7;
+}
 
-  max-width:100%;
-  max-height:100%;
-
-  width:auto;
-  height:auto;
-
+.result img{
+  display:block;
+  width:140px;
+  height:140px;
   object-fit:contain;
-
+  margin:20px auto;
+  border-radius:14px;
+  background:#faf6f8;
 }
-
-
-/* =========================================================
-   结果文字
-========================================================= */
-
-.result-text{
-
-  font-size:14px;
-
-  color:#8e7893;
-
-  margin-bottom:10px;
-
-}
-
-
-/* =========================================================
-   结果按钮
-========================================================= */
 
 .result button{
-
-  background:
-    linear-gradient(
-      135deg,
-      #e7a1b7,
-      #d983a3
-    );
-
-  padding:
-    12px
-    25px;
-
+  width:100%;
+  height:44px;
+  border:0;
+  border-radius:12px;
+  background:var(--pink-dark);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
 }
 
-
-/* =========================================================
-   星星
-========================================================= */
+/* =========================
+   SPARKLES
+========================= */
 
 .sparkles{
-
   position:absolute;
-
   inset:0;
-
   pointer-events:none;
-
-  font-size:22px;
-
+  overflow:hidden;
 }
 
-
-.sparkles span{
-
+.sparkle{
   position:absolute;
-
-  animation:
-    spark 1.5s
-    ease-out
-    forwards;
-
+  font-size:20px;
+  animation:float 1.5s ease forwards;
 }
 
-
-.sparkles span:nth-child(1){
-  left:10%;
-  top:15%;
-}
-
-.sparkles span:nth-child(2){
-  right:12%;
-  top:20%;
-}
-
-.sparkles span:nth-child(3){
-  left:18%;
-  bottom:18%;
-}
-
-.sparkles span:nth-child(4){
-  right:17%;
-  bottom:15%;
-}
-
-
-@keyframes spark{
-
+@keyframes float{
   0%{
-
-    transform:
-      scale(.3);
-
     opacity:0;
-
+    transform:translateY(20px) scale(.5) rotate(0);
   }
-
-  35%{
-
+  30%{
     opacity:1;
-
   }
-
   100%{
-
-    transform:
-      translateY(-25px)
-      scale(1.3)
-      rotate(180deg);
-
     opacity:0;
-
+    transform:translateY(-100px) scale(1.2) rotate(30deg);
   }
-
 }
 
+/* =========================
+   FOOTER
+========================= */
 
-/* =========================================================
-   手机
-========================================================= */
+.footer{
+  display:flex;
+  justify-content:space-between;
+  padding:45px 0 35px;
+  color:#aaa0a6;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
 
-@media(max-width:380px){
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+  .workspace{
+    grid-template-columns:1fr;
+  }
+
+  .preview{
+    position:static;
+    order:-1;
+  }
+
+  .machine-wrap{
+    padding:18px;
+  }
+
+  .editor{
+    box-shadow:none;
+  }
+}
+
+@media(max-width:600px){
+  .page{
+    width:94%;
+  }
+
+  .topbar{
+    padding-top:20px;
+  }
+
+  .top-note{
+    display:none;
+  }
+
+  .hero{
+    padding:40px 0 30px;
+  }
+
+  .hero h1{
+    font-size:46px;
+    letter-spacing:-2.5px;
+  }
+
+  .machine-wrap{
+    padding:10px;
+    border-radius:18px;
+  }
 
   .machine{
+    height:560px;
+    border-width:7px;
+  }
 
-    height:540px;
+  .glass{
+    top:54px;
+    height:350px;
+  }
 
+  .prizes{
+    bottom:13px;
   }
 
   .prize{
-
-    width:68px;
-    height:68px;
-
+    width:62px;
+    height:62px;
   }
 
-  h1{
-
-    font-size:25px;
-
+  .machine-bottom{
+    height:115px;
   }
 
-  .machine-title{
-
-    padding:
-      8px
-      18px;
-
-    font-size:11px;
-
+  .exit{
+    top:20px;
+    width:140px;
+    height:52px;
   }
 
-}
-
-
-/* =========================================================
-   更窄屏幕
-========================================================= */
-
-@media(max-width:340px){
-
-  .controls{
-
-    gap:6px;
-
+  .preview-actions{
+    grid-template-columns:1fr;
   }
 
-  button,
-  .upload{
-
-    font-size:12px;
-
-    padding:
-      12px
-      4px;
-
+  .footer{
+    flex-direction:column;
+    gap:10px;
   }
-
 }
-
-
-/* =========================================================
-   主题颜色
-========================================================= */
-
-
-/* 粉色 */
-
-body.theme-pink{
-
-  --main:#d89ab8;
-  --main-dark:#bd789c;
-  --main-light:#f3d4e2;
-  --machine-border:#d89ab8;
-
-}
-
-
-/* 紫色 */
-
-body.theme-lavender{
-
-  --main:#ad93c5;
-  --main-dark:#8e72aa;
-  --main-light:#ddd1ea;
-  --machine-border:#ad93c5;
-
-}
-
-
-/* 蓝色 */
-
-body.theme-blue{
-
-  --main:#8fb8cf;
-  --main-dark:#6e9db8;
-  --main-light:#d4e8f1;
-  --machine-border:#8fb8cf;
-
-}
-
-
-/* 薄荷 */
-
-body.theme-mint{
-
-  --main:#8fbfae;
-  --main-dark:#689f8c;
-  --main-light:#d2e9df;
-  --machine-border:#8fbfae;
-
-}
-
-
-/* 黄色 */
-
-body.theme-yellow{
-
-  --main:#dfb36e;
-  --main-dark:#bc8e4b;
-  --main-light:#f3dfb8;
-  --machine-border:#dfb36e;
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<div class="page">
 
-<header>
+  <!-- =========================
+       TOP
+  ========================= -->
 
-  <div class="logo-small">
-    LITTLE DREAM
-  </div>
+  <header class="topbar">
+    <div class="logo">MY LITTLE <span>CLAW</span></div>
+    <div class="top-note">PERSONAL PRIZE MACHINE · 2026</div>
+  </header>
 
-  <h1 id="pageTitle">
-    🧸 我的小小娃娃机 ♡
-  </h1>
+  <!-- =========================
+       HERO
+  ========================= -->
 
-  <div
-    class="subtitle"
-    id="pageSubtitle"
-  >
-    上传你喜欢的图片，开始抓取吧 ✦
-  </div>
+  <section class="hero">
+    <div class="eyebrow">01 — MY LITTLE ARCADE</div>
 
-  <div class="header-line"></div>
+    <h1>
+      YOUR LITTLE<br>
+      <em>CLAW MACHINE.</em>
+    </h1>
 
-</header>
+    <p>
+      把喜欢的照片放进娃娃机里。
+      调整颜色、文字和游戏规则，
+      做一台只属于你自己的小小抓娃娃机。
+    </p>
+  </section>
+
+  <!-- =========================
+       WORKSPACE
+  ========================= -->
+
+  <main class="workspace">
+
+    <!-- =====================
+         EDITOR
+    ====================== -->
+
+    <aside class="editor">
+
+      <div class="editor-header">
+        <div class="editor-title">MACHINE EDITOR</div>
+        <div class="save-dot" title="自动保存"></div>
+      </div>
+
+      <!-- 01 PRIZES -->
+
+      <section class="section">
+
+        <div class="section-head">
+          <div class="section-number">01</div>
+
+          <div>
+            <h2>我的奖品</h2>
+            <div class="section-desc">
+              上传你喜欢的照片
+            </div>
+          </div>
+        </div>
+
+        <label class="upload-box" for="fileInput">
+
+          <div class="upload-icon">♡</div>
+
+          <div class="upload-main">
+            ADD YOUR PRIZES
+          </div>
+
+          <div class="upload-sub">
+            PNG / JPG / WEBP<br>
+            可以一次选择多张
+          </div>
+
+        </label>
+
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          multiple
+        >
+
+        <div id="prizeList" class="prize-list"></div>
+
+      </section>
 
 
+      <!-- 02 MACHINE -->
 
-<div class="container">
+      <section class="section">
+
+        <div class="section-head">
+          <div class="section-number">02</div>
+
+          <div>
+            <h2>机器外观</h2>
+            <div class="section-desc">
+              Make it yours
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+
+          <label>MACHINE COLOR</label>
+
+          <div class="color-row">
+
+            <button
+              class="color-btn active"
+              data-color="#f59bb8"
+              style="background:#f59bb8"
+            ></button>
+
+            <button
+              class="color-btn"
+              data-color="#a9c8ff"
+              style="background:#a9c8ff"
+            ></button>
+
+            <button
+              class="color-btn"
+              data-color="#c7a7e8"
+              style="background:#c7a7e8"
+            ></button>
+
+            <button
+              class="color-btn"
+              data-color="#a9d8bd"
+              style="background:#a9d8bd"
+            ></button>
+
+            <button
+              class="color-btn"
+              data-color="#f4c48d"
+              style="background:#f4c48d"
+            ></button>
+
+            <button
+              class="color-btn"
+              data-color="#8f8b9c"
+              style="background:#8f8b9c"
+            ></button>
+
+          </div>
+
+          <div class="color-custom">
+
+            <span style="font-size:10px;color:#938990;">
+              CUSTOM
+            </span>
+
+            <input
+              type="color"
+              id="customColor"
+              value="#f59bb8"
+            >
+
+          </div>
+
+        </div>
 
 
-  <!-- =====================================================
-       自定义面板
-  ====================================================== -->
+        <div class="field">
 
-  <div
-    class="custom-panel open"
-    id="customPanel"
-  >
+          <label>MACHINE SHAPE</label>
 
-    <div
-      class="custom-head"
-      onclick="toggleCustomize()"
-    >
+          <div class="choice-grid">
 
-      <div class="custom-head-left">
+            <button
+              class="choice active"
+              data-shape="soft"
+            >
+              SOFT
+            </button>
 
-        <span class="custom-number">
-          01
-        </span>
+            <button
+              class="choice"
+              data-shape="round"
+            >
+              ROUND
+            </button>
 
-        <span class="custom-title">
-          CUSTOMIZE ♡
-        </span>
+            <button
+              class="choice"
+              data-shape="square"
+            >
+              SQUARE
+            </button>
+
+            <button
+              class="choice"
+              data-shape="classic"
+            >
+              CLASSIC
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>MACHINE BACKGROUND</label>
+
+          <select id="machineBg">
+
+            <option value="soft">
+              Milk Pink
+            </option>
+
+            <option value="lavender">
+              Lavender
+            </option>
+
+            <option value="cream">
+              Vanilla Cream
+            </option>
+
+            <option value="blue">
+              Baby Blue
+            </option>
+
+          </select>
+
+        </div>
+
+      </section>
+
+
+      <!-- 03 TEXT -->
+
+      <section class="section">
+
+        <div class="section-head">
+
+          <div class="section-number">03</div>
+
+          <div>
+            <h2>文字编辑</h2>
+
+            <div class="section-desc">
+              Change every little word
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>MACHINE TITLE</label>
+
+          <input
+            id="machineTitle"
+            type="text"
+            value="✦ MY CLAW MACHINE ✦"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>EXIT TEXT</label>
+
+          <input
+            id="exitText"
+            type="text"
+            value="CATCH ME!"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>SUCCESS TEXT</label>
+
+          <input
+            id="successText"
+            type="text"
+            value="GET!"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>FAIL TEXT</label>
+
+          <input
+            id="failText"
+            type="text"
+            value="TRY AGAIN ♡"
+          >
+
+        </div>
+
+      </section>
+
+
+      <!-- 04 GAME -->
+
+      <section class="section">
+
+        <div class="section-head">
+
+          <div class="section-number">04</div>
+
+          <div>
+            <h2>游戏设置</h2>
+
+            <div class="section-desc">
+              Your rules, your machine
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>SUCCESS RATE</label>
+
+          <input
+            id="successRate"
+            type="number"
+            min="1"
+            max="100"
+            value="65"
+          >
+
+        </div>
+
+
+        <div class="toggle-row">
+
+          <div class="toggle-info">
+            SUCCESS EFFECT
+          </div>
+
+          <label class="switch">
+
+            <input
+              id="successEffect"
+              type="checkbox"
+              checked
+            >
+
+            <span class="slider"></span>
+
+          </label>
+
+        </div>
+
+
+        <div class="toggle-row">
+
+          <div class="toggle-info">
+            SPARKLE EFFECT
+          </div>
+
+          <label class="switch">
+
+            <input
+              id="sparkleEffect"
+              type="checkbox"
+              checked
+            >
+
+            <span class="slider"></span>
+
+          </label>
+
+        </div>
+
+
+        <div class="toggle-row">
+
+          <div class="toggle-info">
+            AUTO SAVE SETTINGS
+          </div>
+
+          <label class="switch">
+
+            <input
+              id="autoSave"
+              type="checkbox"
+              checked
+            >
+
+            <span class="slider"></span>
+
+          </label>
+
+        </div>
+
+      </section>
+
+    </aside>
+
+
+    <!-- =====================
+         PREVIEW
+    ====================== -->
+
+    <section class="preview">
+
+      <div class="preview-top">
+
+        <div class="preview-label">
+          LIVE PREVIEW
+        </div>
+
+        <div class="preview-status">
+          ● READY TO PLAY
+        </div>
 
       </div>
 
-      <span
-        class="custom-arrow"
-        id="customArrow"
-      >
-       ⌃
-      </span>
 
-    </div>
+      <div class="machine-wrap">
+
+        <div
+          id="machine"
+          class="machine soft"
+        >
+
+          <div class="machine-top-label" id="machineTitlePreview">
+            ✦ MY CLAW MACHINE ✦
+          </div>
 
 
-    <div class="custom-content">
+          <div class="lights">
+
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+            <span class="light"></span>
+
+          </div>
 
 
-      <!-- 颜色 -->
+          <div class="glass">
 
-      <div class="setting">
+            <div class="rail"></div>
 
-        <label class="setting-label">
-          MACHINE COLOR
-        </label>
 
-        <div class="colors">
+            <div
+              id="crane"
+              class="crane"
+            >
 
-          <div
-            class="color-choice color-pink active"
-            data-theme="pink"
-            onclick="changeTheme('pink')"
-          ></div>
+              <div class="crane-head"></div>
 
-          <div
-            class="color-choice color-lavender"
-            data-theme="lavender"
-            onclick="changeTheme('lavender')"
-          ></div>
+              <div class="cable"></div>
 
-          <div
-            class="color-choice color-blue"
-            data-theme="blue"
-            onclick="changeTheme('blue')"
-          ></div>
+              <div
+                id="claw"
+                class="claw"
+              >
 
-          <div
-            class="color-choice color-mint"
-            data-theme="mint"
-            onclick="changeTheme('mint')"
-          ></div>
+                <div class="joint"></div>
 
-          <div
-            class="color-choice color-yellow"
-            data-theme="yellow"
-            onclick="changeTheme('yellow')"
-          ></div>
+                <div class="arm left1"></div>
+                <div class="arm left2"></div>
+
+                <div class="arm right1"></div>
+                <div class="arm right2"></div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="prizes"
+              class="prizes"
+            ></div>
+
+          </div>
+
+
+          <div class="machine-bottom">
+
+            <div
+              id="exitTextPreview"
+              class="exit"
+            >
+              CATCH ME!
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
 
-      <!-- 标题 -->
+      <!-- ACTIONS -->
 
-      <div class="setting">
+      <div class="preview-actions">
 
-        <label class="setting-label">
-          MACHINE NAME
-        </label>
-
-        <input
-          class="text-input"
-          id="titleInput"
-          type="text"
-          maxlength="30"
-          value="我的小小娃娃机 ♡"
-          oninput="updateTitle(this.value)"
+        <button
+          id="moveLeft"
+          class="action"
         >
+          ← LEFT
+        </button>
 
-      </div>
-
-
-      <!-- 副标题 -->
-
-      <div class="setting">
-
-        <label class="setting-label">
-          LITTLE MESSAGE
-        </label>
-
-        <input
-          class="text-input"
-          id="subtitleInput"
-          type="text"
-          maxlength="50"
-          value="上传你喜欢的图片，开始抓取吧 ✦"
-          oninput="updateSubtitle(this.value)"
+        <button
+          id="grabBtn"
+          class="action primary"
         >
+          ♡ GRAB
+        </button>
 
-      </div>
-
-
-      <!-- 出奖口 -->
-
-      <div class="setting">
-
-        <label class="setting-label">
-          PRIZE EXIT
-        </label>
-
-        <input
-          class="text-input"
-          id="exitInput"
-          type="text"
-          maxlength="18"
-          value="🎁 出奖口"
-          oninput="updateExit(this.value)"
+        <button
+          id="moveRight"
+          class="action"
         >
+          RIGHT →
+        </button>
 
       </div>
 
+    </section>
 
-      <!-- 成功文字 -->
+  </main>
 
-      <div class="setting">
 
-        <label class="setting-label">
-          SUCCESS MESSAGE
-        </label>
+  <footer class="footer">
 
-        <input
-          class="text-input"
-          id="successInput"
-          type="text"
-          maxlength="30"
-          value="恭喜你获得了这个奖品 ♡"
-          oninput="updateSuccess(this.value)"
-        >
+    <span>SMALL THINGS · BIG LOVE</span>
 
-      </div>
+    <span>
+      MY LITTLE CLAW MACHINE
+    </span>
 
-
-      <button
-        onclick="resetCustomize()"
-        style="
-          width:100%;
-          margin-top:3px;
-          background:#c4a9ca;
-        "
-      >
-        ↻ 恢复默认设置
-      </button>
-
-
-    </div>
-
-  </div>
-
-
-
-  <!-- =====================================================
-       娃娃机
-  ====================================================== -->
-
-  <div class="machine">
-
-
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
-
-
-    <div class="machine-top-label">
-      NO. 001
-    </div>
-
-
-    <div class="machine-number">
-      ♡ 0001
-    </div>
-
-
-    <div
-      class="machine-title"
-      id="machineTitle"
-    >
-      MY LITTLE CLAW
-    </div>
-
-
-    <div class="rail"></div>
-
-
-    <div
-      class="crane"
-      id="crane"
-    >
-
-      <div class="crane-head"></div>
-
-      <div class="cable"></div>
-
-      <div
-        class="claw open"
-        id="claw"
-      >
-
-        <div class="joint"></div>
-
-        <div class="arm-left-upper"></div>
-
-        <div class="arm-left-lower"></div>
-
-        <div class="arm-right-upper"></div>
-
-        <div class="arm-right-lower"></div>
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="prizes"
-      id="prizes"
-    ></div>
-
-
-    <div
-      class="exit"
-      id="exitText"
-    >
-      🎁 出奖口
-    </div>
-
-
-  </div>
-
-
-
-  <!-- =====================================================
-       操作
-  ====================================================== -->
-
-  <div class="controls">
-
-
-    <button onclick="move(-1)">
-      ← 左
-    </button>
-
-
-    <button
-      class="grab"
-      onclick="grab()"
-    >
-      🪝 抓取
-    </button>
-
-
-    <button onclick="move(1)">
-      右 →
-    </button>
-
-
-    <label class="upload">
-
-      ＋ 上传图片
-
-      <input
-        type="file"
-        id="upload"
-        accept="image/*"
-        multiple
-      >
-
-    </label>
-
-
-    <button onclick="newGame()">
-      🔀 重新摆放
-    </button>
-
-
-    <button onclick="clearPrizes()">
-      🗑 清空
-    </button>
-
-
-  </div>
-
-
-
-  <!-- =====================================================
-       信息
-  ====================================================== -->
-
-  <div class="info">
-
-    CURRENT PRIZES ·
-    <b id="count">0</b>
-    个
-
-  </div>
-
-
-  <div class="tip">
-    MADE WITH ♡ FOR LITTLE DREAMS
-  </div>
-
+  </footer>
 
 </div>
 
 
-
-<!-- =======================================================
-     结果弹窗
-======================================================= -->
+<!-- =========================
+     RESULT
+========================= -->
 
 <div
-  class="result"
-  id="result"
+  id="resultOverlay"
+  class="result-overlay"
 >
 
-
-  <div class="result-card">
-
-
-    <div class="sparkles">
-
-      <span>✦</span>
-      <span>♡</span>
-      <span>✧</span>
-      <span>✦</span>
-
-    </div>
-
-
-    <div class="result-small">
-      CLAW MACHINE
-    </div>
-
+  <div class="result">
 
     <div
-      class="result-icon"
       id="resultIcon"
+      class="result-icon"
     >
-      🎉
+      ♡
     </div>
 
+    <h3 id="resultTitle">
+      GET!
+    </h3>
 
-    <div
-      class="result-title"
-      id="resultTitle"
+    <p id="resultMessage">
+      You caught something special.
+    </p>
+
+    <img
+      id="resultImage"
+      src=""
+      alt=""
     >
-      抓取成功！
-    </div>
 
-
-    <div
-      class="result-img-wrap"
-      id="resultImgWrap"
-    >
-
-      <img
-        class="result-img"
-        id="resultImg"
-        alt=""
-      >
-
-    </div>
-
-
-    <div
-      class="result-text"
-      id="resultText"
-    >
-      恭喜你获得了这个奖品 ♡
-    </div>
-
-
-    <button onclick="closeResult()">
-      再抓一次 ♡
+    <button id="closeResult">
+      CONTINUE PLAYING
     </button>
-
 
   </div>
 
+  <div
+    id="sparkles"
+    class="sparkles"
+  ></div>
 
 </div>
-
 
 
 <script>
 
-/* =========================================================
-   数据
-========================================================= */
+/* =====================================================
+   DATA
+===================================================== */
 
 let prizes = [];
 
@@ -2570,34 +1695,26 @@ let position = 50;
 
 let busy = false;
 
+let currentColor = "#f59bb8";
 
-/* =========================================================
-   自定义设置
-========================================================= */
-
-let settings = {
-
-  theme:
-    "pink",
-
-  title:
-    "我的小小娃娃机 ♡",
-
-  subtitle:
-    "上传你喜欢的图片，开始抓取吧 ✦",
-
-  exit:
-    "🎁 出奖口",
-
-  success:
-    "恭喜你获得了这个奖品 ♡"
-
-};
+let currentShape = "soft";
 
 
-/* =========================================================
-   获取元素
-========================================================= */
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const fileInput =
+  document.getElementById("fileInput");
+
+const prizeList =
+  document.getElementById("prizeList");
+
+const prizesBox =
+  document.getElementById("prizes");
+
+const machine =
+  document.getElementById("machine");
 
 const crane =
   document.getElementById("crane");
@@ -2605,62 +1722,154 @@ const crane =
 const claw =
   document.getElementById("claw");
 
-const prizeBox =
-  document.getElementById("prizes");
+const grabBtn =
+  document.getElementById("grabBtn");
 
-const count =
-  document.getElementById("count");
+const moveLeft =
+  document.getElementById("moveLeft");
 
-const upload =
-  document.getElementById("upload");
+const moveRight =
+  document.getElementById("moveRight");
 
-const result =
-  document.getElementById("result");
+const resultOverlay =
+  document.getElementById("resultOverlay");
+
+const resultIcon =
+  document.getElementById("resultIcon");
+
+const resultTitle =
+  document.getElementById("resultTitle");
+
+const resultMessage =
+  document.getElementById("resultMessage");
+
+const resultImage =
+  document.getElementById("resultImage");
+
+const closeResult =
+  document.getElementById("closeResult");
+
+const sparkles =
+  document.getElementById("sparkles");
 
 
-/* =========================================================
-   保存设置
-========================================================= */
-
-function saveSettings(){
-
-  localStorage.setItem(
-    "littleClawSettings",
-    JSON.stringify(settings)
-  );
-
-}
-
-
-/* =========================================================
-   读取设置
-========================================================= */
+/* =====================================================
+   LOAD SETTINGS
+===================================================== */
 
 function loadSettings(){
 
-  const saved =
-    localStorage.getItem(
-      "littleClawSettings"
-    );
-
-  if(!saved)return;
-
   try{
+
+    const saved =
+      localStorage.getItem(
+        "myLittleClawSettings"
+      );
+
+    if(!saved) return;
 
     const data =
       JSON.parse(saved);
 
-    settings = {
-      ...settings,
-      ...data
-    };
+    if(data.color){
 
-  }
+      currentColor =
+        data.color;
 
-  catch(e){
+      applyColor(
+        currentColor,
+        false
+      );
+
+    }
+
+    if(data.shape){
+
+      currentShape =
+        data.shape;
+
+      applyShape(
+        currentShape,
+        false
+      );
+
+    }
+
+    if(data.machineTitle){
+
+      document.getElementById(
+        "machineTitle"
+      ).value =
+        data.machineTitle;
+
+      updateMachineTitle(
+        data.machineTitle
+      );
+
+    }
+
+    if(data.exitText){
+
+      document.getElementById(
+        "exitText"
+      ).value =
+        data.exitText;
+
+      updateExitText(
+        data.exitText
+      );
+
+    }
+
+    if(data.successText){
+
+      document.getElementById(
+        "successText"
+      ).value =
+        data.successText;
+
+    }
+
+    if(data.failText){
+
+      document.getElementById(
+        "failText"
+      ).value =
+        data.failText;
+
+    }
+
+    if(data.successRate){
+
+      document.getElementById(
+        "successRate"
+      ).value =
+        data.successRate;
+
+    }
+
+    if(typeof data.successEffect !== "undefined"){
+
+      document.getElementById(
+        "successEffect"
+      ).checked =
+        data.successEffect;
+
+    }
+
+    if(typeof data.sparkleEffect !== "undefined"){
+
+      document.getElementById(
+        "sparkleEffect"
+      ).checked =
+        data.sparkleEffect;
+
+    }
+
+  }catch(e){
 
     console.log(
-      "设置读取失败"
+      "Settings could not be loaded."
     );
 
   }
@@ -2668,86 +1877,528 @@ function loadSettings(){
 }
 
 
-/* =========================================================
-   应用设置
-========================================================= */
+/* =====================================================
+   SAVE SETTINGS
+===================================================== */
 
-function applySettings(){
+function saveSettings(){
 
-  document.body.classList.remove(
-    "theme-pink",
-    "theme-lavender",
-    "theme-blue",
-    "theme-mint",
-    "theme-yellow"
+  if(
+    !document.getElementById(
+      "autoSave"
+    ).checked
+  ){
+    return;
+  }
+
+  const data = {
+
+    color:
+      currentColor,
+
+    shape:
+      currentShape,
+
+    machineTitle:
+      document.getElementById(
+        "machineTitle"
+      ).value,
+
+    exitText:
+      document.getElementById(
+        "exitText"
+      ).value,
+
+    successText:
+      document.getElementById(
+        "successText"
+      ).value,
+
+    failText:
+      document.getElementById(
+        "failText"
+      ).value,
+
+    successRate:
+      document.getElementById(
+        "successRate"
+      ).value,
+
+    successEffect:
+      document.getElementById(
+        "successEffect"
+      ).checked,
+
+    sparkleEffect:
+      document.getElementById(
+        "sparkleEffect"
+      ).checked
+
+  };
+
+  localStorage.setItem(
+    "myLittleClawSettings",
+    JSON.stringify(data)
   );
 
-  document.body.classList.add(
-    "theme-" +
-    settings.theme
+}
+
+
+/* =====================================================
+   COLOR
+===================================================== */
+
+function applyColor(
+  color,
+  save = true
+){
+
+  currentColor =
+    color;
+
+  machine.style.setProperty(
+    "--machine-color",
+    color
   );
 
+  document.documentElement.style.setProperty(
+    "--pink-dark",
+    color
+  );
+
+  document.documentElement.style.setProperty(
+    "--pink",
+    color
+  );
+
+  document
+    .querySelectorAll(".color-btn")
+    .forEach(btn => {
+
+      btn.classList.toggle(
+        "active",
+        btn.dataset.color === color
+      );
+
+    });
 
   document.getElementById(
-    "pageTitle"
-  ).textContent =
-    "🧸 " +
-    settings.title;
+    "customColor"
+  ).value = color;
+
+  if(save){
+
+    saveSettings();
+
+  }
+
+}
 
 
-  document.getElementById(
-    "pageSubtitle"
-  ).textContent =
-    settings.subtitle;
+document
+  .querySelectorAll(".color-btn")
+  .forEach(btn => {
 
+    btn.addEventListener(
+      "click",
+      () => {
 
-  document.getElementById(
-    "exitText"
-  ).textContent =
-    settings.exit;
+        applyColor(
+          btn.dataset.color
+        );
 
-
-  document.getElementById(
-    "successInput"
-  ).value =
-    settings.success;
-
-
-  document.getElementById(
-    "titleInput"
-  ).value =
-    settings.title;
-
-
-  document.getElementById(
-    "subtitleInput"
-  ).value =
-    settings.subtitle;
-
-
-  document.getElementById(
-    "exitInput"
-  ).value =
-    settings.exit;
-
-
-  document.getElementById(
-    "machineTitle"
-  ).textContent =
-    getMachineTitle(
-      settings.title
+      }
     );
 
+  });
 
-  document.querySelectorAll(
-    ".color-choice"
-  ).forEach(
-    function(choice){
 
-      choice.classList.toggle(
+document
+  .getElementById("customColor")
+  .addEventListener(
+    "input",
+    e => {
+
+      applyColor(
+        e.target.value
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   SHAPE
+===================================================== */
+
+function applyShape(
+  shape,
+  save = true
+){
+
+  currentShape =
+    shape;
+
+  machine.classList.remove(
+    "soft",
+    "round",
+    "square"
+  );
+
+  if(
+    shape === "soft"
+  ){
+
+    machine.classList.add(
+      "soft"
+    );
+
+  }
+
+  if(
+    shape === "round"
+  ){
+
+    machine.classList.add(
+      "round"
+    );
+
+  }
+
+  if(
+    shape === "square"
+  ){
+
+    machine.classList.add(
+      "square"
+    );
+
+  }
+
+  document
+    .querySelectorAll(
+      "[data-shape]"
+    )
+    .forEach(btn => {
+
+      btn.classList.toggle(
         "active",
-        choice.dataset.theme ===
-        settings.theme
+        btn.dataset.shape === shape
+      );
+
+    });
+
+  if(save){
+
+    saveSettings();
+
+  }
+
+}
+
+
+document
+  .querySelectorAll(
+    "[data-shape]"
+  )
+  .forEach(btn => {
+
+    btn.addEventListener(
+      "click",
+      () => {
+
+        applyShape(
+          btn.dataset.shape
+        );
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   MACHINE BACKGROUND
+===================================================== */
+
+document
+  .getElementById("machineBg")
+  .addEventListener(
+    "change",
+    e => {
+
+      const value =
+        e.target.value;
+
+      if(value === "soft"){
+
+        machine.style.background =
+          "linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,249,251,.94) 56%,#ead9de 56%,#dfc4cc 100%)";
+
+      }
+
+      if(value === "lavender"){
+
+        machine.style.background =
+          "linear-gradient(180deg,#fbf9ff 0%,#f4efff 56%,#ded3ed 56%,#cbbbdc 100%)";
+
+      }
+
+      if(value === "cream"){
+
+        machine.style.background =
+          "linear-gradient(180deg,#fffdf7 0%,#fff9e9 56%,#e9dfc9 56%,#d9c9ad 100%)";
+
+      }
+
+      if(value === "blue"){
+
+        machine.style.background =
+          "linear-gradient(180deg,#f9fdff 0%,#eef9ff 56%,#d4e6ee 56%,#bfd5df 100%)";
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+function updateMachineTitle(
+  value
+){
+
+  document.getElementById(
+    "machineTitlePreview"
+  ).textContent =
+    value || "✦ MY CLAW MACHINE ✦";
+
+}
+
+
+function updateExitText(
+  value
+){
+
+  document.getElementById(
+    "exitTextPreview"
+  ).textContent =
+    value || "CATCH ME!";
+
+}
+
+
+document
+  .getElementById("machineTitle")
+  .addEventListener(
+    "input",
+    e => {
+
+      updateMachineTitle(
+        e.target.value
+      );
+
+      saveSettings();
+
+    }
+  );
+
+
+document
+  .getElementById("exitText")
+  .addEventListener(
+    "input",
+    e => {
+
+      updateExitText(
+        e.target.value
+      );
+
+      saveSettings();
+
+    }
+  );
+
+
+[
+  "successText",
+  "failText",
+  "successRate"
+].forEach(id => {
+
+  document
+    .getElementById(id)
+    .addEventListener(
+      "input",
+      saveSettings
+    );
+
+});
+
+
+[
+  "successEffect",
+  "sparkleEffect",
+  "autoSave"
+].forEach(id => {
+
+  document
+    .getElementById(id)
+    .addEventListener(
+      "change",
+      saveSettings
+    );
+
+});
+
+
+/* =====================================================
+   UPLOAD
+===================================================== */
+
+fileInput.addEventListener(
+  "change",
+  e => {
+
+    const files =
+      Array.from(
+        e.target.files
+      );
+
+    files.forEach(
+      file => {
+
+        if(
+          !file.type.startsWith(
+            "image/"
+          )
+        ){
+          return;
+        }
+
+        const reader =
+          new FileReader();
+
+        reader.onload =
+          event => {
+
+            prizes.push(
+              event.target.result
+            );
+
+            renderPrizes();
+
+          };
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
+    );
+
+    fileInput.value = "";
+
+  }
+);
+
+
+/* =====================================================
+   RENDER PRIZES
+===================================================== */
+
+function renderPrizes(){
+
+  prizeList.innerHTML =
+    "";
+
+  prizesBox.innerHTML =
+    "";
+
+
+  prizes.forEach(
+    (src,index) => {
+
+      /* editor */
+
+      const thumb =
+        document.createElement(
+          "div"
+        );
+
+      thumb.className =
+        "prize-thumb";
+
+      const img =
+        document.createElement(
+          "img"
+        );
+
+      img.src =
+        src;
+
+      const remove =
+        document.createElement(
+          "button"
+        );
+
+      remove.className =
+        "remove-prize";
+
+      remove.textContent =
+        "×";
+
+      remove.onclick =
+        () => {
+
+          prizes.splice(
+            index,
+            1
+          );
+
+          renderPrizes();
+
+        };
+
+      thumb.appendChild(
+        img
+      );
+
+      thumb.appendChild(
+        remove
+      );
+
+      prizeList.appendChild(
+        thumb
+      );
+
+
+      /* machine */
+
+      const prize =
+        document.createElement(
+          "div"
+        );
+
+      prize.className =
+        "prize";
+
+      const machineImg =
+        document.createElement(
+          "img"
+        );
+
+      machineImg.src =
+        src;
+
+      prize.appendChild(
+        machineImg
+      );
+
+      prizesBox.appendChild(
+        prize
       );
 
     }
@@ -2756,329 +2407,11 @@ function applySettings(){
 }
 
 
-/* =========================================================
-   机器内部英文标题
-========================================================= */
-
-function getMachineTitle(title){
-
-  if(
-    !title ||
-    title.trim() === ""
-  ){
-
-    return "MY LITTLE CLAW";
-
-  }
-
-  return title
-    .replace(
-      /[^\x00-\x7F]/g,
-      ""
-    )
-    .trim()
-    .slice(0,24)
-    .toUpperCase() ||
-    "MY LITTLE CLAW";
-
-}
-
-
-/* =========================================================
-   修改主题
-========================================================= */
-
-function changeTheme(theme){
-
-  settings.theme =
-    theme;
-
-  applySettings();
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   修改标题
-========================================================= */
-
-function updateTitle(value){
-
-  settings.title =
-    value ||
-    "我的小小娃娃机 ♡";
-
-  document.getElementById(
-    "pageTitle"
-  ).textContent =
-    "🧸 " +
-    settings.title;
-
-  document.getElementById(
-    "machineTitle"
-  ).textContent =
-    getMachineTitle(
-      settings.title
-    );
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   修改副标题
-========================================================= */
-
-function updateSubtitle(value){
-
-  settings.subtitle =
-    value ||
-    "上传你喜欢的图片，开始抓取吧 ✦";
-
-  document.getElementById(
-    "pageSubtitle"
-  ).textContent =
-    settings.subtitle;
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   修改出奖口
-========================================================= */
-
-function updateExit(value){
-
-  settings.exit =
-    value ||
-    "🎁 出奖口";
-
-  document.getElementById(
-    "exitText"
-  ).textContent =
-    settings.exit;
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   修改成功文字
-========================================================= */
-
-function updateSuccess(value){
-
-  settings.success =
-    value ||
-    "恭喜你获得了这个奖品 ♡";
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   自定义面板
-========================================================= */
-
-function toggleCustomize(){
-
-  document.getElementById(
-    "customPanel"
-  ).classList.toggle(
-    "open"
-  );
-
-}
-
-
-/* =========================================================
-   恢复默认
-========================================================= */
-
-function resetCustomize(){
-
-  if(
-    !confirm(
-      "要恢复默认设置吗？"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  settings = {
-
-    theme:"pink",
-
-    title:
-      "我的小小娃娃机 ♡",
-
-    subtitle:
-      "上传你喜欢的图片，开始抓取吧 ✦",
-
-    exit:
-      "🎁 出奖口",
-
-    success:
-      "恭喜你获得了这个奖品 ♡"
-
-  };
-
-
-  applySettings();
-
-  saveSettings();
-
-}
-
-
-/* =========================================================
-   上传图片
-========================================================= */
-
-upload.addEventListener(
-  "change",
-  function(e){
-
-    const files =
-      [...e.target.files];
-
-
-    files.forEach(
-      function(file){
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-          function(event){
-
-            prizes.push({
-
-              image:
-                event.target.result,
-
-              name:
-                file.name
-
-            });
-
-
-            renderPrizes();
-
-          };
-
-
-        reader.readAsDataURL(file);
-
-      }
-    );
-
-
-    upload.value = "";
-
-  }
-);
-
-
-/* =========================================================
-   显示奖品
-========================================================= */
-
-function renderPrizes(){
-
-  prizeBox.innerHTML = "";
-
-
-  if(!prizes.length){
-
-    prizeBox.innerHTML =
-      '<div class="empty">' +
-      '还没有奖品 ♡<br>' +
-      '请先上传图片' +
-      '</div>';
-
-  }
-
-  else{
-
-    prizes.forEach(
-      function(prize){
-
-        const div =
-          document.createElement(
-            "div"
-          );
-
-        div.className =
-          "prize";
-
-
-        const img =
-          document.createElement(
-            "img"
-          );
-
-        img.src =
-          prize.image;
-
-        img.alt =
-          prize.name;
-
-
-        div.appendChild(
-          img
-        );
-
-
-        prizeBox.appendChild(
-          div
-        );
-
-      }
-    );
-
-  }
-
-
-  count.textContent =
-    prizes.length;
-
-}
-
-
-/* =========================================================
-   左右移动
-========================================================= */
-
-function move(direction){
-
-  if(busy)return;
-
-
-  position +=
-    direction * 10;
-
-
-  position =
-    Math.max(
-      9,
-      Math.min(
-        91,
-        position
-      )
-    );
-
+/* =====================================================
+   MOVEMENT
+===================================================== */
+
+function updateCrane(){
 
   crane.style.left =
     position + "%";
@@ -3086,84 +2419,139 @@ function move(direction){
 }
 
 
-/* =========================================================
-   抓取
-========================================================= */
+function move(
+  amount
+){
+
+  if(busy){
+    return;
+  }
+
+  position +=
+    amount;
+
+  position =
+    Math.max(
+      13,
+      Math.min(
+        87,
+        position
+      )
+    );
+
+  updateCrane();
+
+}
+
+
+moveLeft.addEventListener(
+  "click",
+  () => {
+
+    move(-8);
+
+  }
+);
+
+
+moveRight.addEventListener(
+  "click",
+  () => {
+
+    move(8);
+
+  }
+);
+
+
+/* =====================================================
+   GRAB
+===================================================== */
+
+grabBtn.addEventListener(
+  "click",
+  grab
+);
+
 
 function grab(){
 
-  if(busy)return;
+  if(busy){
+    return;
+  }
 
+  if(
+    prizes.length === 0
+  ){
 
-  if(!prizes.length){
-
-    alert(
-      "请先上传一些图片作为奖品 ♡"
-    );
+    showEmpty();
 
     return;
 
   }
 
-
   busy = true;
 
+  grabBtn.disabled =
+    true;
 
-  /* 爪子张开 */
+  moveLeft.disabled =
+    true;
 
-  claw.className =
-    "claw open";
+  moveRight.disabled =
+    true;
 
 
-  /* 绳索下降 */
+  /* drop */
+
+  crane.classList.add(
+    "dropping"
+  );
+
 
   setTimeout(
-    function(){
+    () => {
 
-      crane.classList.add(
-        "dropping"
+      claw.classList.add(
+        "closed"
       );
 
     },
-    100
+    600
   );
 
 
-  /* 爪子闭合 */
-
   setTimeout(
-    function(){
-
-      claw.className =
-        "claw closed";
-
-    },
-    650
-  );
-
-
-  /* 绳索收回 */
-
-  setTimeout(
-    function(){
+    () => {
 
       crane.classList.remove(
         "dropping"
       );
 
     },
-    1000
+    1250
   );
 
 
-  /* 判断结果 */
-
   setTimeout(
-    function(){
+    () => {
+
+      const rate =
+        Math.max(
+          1,
+          Math.min(
+            100,
+            Number(
+              document.getElementById(
+                "successRate"
+              ).value
+            ) || 65
+          )
+        );
 
       const success =
-        Math.random() < 0.65;
-
+        Math.random() * 100 <
+        rate;
 
       if(success){
 
@@ -3173,164 +2561,232 @@ function grab(){
             prizes.length
           );
 
-
         const prize =
           prizes[index];
-
-
-        showSuccess(
-          prize
-        );
-
 
         prizes.splice(
           index,
           1
         );
 
-
         renderPrizes();
 
-      }
+        showSuccess(
+          prize
+        );
 
-      else{
+      }else{
 
         showFail();
 
       }
 
-
-      claw.className =
-        "claw open";
-
-
-      busy = false;
-
     },
-    1450
+    1850
   );
 
 }
 
 
-/* =========================================================
-   抓取成功
-========================================================= */
+/* =====================================================
+   SUCCESS
+===================================================== */
 
-function showSuccess(prize){
+function showSuccess(
+  image
+){
 
-  document.getElementById(
-    "resultIcon"
-  ).textContent =
-    "🎉";
+  const effect =
+    document.getElementById(
+      "successEffect"
+    ).checked;
 
+  if(effect){
 
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    "抓取成功！";
+    resultIcon.textContent =
+      "♡";
 
+    resultTitle.textContent =
+      document.getElementById(
+        "successText"
+      ).value ||
+      "GET!";
 
-  document.getElementById(
-    "resultImg"
-  ).src =
-    prize.image;
+    resultMessage.textContent =
+      "抓到了！这是你的奖品 ♡";
 
+    resultImage.src =
+      image;
 
-  document.getElementById(
-    "resultImg"
-  ).alt =
-    prize.name;
+    createSparkles();
 
+  }else{
 
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "flex";
+    resultIcon.textContent =
+      "✓";
 
+    resultTitle.textContent =
+      document.getElementById(
+        "successText"
+      ).value ||
+      "GET!";
 
-  document.getElementById(
-    "resultText"
-  ).textContent =
-    settings.success;
+    resultMessage.textContent =
+      "You got it!";
 
+    resultImage.src =
+      image;
 
-  result.classList.add(
+  }
+
+  resultOverlay.classList.add(
     "show"
   );
 
 }
 
 
-/* =========================================================
-   没抓到
-========================================================= */
+/* =====================================================
+   FAIL
+===================================================== */
 
 function showFail(){
 
-  document.getElementById(
-    "resultIcon"
-  ).textContent =
-    "💦";
+  resultIcon.textContent =
+    "♡";
 
+  resultTitle.textContent =
+    document.getElementById(
+      "failText"
+    ).value ||
+    "TRY AGAIN ♡";
 
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    "差一点点！";
+  resultMessage.textContent =
+    "差一点点，再试一次吧。";
 
+  resultImage.removeAttribute(
+    "src"
+  );
 
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "none";
-
-
-  document.getElementById(
-    "resultText"
-  ).textContent =
-    "这次没有抓到，再试一次吧 ♡";
-
-
-  result.classList.add(
+  resultOverlay.classList.add(
     "show"
   );
 
 }
 
 
-/* =========================================================
-   关闭结果
-========================================================= */
+/* =====================================================
+   EMPTY
+===================================================== */
 
-function closeResult(){
+function showEmpty(){
 
-  result.classList.remove(
-    "show"
+  resultIcon.textContent =
+    "♡";
+
+  resultTitle.textContent =
+    "NO PRIZES";
+
+  resultMessage.textContent =
+    "先上传一些喜欢的照片吧。";
+
+  resultImage.removeAttribute(
+    "src"
   );
 
-
-  document.getElementById(
-    "resultImgWrap"
-  ).style.display =
-    "flex";
+  resultOverlay.classList.add(
+    "show"
+  );
 
 }
 
 
-/* =========================================================
-   点击弹窗外部关闭
-========================================================= */
+/* =====================================================
+   SPARKLES
+===================================================== */
 
-result.addEventListener(
+function createSparkles(){
+
+  if(
+    !document.getElementById(
+      "sparkleEffect"
+    ).checked
+  ){
+
+    return;
+
+  }
+
+  sparkles.innerHTML =
+    "";
+
+  const symbols =
+    ["✦","♡","✧","⋆","✿"];
+
+  for(
+    let i=0;
+    i<16;
+    i++
+  ){
+
+    const s =
+      document.createElement(
+        "span"
+      );
+
+    s.className =
+      "sparkle";
+
+    s.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+    s.style.left =
+      Math.random() * 100 +
+      "%";
+
+    s.style.top =
+      50 +
+      Math.random() * 35 +
+      "%";
+
+    s.style.animationDelay =
+      Math.random() * .5 +
+      "s";
+
+    sparkles.appendChild(
+      s
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CLOSE
+===================================================== */
+
+closeResult.addEventListener(
   "click",
-  function(e){
+  closeResultModal
+);
+
+
+resultOverlay.addEventListener(
+  "click",
+  e => {
 
     if(
-      e.target === result
+      e.target ===
+      resultOverlay
     ){
 
-      closeResult();
+      closeResultModal();
 
     }
 
@@ -3338,73 +2794,79 @@ result.addEventListener(
 );
 
 
-/* =========================================================
-   随机摆放
-========================================================= */
+function closeResultModal(){
 
-function newGame(){
-
-  prizes.sort(
-    function(){
-
-      return Math.random() - 0.5;
-
-    }
+  resultOverlay.classList.remove(
+    "show"
   );
 
+  claw.classList.remove(
+    "closed"
+  );
 
-  renderPrizes();
+  busy = false;
 
+  grabBtn.disabled =
+    false;
 
-  position =
-    20 +
-    Math.random() * 60;
+  moveLeft.disabled =
+    false;
 
-
-  crane.style.left =
-    position + "%";
+  moveRight.disabled =
+    false;
 
 }
 
 
-/* =========================================================
-   清空奖品
-========================================================= */
+/* =====================================================
+   KEYBOARD
+===================================================== */
 
-function clearPrizes(){
+document.addEventListener(
+  "keydown",
+  e => {
 
-  if(
-    !confirm(
-      "确定要清空所有奖品吗？"
-    )
-  ){
+    if(
+      e.key === "ArrowLeft"
+    ){
 
-    return;
+      move(-8);
+
+    }
+
+    if(
+      e.key === "ArrowRight"
+    ){
+
+      move(8);
+
+    }
+
+    if(
+      e.key === " "
+    ){
+
+      e.preventDefault();
+
+      grab();
+
+    }
 
   }
+);
 
 
-  prizes = [];
-
-
-  renderPrizes();
-
-}
-
-
-/* =========================================================
-   初始化
-========================================================= */
+/* =====================================================
+   INIT
+===================================================== */
 
 loadSettings();
 
-applySettings();
+updateCrane();
 
 renderPrizes();
 
 </script>
 
-
 </body>
-
 </html>
