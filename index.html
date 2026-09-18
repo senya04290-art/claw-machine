@@ -2,8 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>我的小小娃娃机 ♡</title>
 
 <style>
@@ -15,41 +14,19 @@
 
 :root{
     --machine-color:#e9a9c4;
-    --machine-dark:#d989ad;
-    --machine-light:#fff8fb;
-    --pink:#e98caf;
+    --machine-dark:#d786aa;
     --text:#66525b;
 }
 
 body{
     min-height:100vh;
     padding:24px 14px 50px;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "PingFang SC",
-        "Microsoft YaHei",
-        sans-serif;
-
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
     color:var(--text);
-
     background:
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(255,220,235,.6),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(225,215,250,.5),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            #fff5f8,
-            #faf2f7
-        );
+        radial-gradient(circle at 10% 10%,rgba(255,220,235,.6),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(225,215,250,.5),transparent 28%),
+        linear-gradient(135deg,#fff5f8,#faf2f7);
 }
 
 .page{
@@ -59,7 +36,7 @@ body{
 
 
 /* =========================
-   页面标题
+   标题
 ========================= */
 
 .page-title{
@@ -70,7 +47,6 @@ body{
 .page-title h1{
     font-size:30px;
     color:#745965;
-    letter-spacing:1px;
     text-shadow:0 2px 0 white;
 }
 
@@ -82,7 +58,7 @@ body{
 
 
 /* =========================
-   主体
+   布局
 ========================= */
 
 .layout{
@@ -103,29 +79,21 @@ body{
    娃娃机
 ========================= */
 
-.machine-wrap{
-    position:relative;
-}
-
 .machine{
     position:relative;
-
     width:100%;
     max-width:620px;
-
     margin:auto;
-
     padding:15px 15px 20px;
 
     background:
         linear-gradient(
             135deg,
-            var(--machine-light),
+            #fffafd,
             #fff
         );
 
     border:9px solid var(--machine-color);
-
     border-radius:32px 32px 22px 22px;
 
     box-shadow:
@@ -133,29 +101,23 @@ body{
         inset 0 2px 0 rgba(255,255,255,.9);
 
     overflow:hidden;
-
-    transition:
-        border-radius .3s ease,
-        border-color .3s ease;
+    transition:.3s;
 }
 
 
-/* 顶部 */
+/* =========================
+   顶部
+========================= */
 
 .machine-top{
     position:relative;
-
     height:58px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:
-        20px
-        20px
-        11px
-        11px;
+    border-radius:20px 20px 11px 11px;
 
     background:
         linear-gradient(
@@ -170,23 +132,17 @@ body{
 
 .machine-title{
     color:white;
-
     font-size:17px;
     font-weight:900;
-
     letter-spacing:2px;
-
-    text-shadow:
-        0 2px 3px rgba(100,50,70,.2);
+    text-shadow:0 2px 3px rgba(100,50,70,.2);
 }
 
 .lights{
     position:absolute;
-
     top:7px;
     left:13px;
     right:13px;
-
     display:flex;
     justify-content:space-between;
 }
@@ -194,13 +150,9 @@ body{
 .light{
     width:7px;
     height:7px;
-
     border-radius:50%;
-
     background:white;
-
-    box-shadow:
-        0 0 8px rgba(255,255,255,.95);
+    box-shadow:0 0 8px rgba(255,255,255,.95);
 }
 
 
@@ -210,21 +162,18 @@ body{
 
 .glass{
     position:relative;
-
     height:390px;
-
     margin-top:12px;
 
     overflow:hidden;
 
     border:4px solid var(--machine-color);
-
     border-radius:18px;
 
     background:
         linear-gradient(
             180deg,
-            rgba(255,255,255,.8),
+            rgba(255,255,255,.82),
             rgba(255,246,250,.96)
         );
 
@@ -232,20 +181,13 @@ body{
         inset 0 0 25px rgba(180,130,155,.1);
 }
 
-
-/* 玻璃高光 */
-
 .glass:before{
     content:"";
-
     position:absolute;
-
     left:-5%;
     top:0;
-
     width:38%;
     height:100%;
-
     transform:skewX(-10deg);
 
     background:
@@ -256,7 +198,6 @@ body{
         );
 
     pointer-events:none;
-
     z-index:30;
 }
 
@@ -267,10 +208,8 @@ body{
 
 .rail{
     position:absolute;
-
     top:23px;
     left:7%;
-
     width:86%;
     height:9px;
 
@@ -279,7 +218,7 @@ body{
     background:
         linear-gradient(
             180deg,
-            #ffffff,
+            #fff,
             #d0c9cd
         );
 
@@ -294,12 +233,11 @@ body{
 
 
 /* =========================
-   小紫色滑块
+   小滑块
 ========================= */
 
 .slider{
     position:absolute;
-
     top:17px;
     left:50%;
 
@@ -329,9 +267,7 @@ body{
 
 .slider:after{
     content:"";
-
     position:absolute;
-
     left:50%;
     top:4px;
 
@@ -341,7 +277,6 @@ body{
     transform:translateX(-50%);
 
     border-radius:5px;
-
     background:rgba(255,255,255,.6);
 }
 
@@ -352,7 +287,6 @@ body{
 
 .crane{
     position:absolute;
-
     top:21px;
     left:50%;
 
@@ -366,12 +300,8 @@ body{
     transition:left .35s ease;
 }
 
-
-/* 吊机头 */
-
 .crane-head{
     position:absolute;
-
     top:0;
     left:50%;
 
@@ -380,11 +310,7 @@ body{
 
     transform:translateX(-50%);
 
-    border-radius:
-        7px
-        7px
-        5px
-        5px;
+    border-radius:7px 7px 5px 5px;
 
     background:
         linear-gradient(
@@ -400,9 +326,7 @@ body{
 
 .crane-head:after{
     content:"";
-
     position:absolute;
-
     left:50%;
     bottom:-4px;
 
@@ -412,7 +336,6 @@ body{
     transform:translateX(-50%);
 
     border-radius:5px;
-
     background:#d1c7cc;
 }
 
@@ -423,7 +346,6 @@ body{
 
 .cable{
     position:absolute;
-
     top:25px;
     left:50%;
 
@@ -442,8 +364,7 @@ body{
             #978d93
         );
 
-    transition:
-        height .55s ease;
+    transition:height .6s ease;
 
     z-index:4;
 }
@@ -471,21 +392,17 @@ body{
 
     transform:translateX(-50%);
 
-    transition:
-        top .55s ease;
+    transition:top .6s ease;
 
     z-index:6;
 }
-
-
-/* 下降 */
 
 .crane.dropping .claw{
     top:250px;
 }
 
 
-/* 中间连接球 */
+/* 中心连接 */
 
 .joint{
     position:absolute;
@@ -517,7 +434,7 @@ body{
 }
 
 
-/* 两根金属爪 */
+/* 两根爪 */
 
 .arm{
     position:absolute;
@@ -528,14 +445,9 @@ body{
     width:6px;
     height:40px;
 
-    transform-origin:
-        50% 4px;
+    transform-origin:50% 4px;
 
-    border-radius:
-        5px
-        5px
-        7px
-        7px;
+    border-radius:5px 5px 7px 7px;
 
     background:
         linear-gradient(
@@ -549,13 +461,13 @@ body{
         0 2px 3px rgba(70,55,65,.2);
 
     transition:
-        transform .32s ease;
+        transform .35s ease;
 
     z-index:3;
 }
 
 
-/* 两个爪子的弯钩 */
+/* 爪尖 */
 
 .arm:after{
     content:"";
@@ -575,21 +487,17 @@ body{
     border-left:4px solid #8d858a;
     border-bottom:4px solid #8d858a;
 
-    border-radius:
-        0 0 0 5px;
+    border-radius:0 0 0 5px;
 }
 
 
-/* 左爪 */
+/* 张开 */
 
 .claw-left{
     transform:
         translateX(-50%)
         rotate(38deg);
 }
-
-
-/* 右爪 */
 
 .claw-right{
     transform:
@@ -598,7 +506,7 @@ body{
 }
 
 
-/* 合爪 */
+/* 合拢 */
 
 .claw.closed .claw-left{
     transform:
@@ -627,12 +535,10 @@ body{
     min-height:130px;
 
     display:flex;
-
     align-items:flex-end;
     justify-content:center;
 
     flex-wrap:wrap;
-
     gap:10px;
 
     z-index:3;
@@ -640,14 +546,12 @@ body{
 
 
 /*
-   图片保持自己的长宽比例
-   不会变成圆形
+   保持上传图片原本比例
 */
 
 .prize{
     width:88px;
     height:auto;
-
     max-height:100px;
 
     object-fit:contain;
@@ -666,7 +570,6 @@ body{
 }
 
 @keyframes prizeFloat{
-
     0%,100%{
         transform:translateY(0);
     }
@@ -677,7 +580,7 @@ body{
 }
 
 
-/* 空机器 */
+/* 空状态 */
 
 .empty{
     position:absolute;
@@ -692,11 +595,9 @@ body{
     text-align:center;
 
     font-size:14px;
-
     line-height:1.8;
 
     pointer-events:none;
-
     z-index:2;
 }
 
@@ -716,11 +617,7 @@ body{
 
     transform:translateX(-50%);
 
-    border-radius:
-        15px
-        15px
-        0
-        0;
+    border-radius:15px 15px 0 0;
 
     background:
         linear-gradient(
@@ -730,7 +627,6 @@ body{
         );
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -738,7 +634,6 @@ body{
 
     font-size:11px;
     font-weight:900;
-
     letter-spacing:2px;
 
     box-shadow:
@@ -747,7 +642,7 @@ body{
 
 
 /* =========================
-   操作按钮
+   操作
 ========================= */
 
 .controls{
@@ -764,9 +659,7 @@ body{
 .move-btn,
 .grab-btn{
     border:0;
-
     font-family:inherit;
-
     cursor:pointer;
 
     transition:
@@ -781,7 +674,6 @@ body{
     border-radius:13px;
 
     background:white;
-
     color:#9d7585;
 
     box-shadow:
@@ -790,7 +682,6 @@ body{
 
 .grab-btn{
     min-width:135px;
-
     height:46px;
 
     border-radius:16px;
@@ -821,8 +712,9 @@ body{
     transform:translateY(1px);
 }
 
-.grab-btn:disabled{
-    opacity:.55;
+.grab-btn:disabled,
+.move-btn:disabled{
+    opacity:.5;
     cursor:not-allowed;
 }
 
@@ -835,7 +727,6 @@ body{
     background:rgba(255,255,255,.86);
 
     border-radius:22px;
-
     padding:14px;
 
     box-shadow:
@@ -854,9 +745,6 @@ body{
     font-size:17px;
     font-weight:900;
 }
-
-
-/* 编辑器区块 */
 
 .section{
     margin-bottom:9px;
@@ -897,8 +785,7 @@ body{
 }
 
 .section-head span:last-child{
-    transition:
-        transform .25s ease;
+    transition:.25s;
 }
 
 .section.open
@@ -938,7 +825,6 @@ input[type="text"],
 input[type="number"],
 input[type="color"]{
     width:100%;
-
     height:38px;
 
     border:1px solid #eadde3;
@@ -1006,7 +892,7 @@ input:focus{
 }
 
 
-/* 上传图片列表 */
+/* 上传图片 */
 
 .upload-list{
     display:grid;
@@ -1022,7 +908,7 @@ input:focus{
 .upload-item{
     position:relative;
 
-    aspect-ratio:1/1;
+    aspect-ratio:1;
 
     overflow:hidden;
 
@@ -1090,7 +976,7 @@ input:focus{
 }
 
 
-/* 机器形状 */
+/* 形状 */
 
 .choice-grid{
     display:grid;
@@ -1128,7 +1014,7 @@ input:focus{
 }
 
 
-/* 清空/随机 */
+/* 小按钮 */
 
 .small-buttons{
     display:grid;
@@ -1159,10 +1045,6 @@ input:focus{
     font-size:11px;
 }
 
-.small-btn:hover{
-    background:#f5e4eb;
-}
-
 
 /* 开关 */
 
@@ -1188,7 +1070,6 @@ input:focus{
 
 .switch input{
     opacity:0;
-
     width:0;
     height:0;
 }
@@ -1203,8 +1084,6 @@ input:focus{
     border-radius:20px;
 
     cursor:pointer;
-
-    transition:.25s;
 }
 
 .switch-track:before{
@@ -1237,7 +1116,7 @@ input:focus{
 
 
 /* =========================
-   弹窗
+   结果弹窗
 ========================= */
 
 .success-modal{
@@ -1310,9 +1189,6 @@ input:focus{
     font-size:42px;
 
     background:#fff0f5;
-
-    box-shadow:
-        0 8px 20px rgba(220,140,170,.18);
 }
 
 .success-card h2{
@@ -1358,7 +1234,7 @@ input:focus{
 
 
 /* =========================
-   闪闪特效
+   闪闪
 ========================= */
 
 .sparkle{
@@ -1436,7 +1312,6 @@ input:focus{
 
     .machine{
         border-width:7px;
-
         padding:
             10px
             10px
@@ -1456,7 +1331,6 @@ input:focus{
         min-width:115px;
     }
 }
-
 </style>
 </head>
 
@@ -1466,15 +1340,8 @@ input:focus{
 <div class="page">
 
     <div class="page-title">
-
-        <h1>
-            🧸 我的小小娃娃机 ♡
-        </h1>
-
-        <p>
-            上传你喜欢的图片，开始抓取吧 ✦
-        </p>
-
+        <h1>🧸 我的小小娃娃机 ♡</h1>
+        <p>上传你喜欢的图片，开始抓取吧 ✦</p>
     </div>
 
 
@@ -1485,141 +1352,130 @@ input:focus{
              娃娃机
         ====================== -->
 
-        <div class="machine-wrap">
+        <div class="machine">
+
+            <div class="machine-top">
+
+                <div class="lights">
+                    <span class="light"></span>
+                    <span class="light"></span>
+                    <span class="light"></span>
+                    <span class="light"></span>
+                    <span class="light"></span>
+                    <span class="light"></span>
+                    <span class="light"></span>
+                </div>
+
+                <div
+                    class="machine-title"
+                    id="machineTitle"
+                >
+                    ✦ MY CLAW MACHINE ✦
+                </div>
+
+            </div>
+
 
             <div
-                class="machine"
-                id="machine"
+                class="glass"
+                id="glass"
             >
 
-                <div class="machine-top">
+                <!-- 长滑轨 -->
 
-                    <div class="lights">
-                        <span class="light"></span>
-                        <span class="light"></span>
-                        <span class="light"></span>
-                        <span class="light"></span>
-                        <span class="light"></span>
-                        <span class="light"></span>
-                        <span class="light"></span>
-                    </div>
+                <div class="rail"></div>
+
+                <!-- 小滑块 -->
+
+                <div
+                    class="slider"
+                    id="slider"
+                ></div>
+
+
+                <!-- 吊机 -->
+
+                <div
+                    class="crane"
+                    id="crane"
+                >
+
+                    <div class="crane-head"></div>
+
+                    <div class="cable"></div>
+
+
+                    <!-- ★ 两爪 -->
 
                     <div
-                        class="machine-title"
-                        id="machineTitle"
+                        class="claw"
+                        id="claw"
                     >
-                        ✦ MY CLAW MACHINE ✦
+
+                        <div class="joint"></div>
+
+                        <div class="arm claw-left"></div>
+
+                        <div class="arm claw-right"></div>
+
                     </div>
 
                 </div>
+
+
+                <!-- 奖品 -->
+
+                <div
+                    class="prizes"
+                    id="prizes"
+                ></div>
 
 
                 <div
-                    class="glass"
-                    id="glass"
+                    class="empty"
+                    id="empty"
                 >
-
-                    <!-- 长滑轨 -->
-
-                    <div class="rail"></div>
-
-                    <!-- 小滑块 -->
-
-                    <div
-                        class="slider"
-                        id="slider"
-                    ></div>
-
-
-                    <!-- 吊机 -->
-
-                    <div
-                        class="crane"
-                        id="crane"
-                    >
-
-                        <div class="crane-head"></div>
-
-                        <div class="cable"></div>
-
-
-                        <!-- ★ 两爪 -->
-
-                        <div
-                            class="claw"
-                            id="claw"
-                        >
-
-                            <div class="joint"></div>
-
-                            <div
-                                class="arm claw-left"
-                            ></div>
-
-                            <div
-                                class="arm claw-right"
-                            ></div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- 奖品 -->
-
-                    <div
-                        class="prizes"
-                        id="prizes"
-                    ></div>
-
-
-                    <div
-                        class="empty"
-                        id="empty"
-                    >
-                        ♡<br>
-                        先上传一些娃娃吧
-                    </div>
-
-
-                    <!-- 出口 -->
-
-                    <div
-                        class="exit"
-                        id="exitText"
-                    >
-                        PRIZE EXIT
-                    </div>
-
+                    ♡<br>
+                    先上传一些娃娃吧
                 </div>
 
 
-                <!-- 操作 -->
+                <!-- 出口 -->
 
-                <div class="controls">
-
-                    <button
-                        class="move-btn"
-                        id="leftBtn"
-                    >
-                        ◀
-                    </button>
-
-                    <button
-                        class="grab-btn"
-                        id="grabBtn"
-                    >
-                        ✦ 抓取 ✦
-                    </button>
-
-                    <button
-                        class="move-btn"
-                        id="rightBtn"
-                    >
-                        ▶
-                    </button>
-
+                <div
+                    class="exit"
+                    id="exitText"
+                >
+                    PRIZE EXIT
                 </div>
+
+            </div>
+
+
+            <!-- 操作 -->
+
+            <div class="controls">
+
+                <button
+                    class="move-btn"
+                    id="leftBtn"
+                >
+                    ◀
+                </button>
+
+                <button
+                    class="grab-btn"
+                    id="grabBtn"
+                >
+                    ✦ 抓取 ✦
+                </button>
+
+                <button
+                    class="move-btn"
+                    id="rightBtn"
+                >
+                    ▶
+                </button>
 
             </div>
 
@@ -1648,9 +1504,7 @@ input:focus{
                         01　我的奖品
                     </span>
 
-                    <span>
-                        ⌄
-                    </span>
+                    <span>⌄</span>
 
                 </button>
 
@@ -1672,7 +1526,7 @@ input:focus{
                     >
 
                     <div class="tip">
-                        可以一次选择多张图片，每次抓取随机抽取
+                        可以一次选择多张图片
                     </div>
 
                     <div
@@ -1715,9 +1569,7 @@ input:focus{
                         02　娃娃机外观
                     </span>
 
-                    <span>
-                        ⌄
-                    </span>
+                    <span>⌄</span>
 
                 </button>
 
@@ -1825,9 +1677,7 @@ input:focus{
                         03　文字设置
                     </span>
 
-                    <span>
-                        ⌄
-                    </span>
+                    <span>⌄</span>
 
                 </button>
 
@@ -1893,9 +1743,7 @@ input:focus{
                         04　游戏设置
                     </span>
 
-                    <span>
-                        ⌄
-                    </span>
+                    <span>⌄</span>
 
                 </button>
 
@@ -1929,9 +1777,7 @@ input:focus{
                                 checked
                             >
 
-                            <span
-                                class="switch-track"
-                            ></span>
+                            <span class="switch-track"></span>
 
                         </label>
 
@@ -1952,9 +1798,7 @@ input:focus{
                                 checked
                             >
 
-                            <span
-                                class="switch-track"
-                            ></span>
+                            <span class="switch-track"></span>
 
                         </label>
 
@@ -1973,7 +1817,7 @@ input:focus{
 
 
 <!-- =====================
-     结果弹窗
+     弹窗
 ====================== -->
 
 <div
@@ -2097,7 +1941,7 @@ const customColor =
 
 
 /* =========================
-   数据
+   状态
 ========================= */
 
 let uploadedImages = [];
@@ -2108,7 +1952,7 @@ let isPlaying = false;
 
 
 /* =========================
-   折叠
+   面板折叠
 ========================= */
 
 document
@@ -2119,12 +1963,8 @@ document
         "click",
         () => {
 
-            const section =
-                button.parentElement;
-
-            section.classList.toggle(
-                "open"
-            );
+            button.parentElement
+            .classList.toggle("open");
 
         }
     );
@@ -2133,7 +1973,7 @@ document
 
 
 /* =========================
-   上传
+   上传图片
 ========================= */
 
 imageInput.addEventListener(
@@ -2148,9 +1988,7 @@ imageInput.addEventListener(
         files.forEach(file => {
 
             if(
-                !file.type.startsWith(
-                    "image/"
-                )
+                !file.type.startsWith("image/")
             ){
                 return;
             }
@@ -2158,19 +1996,20 @@ imageInput.addEventListener(
             const reader =
                 new FileReader();
 
-            reader.onload = e => {
+            reader.onload =
+                function(e){
 
-                uploadedImages.push(
-                    e.target.result
-                );
+                    uploadedImages.push(
+                        e.target.result
+                    );
 
-                renderUploadList();
+                    renderUploadList();
 
-                renderPrizes();
+                    renderPrizes();
 
-                saveData();
+                    saveData();
 
-            };
+                };
 
             reader.readAsDataURL(file);
 
@@ -2201,61 +2040,55 @@ function renderUploadList(){
             item.className =
                 "upload-item";
 
-            item.innerHTML = `
+            const img =
+                document.createElement(
+                    "img"
+                );
 
-                <img src="${src}">
+            img.src = src;
 
-                <button
-                    class="remove-img"
-                    data-index="${index}"
-                >
-                    ×
-                </button>
 
-            `;
+            const remove =
+                document.createElement(
+                    "button"
+                );
 
-            uploadList.appendChild(
-                item
-            );
+            remove.className =
+                "remove-img";
+
+            remove.textContent = "×";
+
+            remove.onclick =
+                function(){
+
+                    uploadedImages.splice(
+                        index,
+                        1
+                    );
+
+                    renderUploadList();
+
+                    renderPrizes();
+
+                    saveData();
+
+                };
+
+
+            item.appendChild(img);
+
+            item.appendChild(remove);
+
+            uploadList.appendChild(item);
 
         }
     );
-
-
-    document
-    .querySelectorAll(".remove-img")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const index =
-                    Number(
-                        button.dataset.index
-                    );
-
-                uploadedImages.splice(
-                    index,
-                    1
-                );
-
-                renderUploadList();
-
-                renderPrizes();
-
-                saveData();
-
-            }
-        );
-
-    });
 
 }
 
 
 /* =========================
-   奖品显示
+   奖品
 ========================= */
 
 function renderPrizes(){
@@ -2266,15 +2099,13 @@ function renderPrizes(){
         uploadedImages.length === 0
     ){
 
-        empty.style.display =
-            "block";
+        empty.style.display = "block";
 
         return;
 
     }
 
-    empty.style.display =
-        "none";
+    empty.style.display = "none";
 
 
     uploadedImages
@@ -2287,18 +2118,14 @@ function renderPrizes(){
                     "img"
                 );
 
-            img.className =
-                "prize";
+            img.className = "prize";
 
-            img.src =
-                src;
+            img.src = src;
 
             img.style.animationDelay =
                 `${index * .12}s`;
 
-            prizes.appendChild(
-                img
-            );
+            prizes.appendChild(img);
 
         }
     );
@@ -2307,14 +2134,14 @@ function renderPrizes(){
 
 
 /* =========================
-   随机
+   随机摆放
 ========================= */
 
 document
 .getElementById("randomBtn")
 .addEventListener(
     "click",
-    () => {
+    function(){
 
         uploadedImages.sort(
             () =>
@@ -2339,7 +2166,7 @@ document
 .getElementById("clearBtn")
 .addEventListener(
     "click",
-    () => {
+    function(){
 
         if(
             !confirm(
@@ -2362,7 +2189,7 @@ document
 
 
 /* =========================
-   移动
+   移动爪子
 ========================= */
 
 function moveCrane(amount){
@@ -2392,24 +2219,33 @@ function moveCrane(amount){
 
 leftBtn.addEventListener(
     "click",
-    () => moveCrane(-7)
+    function(){
+        moveCrane(-7);
+    }
 );
 
 rightBtn.addEventListener(
     "click",
-    () => moveCrane(7)
+    function(){
+        moveCrane(7);
+    }
 );
 
 
 /* =========================
-   抓取
+   ★ 核心抓取功能
 ========================= */
 
 async function grab(){
 
+    /* 防止连续点击 */
+
     if(isPlaying){
         return;
     }
+
+
+    /* 没有奖品 */
 
     if(
         uploadedImages.length === 0
@@ -2429,54 +2265,72 @@ async function grab(){
         );
 
         return;
-
     }
 
+
+    /* 开始 */
 
     isPlaying = true;
 
     grabBtn.disabled = true;
 
+    leftBtn.disabled = true;
 
-    /* 下落 */
+    rightBtn.disabled = true;
+
+
+    /* ---------------------
+       ① 下爪
+    --------------------- */
 
     crane.classList.add(
-        "dropping"
-    );
-
-    await wait(650);
-
-
-    /* 两爪合拢 */
-
-    claw.classList.add(
-        "closed"
-    );
-
-    await wait(450);
-
-
-    await wait(250);
-
-
-    /* 上升 */
-
-    crane.classList.remove(
         "dropping"
     );
 
     await wait(700);
 
 
-    /* 判断成功 */
+    /* ---------------------
+       ② 两爪闭合
+    --------------------- */
+
+    claw.classList.add(
+        "closed"
+    );
+
+    await wait(700);
+
+
+    /* ---------------------
+       ③ 停留
+    --------------------- */
+
+    await wait(250);
+
+
+    /* ---------------------
+       ④ 上升
+    --------------------- */
+
+    crane.classList.remove(
+        "dropping"
+    );
+
+    await wait(850);
+
+
+    /* ---------------------
+       ⑤ 判断概率
+    --------------------- */
 
     let rate =
-        Number(
-            successRate.value
+        parseInt(
+            successRate.value,
+            10
         );
 
     if(
-        Number.isNaN(rate)
+        isNaN(rate)
     ){
         rate = 70;
     }
@@ -2492,73 +2346,14 @@ async function grab(){
 
 
     const success =
-        Math.random() * 100 <
-        rate;
+        Math.random() * 100 < rate;
 
+
+    /* ---------------------
+       ⑥ 成功
+    --------------------- */
 
     if(success){
-
-        showSuccess();
-
-    }else{
-
-        showFail();
-
-    }
-
-
-    await wait(500);
-
-
-    claw.classList.remove(
-        "closed"
-    );
-
-    isPlaying = false;
-
-    grabBtn.disabled = false;
-
-}
-
-
-/* =========================
-   抓取按钮
-========================= */
-
-grabBtn.addEventListener(
-    "click",
-    grab
-);
-
-
-/* =========================
-   成功
-========================= */
-
-function showSuccess(){
-
-    resultTitle.textContent =
-        successInput.value ||
-        "抓取成功啦！♡";
-
-    resultText.textContent =
-        "恭喜你抓到了一个喜欢的娃娃！";
-
-    successIcon.textContent =
-        "🧸";
-
-    successModal.classList.add(
-        "show"
-    );
-
-
-    /*
-       成功后随机拿掉一个奖品
-    */
-
-    if(
-        uploadedImages.length > 0
-    ){
 
         const index =
             Math.floor(
@@ -2571,44 +2366,114 @@ function showSuccess(){
             1
         );
 
+
         renderUploadList();
 
         renderPrizes();
 
         saveData();
 
+
+        resultTitle.textContent =
+            successInput.value ||
+            "抓取成功啦！♡";
+
+        resultText.textContent =
+            "恭喜你抓到了一个喜欢的娃娃！";
+
+        successIcon.textContent =
+            "🧸";
+
+        successModal.classList.add(
+            "show"
+        );
+
+
+        if(
+            effectSwitch.checked
+        ){
+
+            createSparkles();
+
+        }
+
     }
 
 
-    if(
-        effectSwitch.checked
-    ){
+    /* ---------------------
+       ⑦ 失败
+    --------------------- */
 
-        createSparkles();
+    else{
+
+        resultTitle.textContent =
+            "差一点点！";
+
+        resultText.textContent =
+            failInput.value ||
+            "再试一次吧！";
+
+        successIcon.textContent =
+            "🥺";
+
+        successModal.classList.add(
+            "show"
+        );
 
     }
+
+
+    /* ---------------------
+       ⑧ 打开两爪
+    --------------------- */
+
+    await wait(300);
+
+    claw.classList.remove(
+        "closed"
+    );
+
+
+    /* ---------------------
+       ⑨ 恢复按钮
+    --------------------- */
+
+    await wait(300);
+
+    isPlaying = false;
+
+    grabBtn.disabled = false;
+
+    leftBtn.disabled = false;
+
+    rightBtn.disabled = false;
 
 }
 
 
+/* ★ 点击抓取 */
+
+grabBtn.addEventListener(
+    "click",
+    grab
+);
+
+
 /* =========================
-   失败
+   等待
 ========================= */
 
-function showFail(){
+function wait(ms){
 
-    resultTitle.textContent =
-        "差一点点！";
+    return new Promise(
+        function(resolve){
 
-    resultText.textContent =
-        failInput.value ||
-        "再试一次吧！";
+            setTimeout(
+                resolve,
+                ms
+            );
 
-    successIcon.textContent =
-        "🥺";
-
-    successModal.classList.add(
-        "show"
+        }
     );
 
 }
@@ -2620,7 +2485,7 @@ function showFail(){
 
 closeModal.addEventListener(
     "click",
-    () => {
+    function(){
 
         successModal.classList.remove(
             "show"
@@ -2629,10 +2494,9 @@ closeModal.addEventListener(
     }
 );
 
-
 successModal.addEventListener(
     "click",
-    event => {
+    function(event){
 
         if(
             event.target ===
@@ -2650,7 +2514,7 @@ successModal.addEventListener(
 
 
 /* =========================
-   闪闪
+   成功闪光
 ========================= */
 
 function createSparkles(){
@@ -2662,6 +2526,7 @@ function createSparkles(){
         "⋆",
         "✿"
     ];
+
 
     for(
         let i=0;
@@ -2686,11 +2551,13 @@ function createSparkles(){
             ];
 
         sparkle.style.left =
-            Math.random() * 100 +
+            Math.random() *
+            100 +
             "vw";
 
         sparkle.style.top =
-            Math.random() * 100 +
+            Math.random() *
+            100 +
             "vh";
 
         sparkle.style.fontSize =
@@ -2705,7 +2572,9 @@ function createSparkles(){
         );
 
         setTimeout(
-            () => sparkle.remove(),
+            function(){
+                sparkle.remove();
+            },
             850
         );
 
@@ -2724,28 +2593,31 @@ document
 
     button.addEventListener(
         "click",
-        () => {
+        function(){
 
             const color =
                 button.dataset.color;
 
-            setMachineColor(
-                color
-            );
+            setMachineColor(color);
+
 
             document
             .querySelectorAll(
                 ".color-btn"
             )
-            .forEach(btn =>
+            .forEach(btn => {
+
                 btn.classList.remove(
                     "active"
-                )
-            );
+                );
+
+            });
+
 
             button.classList.add(
                 "active"
             );
+
 
             customColor.value =
                 color;
@@ -2760,7 +2632,7 @@ document
 
 customColor.addEventListener(
     "input",
-    () => {
+    function(){
 
         setMachineColor(
             customColor.value
@@ -2793,10 +2665,6 @@ function setMachineColor(color){
 
 }
 
-
-/* =========================
-   颜色变暗
-========================= */
 
 function shadeColor(
     color,
@@ -2871,18 +2739,20 @@ document
 
     button.addEventListener(
         "click",
-        () => {
+        function(){
 
             document
             .querySelectorAll(
                 ".choice"
             )
-            .forEach(
-                btn =>
+            .forEach(btn => {
+
                 btn.classList.remove(
                     "active"
-                )
-            );
+                );
+
+            });
+
 
             button.classList.add(
                 "active"
@@ -2920,7 +2790,7 @@ document
 
 titleInput.addEventListener(
     "input",
-    () => {
+    function(){
 
         machineTitle.textContent =
             titleInput.value;
@@ -2933,7 +2803,7 @@ titleInput.addEventListener(
 
 exitInput.addEventListener(
     "input",
-    () => {
+    function(){
 
         exitText.textContent =
             exitInput.value;
@@ -2942,23 +2812,6 @@ exitInput.addEventListener(
 
     }
 );
-
-
-/* =========================
-   等待
-========================= */
-
-function wait(ms){
-
-    return new Promise(
-        resolve =>
-        setTimeout(
-            resolve,
-            ms
-        )
-    );
-
-}
 
 
 /* =========================
@@ -3010,7 +2863,7 @@ function saveData(){
 
 
 /* =========================
-   读取
+   读取保存
 ========================= */
 
 function loadData(){
@@ -3088,7 +2941,7 @@ function loadData(){
     }catch(error){
 
         console.log(
-            "读取设置失败",
+            "读取失败",
             error
         );
 
@@ -3108,6 +2961,47 @@ crane.style.left =
 
 slider.style.left =
     cranePosition + "%";
+
+
+/* =========================
+   键盘控制
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "ArrowLeft"
+        ){
+
+            moveCrane(-7);
+
+        }
+
+
+        if(
+            event.key === "ArrowRight"
+        ){
+
+            moveCrane(7);
+
+        }
+
+
+        if(
+            event.key === " " &&
+            document.activeElement.tagName !== "INPUT"
+        ){
+
+            event.preventDefault();
+
+            grab();
+
+        }
+
+    }
+);
 
 </script>
 
