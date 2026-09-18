@@ -8,21 +8,23 @@
 
 <style>
 
-/* =========================
+/* =====================================================
    基础
-========================= */
+===================================================== */
 
 *{
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     margin:0;
     padding:0;
 }
 
 body{
     min-height:100vh;
+
     font-family:
         "Arial Rounded MT Bold",
         "PingFang SC",
@@ -38,15 +40,17 @@ body{
         );
 
     color:#6b5470;
+
     display:flex;
     justify-content:center;
+
     padding:28px 15px 45px;
 }
 
 
-/* =========================
+/* =====================================================
    页面
-========================= */
+===================================================== */
 
 .page{
     width:min(760px,100%);
@@ -59,21 +63,26 @@ body{
 
 .header h1{
     margin:0;
+
     font-size:30px;
+
     color:#9b70b2;
+
     letter-spacing:2px;
 }
 
 .header p{
     margin:8px 0 0;
+
     color:#a78eaa;
+
     font-size:14px;
 }
 
 
-/* =========================
-   娃娃机
-========================= */
+/* =====================================================
+   娃娃机主体
+===================================================== */
 
 .machine{
     position:relative;
@@ -84,6 +93,7 @@ body{
     overflow:hidden;
 
     border:6px solid #e8a7cf;
+
     border-radius:30px;
 
     background:
@@ -101,10 +111,13 @@ body{
 }
 
 
-/* 顶部装饰 */
+/* =====================================================
+   顶部标题
+===================================================== */
 
 .machine-title{
     position:absolute;
+
     left:50%;
     top:15px;
 
@@ -121,6 +134,7 @@ body{
     color:#9a6baa;
 
     font-size:12px;
+
     font-weight:bold;
 
     letter-spacing:2px;
@@ -130,9 +144,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    横轨
-========================= */
+===================================================== */
 
 .rail{
     position:absolute;
@@ -142,7 +156,10 @@ body{
 
     top:75px;
 
-    height:10px;
+    /*
+       比之前更细
+    */
+    height:8px;
 
     border-radius:999px;
 
@@ -161,52 +178,56 @@ body{
 }
 
 
-/* =========================
-   整个横向移动组件
-========================= */
+/* =====================================================
+   横向移动组件
+===================================================== */
 
 .crane{
     position:absolute;
 
     top:78px;
+
     left:50%;
 
-    width:78px;
+    /*
+       整体宽度缩小
+    */
+    width:62px;
+
     height:280px;
 
     transform:translateX(-50%);
 
+    /*
+       只允许左右移动
+    */
     transition:left .35s ease;
 
     z-index:20;
-
-    /*
-       非常重要：
-
-       crane 的 top 永远不改变。
-
-       抓取的时候绝对不能修改 crane.top，
-       这样滑块和绳索就不会跟着往下跑。
-    */
 }
 
 
-/* =========================
-   紫色滑块
-========================= */
+/* =====================================================
+   小型紫色滑块
+===================================================== */
 
 .crane-head{
     position:absolute;
 
     top:-1px;
+
     left:50%;
 
     transform:translateX(-50%);
 
-    width:48px;
-    height:34px;
+    /*
+       原来的 48 × 34
+       → 缩小
+    */
+    width:38px;
+    height:27px;
 
-    border-radius:11px 11px 8px 8px;
+    border-radius:9px 9px 7px 7px;
 
     background:
         linear-gradient(
@@ -215,26 +236,26 @@ body{
             #9a67b3
         );
 
-    border:3px solid #8b5ca3;
+    border:2.5px solid #8b5ca3;
 
     box-shadow:
-        0 4px 0 #7d5294,
-        0 6px 10px rgba(105,69,124,.2);
+        0 3px 0 #7d5294,
+        0 5px 8px rgba(105,69,124,.18);
 }
 
 
-/* 滑块里面的小高光 */
+/* 滑块高光 */
 
 .crane-head::before{
     content:"";
 
     position:absolute;
 
-    left:8px;
-    right:8px;
-    top:5px;
+    left:7px;
+    right:7px;
+    top:4px;
 
-    height:6px;
+    height:5px;
 
     border-radius:999px;
 
@@ -242,7 +263,7 @@ body{
 }
 
 
-/* 滑轮 */
+/* 小滑轮 */
 
 .crane-head::after{
     content:"";
@@ -250,35 +271,42 @@ body{
     position:absolute;
 
     left:50%;
-    bottom:-7px;
+    bottom:-6px;
 
     transform:translateX(-50%);
 
-    width:14px;
-    height:14px;
+    /*
+       原来的 14 × 14
+       → 缩小
+    */
+    width:11px;
+    height:11px;
 
     border-radius:50%;
 
     background:#fff;
 
-    border:3px solid #8d61a5;
+    border:2.5px solid #8d61a5;
 }
 
 
-/* =========================
+/* =====================================================
    固定绳索
-========================= */
+===================================================== */
 
 .cable{
     position:absolute;
 
     left:50%;
-    top:33px;
+    top:26px;
 
     transform:translateX(-50%);
 
-    width:4px;
-    height:118px;
+    /*
+       绳子依然固定长度
+    */
+    width:3px;
+    height:125px;
 
     border-radius:999px;
 
@@ -297,9 +325,7 @@ body{
 }
 
 
-/*
-   绳索底部固定连接点
-*/
+/* 绳索底部连接点 */
 
 .cable::after{
     content:"";
@@ -307,53 +333,53 @@ body{
     position:absolute;
 
     left:50%;
-    bottom:-7px;
+    bottom:-6px;
 
     transform:translateX(-50%);
 
-    width:16px;
-    height:16px;
+    /*
+       缩小连接点
+    */
+    width:12px;
+    height:12px;
 
     border-radius:50%;
 
     background:#fff;
 
-    border:3px solid #b27fc2;
+    border:2.5px solid #b27fc2;
 
     box-shadow:
         0 2px 4px rgba(102,69,120,.15);
 }
 
 
-/* =========================
-   爪子区域
-========================= */
-
-/*
-   这个位置固定在绳索末端。
-
-   注意：
-   它不会随着抓取改变 top。
-
-   真正向下移动的是 claw-body。
-*/
+/* =====================================================
+   爪子固定区域
+===================================================== */
 
 .claw-anchor{
     position:absolute;
 
     left:50%;
+
+    /*
+       与固定绳索末端连接
+    */
     top:150px;
 
     transform:translateX(-50%);
 
-    width:72px;
+    width:64px;
     height:120px;
 
     z-index:4;
 }
 
 
-/* 固定的小连接杆 */
+/* =====================================================
+   爪子连接杆
+===================================================== */
 
 .claw-neck{
     position:absolute;
@@ -363,8 +389,8 @@ body{
 
     transform:translateX(-50%);
 
-    width:8px;
-    height:20px;
+    width:6px;
+    height:17px;
 
     border-radius:5px;
 
@@ -381,9 +407,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    爪子本体
-========================= */
+===================================================== */
 
 .claw-body{
     position:absolute;
@@ -394,9 +420,13 @@ body{
     width:78px;
     height:105px;
 
+    /*
+       缩小到 78%
+    */
     transform:
         translateX(-50%)
-        translateY(0);
+        translateY(0)
+        scale(.78);
 
     transform-origin:top center;
 
@@ -407,23 +437,34 @@ body{
 }
 
 
-/*
-   抓取时：
+/* =====================================================
+   抓取时
+===================================================== */
 
-   只有 claw-body 向下。
-   crane / crane-head / cable 全部不动。
+/*
+   只有爪子向下。
+
+   滑块：
+   不动
+
+   绳索：
+   不动
+
+   横轨：
+   不动
 */
 
 .claw-anchor.grabbing .claw-body{
     transform:
         translateX(-50%)
-        translateY(68px);
+        translateY(68px)
+        scale(.78);
 }
 
 
-/* =========================
-   爪子中心连接块
-========================= */
+/* =====================================================
+   爪子中心
+===================================================== */
 
 .claw-core{
     position:absolute;
@@ -455,14 +496,9 @@ body{
 }
 
 
-/* =========================
-   爪子两侧
-========================= */
-
-
-/*
-   左边上半部分
-*/
+/* =====================================================
+   左上臂
+===================================================== */
 
 .arm-left-upper{
     position:absolute;
@@ -493,9 +529,9 @@ body{
 }
 
 
-/*
-   右边上半部分
-*/
+/* =====================================================
+   右上臂
+===================================================== */
 
 .arm-right-upper{
     position:absolute;
@@ -526,9 +562,9 @@ body{
 }
 
 
-/* =========================
-   左右下半部分
-========================= */
+/* =====================================================
+   左下臂
+===================================================== */
 
 .arm-left-lower{
     position:absolute;
@@ -562,6 +598,10 @@ body{
 }
 
 
+/* =====================================================
+   右下臂
+===================================================== */
+
 .arm-right-lower{
     position:absolute;
 
@@ -594,15 +634,14 @@ body{
 }
 
 
-/* =========================
-   抓取闭合
-========================= */
+/* =====================================================
+   闭合
+===================================================== */
 
 .claw-anchor.closed .arm-left-lower{
     transform:
         rotate(-5deg);
 }
-
 
 .claw-anchor.closed .arm-right-lower{
     transform:
@@ -610,9 +649,9 @@ body{
 }
 
 
-/* =========================
-   两个爪尖
-========================= */
+/* =====================================================
+   左爪尖
+===================================================== */
 
 .tip-left{
     position:absolute;
@@ -647,6 +686,10 @@ body{
 }
 
 
+/* =====================================================
+   右爪尖
+===================================================== */
+
 .tip-right{
     position:absolute;
 
@@ -680,7 +723,9 @@ body{
 }
 
 
-/* 闭合时两个爪尖向中间 */
+/* =====================================================
+   闭合时爪尖
+===================================================== */
 
 .claw-anchor.closed .tip-left{
     transform:
@@ -693,9 +738,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    奖品区域
-========================= */
+===================================================== */
 
 .prize-area{
     position:absolute;
@@ -721,12 +766,9 @@ body{
 }
 
 
-/*
-   奖品卡片
-
-   不再强制圆形。
-   保持图片自己的矩形外观。
-*/
+/* =====================================================
+   奖品
+===================================================== */
 
 .prize{
     position:relative;
@@ -735,6 +777,7 @@ body{
     height:92px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -768,7 +811,8 @@ body{
 
 @keyframes prizeFloat{
 
-    0%,100%{
+    0%,
+    100%{
         transform:translateY(0);
     }
 
@@ -778,9 +822,9 @@ body{
 }
 
 
-/* =========================
-   掉落出口
-========================= */
+/* =====================================================
+   出口
+===================================================== */
 
 .exit{
     position:absolute;
@@ -835,9 +879,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    控制区
-========================= */
+===================================================== */
 
 .controls{
     margin-top:18px;
@@ -867,6 +911,7 @@ body{
     color:#8c6595;
 
     font-size:15px;
+
     font-weight:bold;
 
     cursor:pointer;
@@ -923,9 +968,9 @@ body{
 }
 
 
-/* =========================
-   上传区
-========================= */
+/* =====================================================
+   上传面板
+===================================================== */
 
 .panel{
     margin-top:18px;
@@ -958,7 +1003,6 @@ body{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     gap:10px;
@@ -1019,9 +1063,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    提示
-========================= */
+===================================================== */
 
 .info{
     margin-top:12px;
@@ -1036,9 +1080,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    结果弹窗
-========================= */
+===================================================== */
 
 .modal{
     position:fixed;
@@ -1095,12 +1139,18 @@ body{
 
     from{
         opacity:0;
-        transform:scale(.85) translateY(20px);
+
+        transform:
+            scale(.85)
+            translateY(20px);
     }
 
     to{
         opacity:1;
-        transform:scale(1) translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
     }
 }
 
@@ -1112,6 +1162,7 @@ body{
     margin:0 auto 12px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1181,9 +1232,9 @@ body{
 }
 
 
-/* =========================
+/* =====================================================
    手机适配
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
@@ -1191,9 +1242,11 @@ body{
         padding:15px 9px 30px;
     }
 
+
     .header h1{
         font-size:24px;
     }
+
 
     .machine{
         height:520px;
@@ -1201,44 +1254,54 @@ body{
         border-width:5px;
     }
 
+
     .rail{
         left:25px;
         right:25px;
     }
 
+
     .prize-area{
         left:20px;
         right:20px;
+
         top:230px;
         bottom:70px;
 
         gap:7px;
     }
 
+
     .prize{
         width:75px;
         height:75px;
     }
+
 
     .prize img{
         max-width:75px;
         max-height:75px;
     }
 
+
     .exit{
         width:150px;
     }
 
+
     .control-btn{
         min-width:88px;
+
         padding:11px 15px;
     }
+
 
     .grab-btn{
         order:-1;
 
         width:100%;
     }
+
 }
 
 </style>
@@ -1249,13 +1312,16 @@ body{
 
 <div class="page">
 
-    <!-- =========================
-         标题
-    ========================== -->
+
+    <!-- =================================================
+         页面标题
+    ================================================== -->
 
     <header class="header">
 
-        <h1>🧸 我的小小娃娃机 ♡</h1>
+        <h1>
+            🧸 我的小小娃娃机 ♡
+        </h1>
 
         <p>
             上传你喜欢的图片，开始抓取吧 ✦
@@ -1264,11 +1330,15 @@ body{
     </header>
 
 
-    <!-- =========================
+    <!-- =================================================
          娃娃机
-    ========================== -->
+    ================================================== -->
 
-    <div class="machine" id="machine">
+    <div
+        class="machine"
+        id="machine"
+    >
+
 
         <div class="machine-title">
             ✦ MY CLAW MACHINE ✦
@@ -1280,11 +1350,15 @@ body{
         <div class="rail"></div>
 
 
-        <!-- =========================
-             整个吊钩横向组件
-        ========================== -->
+        <!-- =================================================
+             横向移动组件
+        ================================================== -->
 
-        <div class="crane" id="crane">
+        <div
+            class="crane"
+            id="crane"
+        >
+
 
             <!-- 紫色滑块 -->
 
@@ -1296,53 +1370,68 @@ body{
             <div class="cable"></div>
 
 
-            <!-- =========================
-                 爪子固定连接点
-            ========================== -->
+            <!-- =================================================
+                 爪子
+            ================================================== -->
 
             <div
                 class="claw-anchor"
                 id="clawAnchor"
             >
 
+
                 <div class="claw-neck"></div>
 
 
-                <!-- 爪子本体 -->
-
                 <div class="claw-body">
+
+
+                    <!-- 中心连接球 -->
 
                     <div class="claw-core"></div>
 
 
-                    <!-- 左边上半部分 -->
+                    <!-- 左上臂 -->
 
-                    <div class="arm-left-upper"></div>
-
-
-                    <!-- 右边上半部分 -->
-
-                    <div class="arm-right-upper"></div>
+                    <div
+                        class="arm-left-upper"
+                    ></div>
 
 
-                    <!-- 左边下半部分 -->
+                    <!-- 右上臂 -->
 
-                    <div class="arm-left-lower"></div>
+                    <div
+                        class="arm-right-upper"
+                    ></div>
 
 
-                    <!-- 右边下半部分 -->
+                    <!-- 左下臂 -->
 
-                    <div class="arm-right-lower"></div>
+                    <div
+                        class="arm-left-lower"
+                    ></div>
+
+
+                    <!-- 右下臂 -->
+
+                    <div
+                        class="arm-right-lower"
+                    ></div>
 
 
                     <!-- 左爪尖 -->
 
-                    <div class="tip-left"></div>
+                    <div
+                        class="tip-left"
+                    ></div>
 
 
                     <!-- 右爪尖 -->
 
-                    <div class="tip-right"></div>
+                    <div
+                        class="tip-right"
+                    ></div>
+
 
                 </div>
 
@@ -1351,9 +1440,9 @@ body{
         </div>
 
 
-        <!-- =========================
-             奖品区域
-        ========================== -->
+        <!-- =================================================
+             奖品
+        ================================================== -->
 
         <div
             class="prize-area"
@@ -1365,14 +1454,16 @@ body{
 
         <div class="exit"></div>
 
+
     </div>
 
 
-    <!-- =========================
+    <!-- =================================================
          控制按钮
-    ========================== -->
+    ================================================== -->
 
     <div class="controls">
+
 
         <button
             class="control-btn"
@@ -1398,14 +1489,16 @@ body{
             右移 ▶
         </button>
 
+
     </div>
 
 
-    <!-- =========================
-         上传
-    ========================== -->
+    <!-- =================================================
+         上传区域
+    ================================================== -->
 
     <div class="panel">
+
 
         <div class="panel-title">
             ♡ 放入你的专属奖品 ♡
@@ -1414,12 +1507,14 @@ body{
 
         <div class="upload-row">
 
+
             <label
                 class="upload-label"
                 for="fileInput"
             >
                 ＋ 上传图片
             </label>
+
 
             <input
                 id="fileInput"
@@ -1444,6 +1539,7 @@ body{
                 🗑 清空
             </button>
 
+
         </div>
 
 
@@ -1452,33 +1548,39 @@ body{
             图片会保持原本的比例，不会被裁成圆形。
         </div>
 
+
     </div>
 
 </div>
 
 
-<!-- =========================
-     抓取结果弹窗
-========================== -->
+<!-- =====================================================
+     抓取成功弹窗
+===================================================== -->
 
 <div
     class="modal"
     id="resultModal"
 >
 
+
     <div class="modal-box">
+
 
         <div class="success-icon">
             🎉
         </div>
 
+
         <h2>
             抓取成功！
         </h2>
 
+
         <p>
             恭喜你获得了这个小可爱 ♡
         </p>
+
 
         <img
             class="modal-prize"
@@ -1487,7 +1589,9 @@ body{
             alt="抓取成功的奖品"
         >
 
+
         <br>
+
 
         <button
             class="modal-close"
@@ -1496,7 +1600,9 @@ body{
             收下它 ♡
         </button>
 
+
     </div>
+
 
 </div>
 
@@ -1515,29 +1621,43 @@ let busy = false;
 
 
 /* =====================================================
-   获取元素
+   元素
 ===================================================== */
 
 const crane =
-    document.getElementById("crane");
+    document.getElementById(
+        "crane"
+    );
 
 const clawAnchor =
-    document.getElementById("clawAnchor");
+    document.getElementById(
+        "clawAnchor"
+    );
 
 const prizeArea =
-    document.getElementById("prizeArea");
+    document.getElementById(
+        "prizeArea"
+    );
 
 const fileInput =
-    document.getElementById("fileInput");
+    document.getElementById(
+        "fileInput"
+    );
 
 const grabButton =
-    document.getElementById("grabButton");
+    document.getElementById(
+        "grabButton"
+    );
 
 const resultModal =
-    document.getElementById("resultModal");
+    document.getElementById(
+        "resultModal"
+    );
 
 const modalPrize =
-    document.getElementById("modalPrize");
+    document.getElementById(
+        "modalPrize"
+    );
 
 
 /* =====================================================
@@ -1550,11 +1670,10 @@ function move(direction){
         return;
     }
 
-    position += direction * 9;
 
-    /*
-       限制移动范围
-    */
+    position +=
+        direction * 9;
+
 
     position =
         Math.max(
@@ -1565,34 +1684,57 @@ function move(direction){
             )
         );
 
+
+    /*
+       这里只改变 left。
+
+       所以：
+       滑块、绳索、爪子
+       会一起水平移动。
+    */
+
     crane.style.left =
         position + "%";
 }
 
 
 /* =====================================================
-   键盘操作
+   键盘控制
 ===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(event.key === "ArrowLeft"){
+        if(
+            event.key ===
+            "ArrowLeft"
+        ){
+
             move(-1);
+
         }
 
-        if(event.key === "ArrowRight"){
+
+        if(
+            event.key ===
+            "ArrowRight"
+        ){
+
             move(1);
+
         }
+
 
         if(
             event.key === " " ||
             event.key === "Enter"
         ){
+
             event.preventDefault();
 
             grab();
+
         }
 
     }
@@ -1608,6 +1750,7 @@ function grab(){
     if(busy){
         return;
     }
+
 
     if(prizes.length === 0){
 
@@ -1625,28 +1768,23 @@ function grab(){
 
 
     /*
-       第一步：
-
-       爪子打开。
+       ① 爪子打开
     */
 
-    clawAnchor.classList.remove("closed");
+    clawAnchor.classList.remove(
+        "closed"
+    );
 
 
     /*
-       第二步：
+       ② 爪子向下
 
-       只有 claw-body 向下。
+       注意：
 
-       这里绝对没有：
+       这里没有改变 crane.top。
 
-       crane.style.top = ...
-
-       所以：
-
-       紫色滑块不会动
-       绳索不会变长
-       横轨不会动
+       所以紫色滑块不会下降。
+       绳索也不会变长。
     */
 
     setTimeout(
@@ -1662,9 +1800,7 @@ function grab(){
 
 
     /*
-       第三步：
-
-       到达下方之后闭合。
+       ③ 到达下方后闭合
     */
 
     setTimeout(
@@ -1680,10 +1816,7 @@ function grab(){
 
 
     /*
-       第四步：
-
-       稍微停一下，
-       然后判断抓取结果。
+       ④ 判断是否抓到
     */
 
     setTimeout(
@@ -1692,10 +1825,11 @@ function grab(){
             const success =
                 Math.random() < 0.75;
 
+
             if(success){
 
                 /*
-                   随机抓一个奖品
+                   随机选择一个奖品
                 */
 
                 const index =
@@ -1704,12 +1838,13 @@ function grab(){
                         prizes.length
                     );
 
+
                 const caught =
                     prizes[index];
 
 
                 /*
-                   删除奖品
+                   从机器里移除
                 */
 
                 prizes.splice(
@@ -1717,15 +1852,17 @@ function grab(){
                     1
                 );
 
+
                 renderPrizes();
 
 
                 /*
-                   显示成功结果
+                   弹出成功窗口
                 */
 
                 modalPrize.src =
                     caught.src;
+
 
                 resultModal.classList.add(
                     "show"
@@ -1735,7 +1872,7 @@ function grab(){
             else{
 
                 /*
-                   失败也会重新打开爪子
+                   没抓到
                 */
 
                 clawAnchor.classList.remove(
@@ -1750,14 +1887,9 @@ function grab(){
 
 
     /*
-       第五步：
+       ⑤ 爪子上升
 
-       爪子回到原来的高度。
-
-       注意：
-
-       还是只改变 claw-body，
-       不改变 crane。
+       仍然只有爪子移动。
     */
 
     setTimeout(
@@ -1773,7 +1905,7 @@ function grab(){
 
 
     /*
-       最后解除忙碌状态
+       ⑥ 动画结束
     */
 
     setTimeout(
@@ -1783,6 +1915,7 @@ function grab(){
                 "closed"
             );
 
+
             busy = false;
 
             grabButton.disabled =
@@ -1791,6 +1924,7 @@ function grab(){
         },
         1900
     );
+
 }
 
 
@@ -1816,7 +1950,9 @@ fileInput.addEventListener(
                         "image/"
                     )
                 ){
+
                     return;
+
                 }
 
 
@@ -1829,13 +1965,15 @@ fileInput.addEventListener(
 
                         prizes.push({
 
-                            src:e.target.result,
+                            src:
+                                e.target.result,
 
                             id:
                                 Date.now() +
                                 Math.random()
 
                         });
+
 
                         renderPrizes();
 
@@ -1851,10 +1989,11 @@ fileInput.addEventListener(
 
 
         /*
-           允许再次选择同一张图片
+           允许再次选择相同文件
         */
 
         fileInput.value = "";
+
     }
 );
 
@@ -1876,8 +2015,10 @@ function renderPrizes(){
                     "div"
                 );
 
+
             item.className =
                 "prize";
+
 
             item.style.setProperty(
                 "--i",
@@ -1890,8 +2031,10 @@ function renderPrizes(){
                     "img"
                 );
 
+
             img.src =
                 prize.src;
+
 
             img.alt =
                 "奖品";
@@ -1908,6 +2051,7 @@ function renderPrizes(){
 
         }
     );
+
 }
 
 
@@ -1928,7 +2072,7 @@ function randomPrizes(){
 
 
     /*
-       随机打乱
+       Fisher-Yates 随机洗牌
     */
 
     for(
@@ -1957,6 +2101,7 @@ function randomPrizes(){
 
 
     renderPrizes();
+
 }
 
 
@@ -1973,12 +2118,14 @@ function clearPrizes(){
 
     prizes = [];
 
+
     renderPrizes();
+
 }
 
 
 /* =====================================================
-   关闭结果
+   关闭弹窗
 ===================================================== */
 
 function closeModal(){
@@ -1986,10 +2133,13 @@ function closeModal(){
     resultModal.classList.remove(
         "show"
     );
+
 }
 
 
-/* 点击背景关闭 */
+/* =====================================================
+   点击背景关闭
+===================================================== */
 
 resultModal.addEventListener(
     "click",
@@ -2009,16 +2159,8 @@ resultModal.addEventListener(
 
 
 /* =====================================================
-   初始示例奖品
+   初始化
 ===================================================== */
-
-/*
-   如果你不想网站打开时显示示例图片，
-   这里保持为空即可。
-
-   用户上传图片后会自动出现。
-*/
-
 
 renderPrizes();
 
