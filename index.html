@@ -224,7 +224,8 @@ h1{
 
 /* =========================================================
    横向轨道
-   ★ 保持固定
+   ★ 缩小版
+   ★ 固定不动
 ========================================================= */
 
 .rail{
@@ -233,17 +234,18 @@ h1{
 
   top:78px;
 
-  left:6%;
+  left:10%;
 
-  width:88%;
+  width:80%;
 
-  height:10px;
+  height:7px;
 
   border-radius:10px;
 
   background:#a984b4;
 
   box-shadow:
+
     inset 0 2px 3px
     rgba(255,255,255,.3),
 
@@ -257,8 +259,8 @@ h1{
 
 /* =========================================================
    吊车整体
-   ★ 这里只负责左右移动
-   ★ TOP 永远保持 77px
+   ★ 只左右移动
+   ★ TOP 永远是 77px
 ========================================================= */
 
 .crane{
@@ -269,7 +271,7 @@ h1{
 
   left:50%;
 
-  width:70px;
+  width:62px;
 
   height:auto;
 
@@ -286,19 +288,19 @@ h1{
 
 /* =========================================================
    滑块
-   ★ 固定在轨道
-   ★ 不会跟着绳索下降
+   ★ 比原版小
+   ★ 牢牢贴在滑轨
 ========================================================= */
 
 .crane-head{
 
   position:relative;
 
-  width:84px;
+  width:62px;
 
-  height:58px;
+  height:42px;
 
-  margin-left:-7px;
+  margin-left:0;
 
   background:
     linear-gradient(
@@ -308,17 +310,17 @@ h1{
     );
 
   border-radius:
-    17px
-    17px
-    12px
-    12px;
+    13px
+    13px
+    9px
+    9px;
 
   box-shadow:
 
-    0 4px 8px
+    0 3px 6px
     rgba(130,90,140,.18),
 
-    inset 0 5px 7px
+    inset 0 4px 6px
     rgba(255,255,255,.25);
 
   z-index:15;
@@ -334,13 +336,13 @@ h1{
 
   position:absolute;
 
-  left:16px;
+  left:12px;
 
-  top:9px;
+  top:7px;
 
-  width:56px;
+  width:38px;
 
-  height:7px;
+  height:6px;
 
   border-radius:10px;
 
@@ -352,20 +354,19 @@ h1{
 
 /* =========================================================
    绳索
-   ★ 从滑块下面开始
-   ★ 抓取时只改变高度
-   ★ 滑块完全不动
+   ★ 更细
+   ★ 长度机制保持原样
 ========================================================= */
 
 .cable{
 
   position:relative;
 
-  width:4px;
+  width:3px;
 
   height:125px;
 
-  margin-left:33px;
+  margin-left:29px;
 
   background:
     linear-gradient(
@@ -409,9 +410,9 @@ h1{
   transform:
     translateX(-50%);
 
-  width:8px;
+  width:7px;
 
-  height:8px;
+  height:7px;
 
   border-radius:50%;
 
@@ -422,7 +423,6 @@ h1{
 
 /* =========================================================
    抓取下降
-   ★ 只让绳索变长
 ========================================================= */
 
 .crane.dropping .cable{
@@ -433,30 +433,30 @@ h1{
 
 
 /* =========================================================
-   🪝 爪子主体
-   ★ 两爪
-   ★ 不是三爪
-   ★ 每边都有上半段 + 下半段
+   🪝 爪子
+   ★ 缩小版
+   ★ 保持左右两爪
+   ★ 每边上段 + 下段
 ========================================================= */
 
 .claw{
 
   position:relative;
 
-  width:82px;
+  width:60px;
 
-  height:82px;
+  height:64px;
 
-  margin-left:-6px;
+  margin-left:1px;
 
   margin-top:0;
 
   transform-origin:
-    41px 0;
+    30px 0;
 
   filter:
     drop-shadow(
-      0 4px 4px
+      0 3px 3px
       rgba(180,100,145,.18)
     );
 
@@ -477,9 +477,9 @@ h1{
 
   top:0;
 
-  width:30px;
+  width:22px;
 
-  height:30px;
+  height:22px;
 
   transform:
     translateX(-50%);
@@ -487,14 +487,14 @@ h1{
   background:#fff8fc;
 
   border:
-    4px solid
+    3px solid
     #e39ab9;
 
   border-radius:50%;
 
   box-shadow:
 
-    0 2px 5px
+    0 2px 4px
     rgba(180,100,145,.18),
 
     inset
@@ -518,9 +518,9 @@ h1{
 
   top:50%;
 
-  width:13px;
+  width:9px;
 
-  height:13px;
+  height:9px;
 
   transform:
     translate(-50%,-50%);
@@ -544,13 +544,13 @@ h1{
 
   position:absolute;
 
-  left:22px;
+  left:16px;
 
-  top:23px;
+  top:17px;
 
-  width:10px;
+  width:8px;
 
-  height:37px;
+  height:29px;
 
   background:
     linear-gradient(
@@ -561,11 +561,11 @@ h1{
     );
 
   border:
-    3px solid
+    2px solid
     #df94b5;
 
   border-radius:
-    8px;
+    7px;
 
   transform:
     rotate(35deg);
@@ -575,7 +575,7 @@ h1{
 
   box-shadow:
 
-    0 2px 4px
+    0 2px 3px
     rgba(180,100,145,.15),
 
     inset
@@ -592,20 +592,19 @@ h1{
 
 /* =========================================================
    左爪 —— 下半段
-   ★ 这是你要求的下半部分
 ========================================================= */
 
 .arm-left-lower{
 
   position:absolute;
 
-  left:3px;
+  left:2px;
 
-  top:54px;
+  top:42px;
 
-  width:10px;
+  width:8px;
 
-  height:29px;
+  height:25px;
 
   background:
     linear-gradient(
@@ -616,11 +615,11 @@ h1{
     );
 
   border:
-    3px solid
+    2px solid
     #df94b5;
 
   border-radius:
-    8px;
+    7px;
 
   transform:
     rotate(-32deg);
@@ -630,7 +629,7 @@ h1{
 
   box-shadow:
 
-    0 2px 4px
+    0 2px 3px
     rgba(180,100,145,.15),
 
     inset
@@ -653,13 +652,13 @@ h1{
 
   position:absolute;
 
-  right:22px;
+  right:16px;
 
-  top:23px;
+  top:17px;
 
-  width:10px;
+  width:8px;
 
-  height:37px;
+  height:29px;
 
   background:
     linear-gradient(
@@ -670,11 +669,11 @@ h1{
     );
 
   border:
-    3px solid
+    2px solid
     #df94b5;
 
   border-radius:
-    8px;
+    7px;
 
   transform:
     rotate(-35deg);
@@ -684,7 +683,7 @@ h1{
 
   box-shadow:
 
-    0 2px 4px
+    0 2px 3px
     rgba(180,100,145,.15),
 
     inset
@@ -701,20 +700,19 @@ h1{
 
 /* =========================================================
    右爪 —— 下半段
-   ★ 这是第二个下半部分
 ========================================================= */
 
 .arm-right-lower{
 
   position:absolute;
 
-  right:3px;
+  right:2px;
 
-  top:54px;
+  top:42px;
 
-  width:10px;
+  width:8px;
 
-  height:29px;
+  height:25px;
 
   background:
     linear-gradient(
@@ -725,11 +723,11 @@ h1{
     );
 
   border:
-    3px solid
+    2px solid
     #df94b5;
 
   border-radius:
-    8px;
+    7px;
 
   transform:
     rotate(32deg);
@@ -739,7 +737,7 @@ h1{
 
   box-shadow:
 
-    0 2px 4px
+    0 2px 3px
     rgba(180,100,145,.15),
 
     inset
@@ -755,7 +753,7 @@ h1{
 
 
 /* =========================================================
-   爪子默认张开
+   爪子张开
 ========================================================= */
 
 .claw.open .arm-left-upper{
@@ -821,7 +819,7 @@ h1{
 
 
 /* =========================================================
-   爪尖小圆
+   爪尖
 ========================================================= */
 
 .arm-left-lower::after,
@@ -831,9 +829,9 @@ h1{
 
   position:absolute;
 
-  width:15px;
+  width:11px;
 
-  height:15px;
+  height:11px;
 
   border-radius:50%;
 
@@ -859,9 +857,9 @@ h1{
 
 .arm-left-lower::after{
 
-  left:-5px;
+  left:-4px;
 
-  bottom:-10px;
+  bottom:-8px;
 
 }
 
@@ -870,9 +868,9 @@ h1{
 
 .arm-right-lower::after{
 
-  right:-5px;
+  right:-4px;
 
-  bottom:-10px;
+  bottom:-8px;
 
 }
 
@@ -1455,10 +1453,6 @@ input{
 <div class="container">
 
 
-  <!-- =====================================================
-       娃娃机
-  ====================================================== -->
-
   <div class="machine">
 
 
@@ -1473,58 +1467,26 @@ input{
     </div>
 
 
-    <!-- 固定轨道 -->
-
     <div class="rail"></div>
 
-
-    <!-- =================================================
-         吊车
-
-         ★ 这个东西只左右移动
-         ★ 不上下移动
-    ================================================== -->
 
     <div
       class="crane"
       id="crane"
     >
 
-
-      <!-- 固定滑块 -->
-
       <div class="crane-head"></div>
-
-
-      <!-- 会伸缩的绳索 -->
 
       <div class="cable"></div>
 
-
-      <!-- =================================================
-           两爪结构
-
-           左边：
-           上半段 + 下半段
-
-           右边：
-           上半段 + 下半段
-
-           一共就是两个爪子
-      ================================================== -->
 
       <div
         class="claw open"
         id="claw"
       >
 
-
-        <!-- 中央连接件 -->
-
         <div class="joint"></div>
 
-
-        <!-- 左爪 -->
 
         <div
           class="arm-left-upper"
@@ -1535,8 +1497,6 @@ input{
         ></div>
 
 
-        <!-- 右爪 -->
-
         <div
           class="arm-right-upper"
         ></div>
@@ -1545,17 +1505,11 @@ input{
           class="arm-right-lower"
         ></div>
 
-
       </div>
-
 
     </div>
 
 
-
-    <!-- =================================================
-         奖品
-    ================================================== -->
 
     <div
       class="prizes"
@@ -1563,8 +1517,6 @@ input{
     ></div>
 
 
-
-    <!-- 出奖口 -->
 
     <div class="exit">
       🎁 出奖口
@@ -1574,10 +1526,6 @@ input{
   </div>
 
 
-
-  <!-- =====================================================
-       控制按钮
-  ====================================================== -->
 
   <div class="controls">
 
@@ -1629,10 +1577,6 @@ input{
 
 
 
-  <!-- =====================================================
-       奖品数量
-  ====================================================== -->
-
   <div class="info">
 
     当前奖品：
@@ -1645,10 +1589,6 @@ input{
 </div>
 
 
-
-<!-- =========================================================
-     抓取结果弹窗
-========================================================= -->
 
 <div
   class="result"
@@ -1873,8 +1813,6 @@ function renderPrizes(){
 
 /* =========================================================
    左右移动
-   ★ 只改变 left
-   ★ 不改变 top
 ========================================================= */
 
 function move(direction){
@@ -1926,20 +1864,9 @@ function grab(){
   busy = true;
 
 
-  /* -------------------------------------------------------
-     1. 爪子张开
-  ------------------------------------------------------- */
-
   claw.className =
     "claw open";
 
-
-  /* -------------------------------------------------------
-     2. 绳索向下伸长
-
-     ★ 滑块完全不会移动
-     ★ crane 的 top 不会改变
-  ------------------------------------------------------- */
 
   setTimeout(
     function(){
@@ -1953,10 +1880,6 @@ function grab(){
   );
 
 
-  /* -------------------------------------------------------
-     3. 到达下面以后闭合
-  ------------------------------------------------------- */
-
   setTimeout(
     function(){
 
@@ -1968,23 +1891,13 @@ function grab(){
   );
 
 
-  /* -------------------------------------------------------
-     4. 稍微停顿
-  ------------------------------------------------------- */
-
   setTimeout(
     function(){
-
-      /* 闭合保持一小会儿 */
 
     },
     850
   );
 
-
-  /* -------------------------------------------------------
-     5. 绳索收回
-  ------------------------------------------------------- */
 
   setTimeout(
     function(){
@@ -1997,10 +1910,6 @@ function grab(){
     1000
   );
 
-
-  /* -------------------------------------------------------
-     6. 最后判断抓取结果
-  ------------------------------------------------------- */
 
   setTimeout(
     function(){
@@ -2041,8 +1950,6 @@ function grab(){
 
       }
 
-
-      /* 回到张开状态 */
 
       claw.className =
         "claw open";
@@ -2214,7 +2121,6 @@ function clearPrizes(){
 
 
   prizes = [];
-
 
   renderPrizes();
 
