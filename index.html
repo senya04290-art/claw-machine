@@ -6,6 +6,7 @@
 <title>我的小小娃娃机 ♡</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -23,6 +24,7 @@ body{
     padding:24px 14px 50px;
     font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
     color:var(--text);
+
     background:
         radial-gradient(circle at 10% 10%,rgba(255,220,235,.6),transparent 28%),
         radial-gradient(circle at 90% 20%,rgba(225,215,250,.5),transparent 28%),
@@ -66,7 +68,8 @@ body{
 
 
 /* =====================================
-   娃娃机
+   娃娃机外壳
+   ★ 保持之前版本
 ===================================== */
 
 .machine{
@@ -76,12 +79,7 @@ body{
     margin:auto;
     padding:15px 15px 20px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #fffafd,
-            #fff
-        );
+    background:linear-gradient(135deg,#fffafd,#fff);
 
     border:9px solid var(--machine-color);
     border-radius:32px 32px 22px 22px;
@@ -128,6 +126,7 @@ body{
     top:7px;
     left:13px;
     right:13px;
+
     display:flex;
     justify-content:space-between;
 }
@@ -135,9 +134,13 @@ body{
 .light{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:white;
-    box-shadow:0 0 8px rgba(255,255,255,.95);
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.95);
 }
 
 
@@ -168,11 +171,15 @@ body{
 
 .glass:before{
     content:"";
+
     position:absolute;
+
     left:-5%;
     top:0;
+
     width:38%;
     height:100%;
+
     transform:skewX(-10deg);
 
     background:
@@ -183,18 +190,21 @@ body{
         );
 
     pointer-events:none;
+
     z-index:30;
 }
 
 
 /* =====================================
    滑轨
+   ★ 保持之前版本
 ===================================== */
 
 .rail{
     position:absolute;
     top:23px;
     left:7%;
+
     width:86%;
     height:9px;
 
@@ -219,10 +229,12 @@ body{
 
 /* =====================================
    紫色滑块
+   ★ 保持之前版本
 ===================================== */
 
 .slider{
     position:absolute;
+
     top:17px;
     left:50%;
 
@@ -252,7 +264,9 @@ body{
 
 .slider:after{
     content:"";
+
     position:absolute;
+
     left:50%;
     top:4px;
 
@@ -262,6 +276,7 @@ body{
     transform:translateX(-50%);
 
     border-radius:5px;
+
     background:rgba(255,255,255,.6);
 }
 
@@ -272,6 +287,7 @@ body{
 
 .crane{
     position:absolute;
+
     top:21px;
     left:50%;
 
@@ -287,6 +303,7 @@ body{
 
 .crane-head{
     position:absolute;
+
     top:0;
     left:50%;
 
@@ -311,7 +328,9 @@ body{
 
 .crane-head:after{
     content:"";
+
     position:absolute;
+
     left:50%;
     bottom:-4px;
 
@@ -321,16 +340,19 @@ body{
     transform:translateX(-50%);
 
     border-radius:5px;
+
     background:#d1c7cc;
 }
 
 
 /* =====================================
    绳索
+   ★ 保持之前长度
 ===================================== */
 
 .cable{
     position:absolute;
+
     top:25px;
     left:50%;
 
@@ -360,7 +382,16 @@ body{
 
 
 /* =====================================
-   ★ 新版一体式两爪
+   ★★★ 新爪子 ★★★
+
+          │
+          ●
+          │
+        ／ ＼
+       ／   ＼
+      ＼     ／
+
+   两边都是连续的一体结构
 ===================================== */
 
 .claw{
@@ -369,14 +400,14 @@ body{
     top:65px;
     left:50%;
 
-    width:60px;
-    height:66px;
+    width:64px;
+    height:82px;
 
     transform:translateX(-50%);
 
     transition:top .6s ease;
 
-    z-index:7;
+    z-index:8;
 }
 
 .crane.dropping .claw{
@@ -385,54 +416,19 @@ body{
 
 
 /*
-    中央连接点
+   中央竖杆
 */
 
-.joint{
+.claw-center{
     position:absolute;
 
-    top:0;
+    top:-4px;
     left:50%;
 
-    width:13px;
-    height:13px;
+    width:5px;
+    height:28px;
 
     transform:translateX(-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #faf8f9,
-            #b9b0b5 55%,
-            #817a80
-        );
-
-    border:2px solid white;
-
-    box-shadow:
-        0 2px 5px rgba(60,45,52,.22);
-
-    z-index:6;
-}
-
-
-/*
-    上半段连接杆
-*/
-
-.claw-upper{
-    position:absolute;
-
-    top:10px;
-    left:50%;
-
-    width:6px;
-    height:25px;
-
-    transform:
-        translateX(-50%);
 
     border-radius:5px;
 
@@ -447,31 +443,60 @@ body{
     box-shadow:
         0 2px 3px rgba(70,55,65,.2);
 
-    z-index:5;
+    z-index:4;
 }
 
 
 /*
-    左右爪主体
-
-    初始状态：
-
-       ／    ＼
-        \    /
-         \  /
-          \/
-
+   中间圆形连接点
 */
 
-.claw-piece{
+.claw-joint{
     position:absolute;
 
-    top:26px;
+    top:17px;
+    left:50%;
 
-    width:6px;
-    height:34px;
+    width:14px;
+    height:14px;
 
-    border-radius:5px 5px 4px 4px;
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #c4bdc1 55%,
+            #817a80
+        );
+
+    border:2px solid white;
+
+    box-shadow:
+        0 2px 5px rgba(60,45,52,.25);
+
+    z-index:9;
+}
+
+
+/*
+   下面的小连接杆
+*/
+
+.claw-neck{
+    position:absolute;
+
+    top:29px;
+    left:50%;
+
+    width:5px;
+    height:9px;
+
+    transform:translateX(-50%);
+
+    border-radius:4px;
 
     background:
         linear-gradient(
@@ -481,104 +506,280 @@ body{
             #91898e
         );
 
-    box-shadow:
-        0 2px 3px rgba(70,55,65,.2);
-
-    transform-origin:50% 3px;
-
-    transition:
-        transform .35s ease;
-
     z-index:4;
 }
 
 
-/* 左边 */
+/*
+   ★ 左爪
 
-.claw-piece.left{
+   一整条连续的弯曲结构
+*/
+
+.claw-left{
+    position:absolute;
+
     left:50%;
+    top:32px;
+
+    width:5px;
+    height:45px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #858087,
+            #fbfafb 45%,
+            #91898e
+        );
+
+    box-shadow:
+        0 2px 4px rgba(70,55,65,.23);
+
+    transform-origin:
+        50% 0;
 
     transform:
         translateX(-50%)
-        rotate(38deg);
-}
+        rotate(-42deg);
 
+    transition:
+        transform .35s ease;
 
-/* 右边 */
-
-.claw-piece.right{
-    left:50%;
-
-    transform:
-        translateX(-50%)
-        rotate(-38deg);
+    z-index:6;
 }
 
 
 /*
-    爪尖
+   左爪下方弯曲部分
+
+   与上面的爪身视觉连接
 */
 
-.claw-piece:after{
+.claw-left:after{
     content:"";
 
     position:absolute;
 
-    left:50%;
-    bottom:-5px;
+    left:0;
+    bottom:-18px;
 
-    width:10px;
-    height:14px;
+    width:5px;
+    height:25px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #858087,
+            #fbfafb 45%,
+            #91898e
+        );
+
+    transform-origin:
+        50% 0;
 
     transform:
-        translateX(-50%)
-        rotate(28deg);
+        rotate(82deg);
 
-    border-left:4px solid #8d858a;
-    border-bottom:4px solid #8d858a;
-
-    border-radius:0 0 0 5px;
+    box-shadow:
+        0 2px 3px rgba(70,55,65,.2);
 }
 
 
 /*
-    合拢：
+   左爪尖
+*/
+
+.claw-left-tip{
+    position:absolute;
+
+    left:9px;
+    top:65px;
+
+    width:7px;
+    height:14px;
+
+    border-radius:2px 3px 5px 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #756e74,
+            #aaa3a8
+        );
+
+    transform:
+        rotate(38deg);
+
+    z-index:7;
+}
+
+
+/*
+   ★ 右爪
+*/
+
+.claw-right{
+    position:absolute;
+
+    left:50%;
+    top:32px;
+
+    width:5px;
+    height:45px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #858087,
+            #fbfafb 45%,
+            #91898e
+        );
+
+    box-shadow:
+        0 2px 4px rgba(70,55,65,.23);
+
+    transform-origin:
+        50% 0;
+
+    transform:
+        translateX(-50%)
+        rotate(42deg);
+
+    transition:
+        transform .35s ease;
+
+    z-index:6;
+}
+
+
+/*
+   右爪下方弯曲部分
+*/
+
+.claw-right:after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-18px;
+
+    width:5px;
+    height:25px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #858087,
+            #fbfafb 45%,
+            #91898e
+        );
+
+    transform-origin:
+        50% 0;
+
+    transform:
+        rotate(-82deg);
+
+    box-shadow:
+        0 2px 3px rgba(70,55,65,.2);
+}
+
+
+/*
+   右爪尖
+*/
+
+.claw-right-tip{
+    position:absolute;
+
+    right:9px;
+    top:65px;
+
+    width:7px;
+    height:14px;
+
+    border-radius:3px 2px 5px 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #756e74,
+            #aaa3a8
+        );
+
+    transform:
+        rotate(-38deg);
+
+    z-index:7;
+}
+
+
+/*
+   ★ 合拢时
 
         ＼／
          ＼／
+
+   两边向中间靠
 */
 
-.claw.closed .claw-piece.left{
+.claw.closed .claw-left{
     transform:
         translateX(-50%)
-        rotate(17deg);
+        rotate(-24deg);
 }
 
-.claw.closed .claw-piece.right{
+.claw.closed .claw-right{
     transform:
         translateX(-50%)
-        rotate(-17deg);
+        rotate(24deg);
+}
+
+.claw.closed .claw-left:after{
+    transform:
+        rotate(55deg);
+}
+
+.claw.closed .claw-right:after{
+    transform:
+        rotate(-55deg);
 }
 
 
 /* =====================================
-   ★ 被抓住的物品
+   ★ 被抓住的图片
+
+   不裁切
+   不正方形
+   保持原比例
 ===================================== */
 
 .grabbed-item{
     position:absolute;
 
     left:50%;
-    top:58px;
 
-    width:52px;
-    height:52px;
+    top:91px;
+
+    width:70px;
+    height:70px;
 
     transform:
         translateX(-50%)
-        scale(.88);
+        scale(.7);
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -589,148 +790,143 @@ body{
     z-index:3;
 
     transition:
-        top .6s ease,
         opacity .25s ease,
-        transform .35s ease;
+        transform .3s ease;
+}
+
+.grabbed-item.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
 }
 
 
 /*
-    图片本身保持比例
+   抓取过程中图片跟着吊机移动
+
+   claw:
+   65 → 250
+
+   图片：
+   91 → 276
+*/
+
+.crane.dropping .grabbed-item{
+    top:276px;
+}
+
+
+/*
+   图片保持上传时的比例
 */
 
 .grabbed-item img{
-    max-width:100%;
-    max-height:100%;
+    display:block;
 
     width:auto;
     height:auto;
 
-    object-fit:contain;
+    max-width:70px;
+    max-height:70px;
 
-    display:block;
+    object-fit:contain;
 
     filter:
         drop-shadow(
-            0 3px 4px rgba(70,50,60,.18)
+            0 4px 5px rgba(70,50,60,.22)
         );
 }
 
 
-/*
-    下爪以后显示图片
-*/
-
-.crane.grabbing .grabbed-item{
-    opacity:1;
-}
-
-
-/*
-    跟随爪子下降
-*/
-
-.crane.dropping .grabbed-item{
-    top:243px;
-}
-
-
-/*
-    上升时跟着爪子回来
-*/
-
-.crane.dropping.finished .grabbed-item{
-    top:58px;
-}
-
-
 /* =====================================
-   奖品区域
+   ★ 奖品
+
+   不再使用正方形格子
+   每张图片按照原比例显示
 ===================================== */
 
 .prizes{
     position:absolute;
 
-    left:18px;
-    right:18px;
-    bottom:38px;
+    left:15px;
+    right:15px;
 
-    height:120px;
+    bottom:22px;
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(5,1fr);
-
-    grid-auto-rows:1fr;
-
-    gap:8px;
-
-    align-items:end;
+    height:145px;
 
     z-index:3;
 }
 
 
 /*
-    ★ 每个奖品位置固定为正方形
+   每个奖品本身没有固定正方形
 */
 
 .prize-slot{
-    width:100%;
-    aspect-ratio:1 / 1;
-
-    min-width:0;
+    position:absolute;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    overflow:hidden;
+    overflow:visible;
 
-    border-radius:8px;
+    background:transparent;
 
-    background:
-        rgba(255,255,255,.45);
+    border:0;
 
-    box-shadow:
-        0 5px 12px rgba(100,70,85,.10);
+    box-shadow:none;
 
     animation:
-        prizeFloat 2.4s ease-in-out infinite;
+        prizeFloat 2.5s ease-in-out infinite;
 }
 
 
 /*
-    图片保持原始比例
+   ★ 图片是什么比例
+   上传以后就是什么比例
 */
 
 .prize{
     display:block;
 
-    max-width:92%;
-    max-height:92%;
-
     width:auto;
     height:auto;
 
+    max-width:105px;
+    max-height:100px;
+
     object-fit:contain;
+
+    border-radius:0;
+
+    background:transparent;
+
+    box-shadow:
+        0 5px 12px rgba(100,70,85,.12);
 }
+
 
 @keyframes prizeFloat{
 
     0%,100%{
-        transform:translateY(0);
+        margin-top:0;
     }
 
     50%{
-        transform:translateY(-4px);
+        margin-top:-3px;
     }
+
 }
 
 
-/* 空状态 */
+/* =====================================
+   空状态
+===================================== */
 
 .empty{
     position:absolute;
@@ -738,7 +934,8 @@ body{
     top:50%;
     left:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     color:#b49ca6;
 
@@ -748,6 +945,7 @@ body{
     line-height:1.8;
 
     pointer-events:none;
+
     z-index:2;
 }
 
@@ -765,9 +963,11 @@ body{
     width:150px;
     height:35px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    border-radius:15px 15px 0 0;
+    border-radius:
+        15px 15px 0 0;
 
     background:
         linear-gradient(
@@ -777,6 +977,7 @@ body{
         );
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -784,10 +985,13 @@ body{
 
     font-size:11px;
     font-weight:900;
+
     letter-spacing:2px;
 
     box-shadow:
         inset 0 2px 3px rgba(255,255,255,.5);
+
+    z-index:4;
 }
 
 
@@ -809,7 +1013,9 @@ body{
 .move-btn,
 .grab-btn{
     border:0;
+
     font-family:inherit;
+
     cursor:pointer;
 
     transition:
@@ -824,6 +1030,7 @@ body{
     border-radius:13px;
 
     background:white;
+
     color:#9d7585;
 
     box-shadow:
@@ -877,18 +1084,21 @@ body{
     background:rgba(255,255,255,.86);
 
     border-radius:22px;
+
     padding:14px;
 
     box-shadow:
         0 12px 30px rgba(110,75,95,.1);
 
-    border:1px solid rgba(255,255,255,.8);
+    border:
+        1px solid rgba(255,255,255,.8);
 }
 
 .editor-title{
     text-align:center;
 
-    margin:3px 0 13px;
+    margin:
+        3px 0 13px;
 
     color:#765d68;
 
@@ -905,7 +1115,8 @@ body{
 
     overflow:hidden;
 
-    border:1px solid #f1e4e9;
+    border:
+        1px solid #f1e4e9;
 }
 
 .section-head{
@@ -960,7 +1171,8 @@ span:last-child{
 .label{
     display:block;
 
-    margin:9px 0 6px;
+    margin:
+        9px 0 6px;
 
     color:#927b85;
 
@@ -974,7 +1186,8 @@ input[type="color"]{
     width:100%;
     height:38px;
 
-    border:1px solid #eadde3;
+    border:
+        1px solid #eadde3;
 
     border-radius:10px;
 
@@ -1012,7 +1225,8 @@ input:focus{
 
     color:#b46785;
 
-    border:1px dashed #e3a5bc;
+    border:
+        1px dashed #e3a5bc;
 
     cursor:pointer;
 
@@ -1062,7 +1276,8 @@ input:focus{
 
     background:#faf5f7;
 
-    border:1px solid #eee0e6;
+    border:
+        1px solid #eee0e6;
 }
 
 .upload-item img{
@@ -1085,7 +1300,8 @@ input:focus{
 
     border-radius:50%;
 
-    background:rgba(80,60,70,.65);
+    background:
+        rgba(80,60,70,.65);
 
     color:white;
 
@@ -1164,7 +1380,8 @@ input:focus{
 .choice{
     padding:9px 5px;
 
-    border:1px solid #eadde3;
+    border:
+        1px solid #eadde3;
 
     background:white;
 
@@ -1214,6 +1431,7 @@ input:focus{
 
 .switch input{
     opacity:0;
+
     width:0;
     height:0;
 }
@@ -1255,7 +1473,8 @@ input:focus{
 
 .switch input:checked
 + .switch-track:before{
-    transform:translateX(19px);
+    transform:
+        translateX(19px);
 }
 
 
@@ -1275,7 +1494,8 @@ input:focus{
 
     padding:20px;
 
-    background:rgba(60,40,50,.28);
+    background:
+        rgba(60,40,50,.28);
 
     backdrop-filter:blur(5px);
 
@@ -1289,7 +1509,10 @@ input:focus{
 .success-card{
     width:min(330px,100%);
 
-    padding:25px 20px 22px;
+    padding:
+        25px
+        20px
+        22px;
 
     border-radius:25px;
 
@@ -1322,11 +1545,13 @@ input:focus{
     width:76px;
     height:76px;
 
-    margin:0 auto 12px;
+    margin:
+        0 auto 12px;
 
     border-radius:50%;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1344,7 +1569,8 @@ input:focus{
 }
 
 .success-card p{
-    margin:5px 0 17px;
+    margin:
+        5px 0 17px;
 
     color:#a1848f;
 
@@ -1409,6 +1635,7 @@ input:focus{
 
         opacity:0;
     }
+
 }
 
 
@@ -1431,6 +1658,7 @@ input:focus{
 
     .machine{
         border-width:7px;
+
         padding:
             10px
             10px
@@ -1442,16 +1670,21 @@ input:focus{
     }
 
     .prizes{
-        left:14px;
-        right:14px;
-        bottom:38px;
-        gap:5px;
+        left:10px;
+        right:10px;
     }
 
     .grab-btn{
         min-width:115px;
     }
+
+    .prize{
+        max-width:82px;
+        max-height:85px;
+    }
+
 }
+
 </style>
 </head>
 
@@ -1460,24 +1693,35 @@ input:focus{
 
 <div class="page">
 
+
     <div class="page-title">
-        <h1>🧸 我的小小娃娃机 ♡</h1>
-        <p>上传你喜欢的图片，开始抓取吧 ✦</p>
+
+        <h1>
+            🧸 我的小小娃娃机 ♡
+        </h1>
+
+        <p>
+            上传你喜欢的图片，开始抓取吧 ✦
+        </p>
+
     </div>
+
 
 
     <div class="layout">
 
 
-        <!-- =====================
+        <!-- ==========================
              娃娃机
-        ====================== -->
+        =========================== -->
 
         <div class="machine" id="machine">
+
 
             <div class="machine-top">
 
                 <div class="lights">
+
                     <span class="light"></span>
                     <span class="light"></span>
                     <span class="light"></span>
@@ -1485,7 +1729,9 @@ input:focus{
                     <span class="light"></span>
                     <span class="light"></span>
                     <span class="light"></span>
+
                 </div>
+
 
                 <div
                     class="machine-title"
@@ -1497,12 +1743,15 @@ input:focus{
             </div>
 
 
+
             <div
                 class="glass"
                 id="glass"
             >
 
+
                 <div class="rail"></div>
+
 
                 <div
                     class="slider"
@@ -1510,37 +1759,70 @@ input:focus{
                 ></div>
 
 
-                <!-- 吊机 -->
+
+                <!-- ==================
+                     吊机
+                =================== -->
 
                 <div
                     class="crane"
                     id="crane"
                 >
 
+
                     <div class="crane-head"></div>
+
 
                     <div class="cable"></div>
 
 
-                    <!-- ★ 新版一体式爪子 -->
+
+                    <!-- ==================
+                         ★ 新爪子
+                    =================== -->
 
                     <div
                         class="claw"
                         id="claw"
                     >
 
-                        <div class="joint"></div>
 
-                        <div class="claw-upper"></div>
+                        <!-- 中央竖杆 -->
 
-                        <div class="claw-piece left"></div>
+                        <div class="claw-center"></div>
 
-                        <div class="claw-piece right"></div>
+
+                        <!-- 圆形连接点 -->
+
+                        <div class="claw-joint"></div>
+
+
+                        <!-- 下面的连接杆 -->
+
+                        <div class="claw-neck"></div>
+
+
+                        <!-- 左边一体爪 -->
+
+                        <div class="claw-left"></div>
+
+                        <div class="claw-left-tip"></div>
+
+
+                        <!-- 右边一体爪 -->
+
+                        <div class="claw-right"></div>
+
+                        <div class="claw-right-tip"></div>
+
 
                     </div>
 
 
-                    <!-- ★ 被抓起来的图片 -->
+
+                    <!-- ==================
+                         ★ 被抓住的图片
+                    =================== -->
 
                     <div
                         class="grabbed-item"
@@ -1555,10 +1837,14 @@ input:focus{
 
                     </div>
 
+
                 </div>
 
 
-                <!-- 奖品 -->
+
+                <!-- ==================
+                     ★ 奖品
+                =================== -->
 
                 <div
                     class="prizes"
@@ -1582,12 +1868,17 @@ input:focus{
                     PRIZE EXIT
                 </div>
 
+
             </div>
 
 
-            <!-- 控制 -->
+
+            <!-- ==================
+                 控制
+            =================== -->
 
             <div class="controls">
+
 
                 <button
                     class="move-btn"
@@ -1596,12 +1887,14 @@ input:focus{
                     ◀
                 </button>
 
+
                 <button
                     class="grab-btn"
                     id="grabBtn"
                 >
                     ✦ 抓取 ✦
                 </button>
+
 
                 <button
                     class="move-btn"
@@ -1610,22 +1903,28 @@ input:focus{
                     ▶
                 </button>
 
+
             </div>
+
 
         </div>
 
 
 
-        <!-- =====================
-             编辑器
-        ====================== -->
+        <!-- ==========================
+             设置
+        =========================== -->
 
         <div class="editor">
+
 
             <div class="editor-title">
                 ♡ 娃娃机设置 ♡
             </div>
 
+
+
+            <!-- 奖品 -->
 
             <div class="section open">
 
@@ -1635,12 +1934,15 @@ input:focus{
                         01　我的奖品
                     </span>
 
-                    <span>⌄</span>
+                    <span>
+                        ⌄
+                    </span>
 
                 </button>
 
 
                 <div class="section-body">
+
 
                     <label
                         class="upload-label"
@@ -1649,6 +1951,7 @@ input:focus{
                         ＋ 选择图片
                     </label>
 
+
                     <input
                         type="file"
                         id="imageInput"
@@ -1656,9 +1959,11 @@ input:focus{
                         multiple
                     >
 
+
                     <div class="tip">
                         可以一次选择多张图片
                     </div>
+
 
                     <div
                         class="upload-list"
@@ -1668,12 +1973,14 @@ input:focus{
 
                     <div class="small-buttons">
 
+
                         <button
                             class="small-btn"
                             id="randomBtn"
                         >
                             🎲 随机摆放
                         </button>
+
 
                         <button
                             class="small-btn"
@@ -1682,13 +1989,17 @@ input:focus{
                             🗑 清空
                         </button>
 
+
                     </div>
+
 
                 </div>
 
             </div>
 
 
+
+            <!-- 外观 -->
 
             <div class="section">
 
@@ -1698,18 +2009,23 @@ input:focus{
                         02　娃娃机外观
                     </span>
 
-                    <span>⌄</span>
+                    <span>
+                        ⌄
+                    </span>
 
                 </button>
 
 
                 <div class="section-body">
 
+
                     <label class="label">
                         机器颜色
                     </label>
 
+
                     <div class="color-grid">
+
 
                         <button
                             class="color-btn active"
@@ -1717,11 +2033,13 @@ input:focus{
                             style="background:#e9a9c4"
                         ></button>
 
+
                         <button
                             class="color-btn"
                             data-color="#b9b5df"
                             style="background:#b9b5df"
                         ></button>
+
 
                         <button
                             class="color-btn"
@@ -1729,11 +2047,13 @@ input:focus{
                             style="background:#a9d7cf"
                         ></button>
 
+
                         <button
                             class="color-btn"
                             data-color="#f0c48c"
                             style="background:#f0c48c"
                         ></button>
+
 
                         <button
                             class="color-btn"
@@ -1741,18 +2061,22 @@ input:focus{
                             style="background:#d7b6a8"
                         ></button>
 
+
                         <button
                             class="color-btn"
                             data-color="#a9c6e8"
                             style="background:#a9c6e8"
                         ></button>
 
+
                     </div>
+
 
 
                     <label class="label">
                         自定义颜色
                     </label>
+
 
                     <input
                         type="color"
@@ -1761,11 +2085,14 @@ input:focus{
                     >
 
 
+
                     <label class="label">
                         机器形状
                     </label>
 
+
                     <div class="choice-grid">
+
 
                         <button
                             class="choice active"
@@ -1774,12 +2101,14 @@ input:focus{
                             标准
                         </button>
 
+
                         <button
                             class="choice"
                             data-shape="round"
                         >
                             圆润
                         </button>
+
 
                         <button
                             class="choice"
@@ -1788,13 +2117,17 @@ input:focus{
                             软萌
                         </button>
 
+
                     </div>
+
 
                 </div>
 
             </div>
 
 
+
+            <!-- 文字 -->
 
             <div class="section">
 
@@ -1804,16 +2137,20 @@ input:focus{
                         03　文字设置
                     </span>
 
-                    <span>⌄</span>
+                    <span>
+                        ⌄
+                    </span>
 
                 </button>
 
 
                 <div class="section-body">
 
+
                     <label class="label">
                         机器标题
                     </label>
+
 
                     <input
                         type="text"
@@ -1826,6 +2163,7 @@ input:focus{
                         出口文字
                     </label>
 
+
                     <input
                         type="text"
                         id="exitInput"
@@ -1836,6 +2174,7 @@ input:focus{
                     <label class="label">
                         成功提示
                     </label>
+
 
                     <input
                         type="text"
@@ -1848,17 +2187,21 @@ input:focus{
                         失败提示
                     </label>
 
+
                     <input
                         type="text"
                         id="failInput"
                         value="差一点点，再试一次吧！"
                     >
 
+
                 </div>
 
             </div>
 
 
+
+            <!-- 游戏 -->
 
             <div class="section">
 
@@ -1868,16 +2211,20 @@ input:focus{
                         04　游戏设置
                     </span>
 
-                    <span>⌄</span>
+                    <span>
+                        ⌄
+                    </span>
 
                 </button>
 
 
                 <div class="section-body">
 
+
                     <label class="label">
                         抓取成功概率（1～100）
                     </label>
+
 
                     <input
                         type="number"
@@ -1894,6 +2241,7 @@ input:focus{
                             ✨ 成功特效
                         </span>
 
+
                         <label class="switch">
 
                             <input
@@ -1909,11 +2257,13 @@ input:focus{
                     </div>
 
 
+
                     <div class="switch-row">
 
                         <span>
                             💾 自动保存
                         </span>
+
 
                         <label class="switch">
 
@@ -1929,11 +2279,14 @@ input:focus{
 
                     </div>
 
+
                 </div>
 
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -1941,16 +2294,18 @@ input:focus{
 
 
 
-<!-- =====================================
+<!-- ==========================
      结果弹窗
-===================================== -->
+=========================== -->
 
 <div
     class="success-modal"
     id="successModal"
 >
 
+
     <div class="success-card">
+
 
         <div
             class="success-icon"
@@ -1959,13 +2314,16 @@ input:focus{
             🧸
         </div>
 
+
         <h2 id="resultTitle">
             抓取成功啦！♡
         </h2>
 
+
         <p id="resultText">
             恭喜你抓到了一个喜欢的娃娃！
         </p>
+
 
         <button
             class="close-modal"
@@ -1974,7 +2332,9 @@ input:focus{
             好耶！♡
         </button>
 
+
     </div>
+
 
 </div>
 
@@ -2082,25 +2442,87 @@ let cranePosition = 50;
 let isPlaying = false;
 
 
+/*
+   奖品随机位置
+   保存下来，避免每次重新渲染都乱跳
+*/
+
+let prizePositions = [];
+
+
 /* =====================================
-   面板
+   等待
 ===================================== */
 
-document
-.querySelectorAll(".section-head")
-.forEach(button => {
+function wait(ms){
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            button.parentElement
-            .classList.toggle("open");
-
-        }
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
     );
 
-});
+}
+
+
+/* =====================================
+   设置随机奖品位置
+===================================== */
+
+function createRandomPosition(){
+
+    return {
+
+        left:
+            5 +
+            Math.random() * 85,
+
+        bottom:
+            4 +
+            Math.random() * 55,
+
+        rotate:
+            -8 +
+            Math.random() * 16
+
+    };
+
+}
+
+
+/* =====================================
+   奖品位置
+===================================== */
+
+function ensurePrizePositions(){
+
+    while(
+        prizePositions.length <
+        uploadedImages.length
+    ){
+
+        prizePositions.push(
+            createRandomPosition()
+        );
+
+    }
+
+    if(
+        prizePositions.length >
+        uploadedImages.length
+    ){
+
+        prizePositions =
+            prizePositions.slice(
+                0,
+                uploadedImages.length
+            );
+
+    }
+
+}
 
 
 /* =====================================
@@ -2116,35 +2538,54 @@ imageInput.addEventListener(
                 event.target.files
             );
 
-        files.forEach(file => {
 
-            if(
-                !file.type.startsWith("image/")
-            ){
-                return;
+        files.forEach(
+            file => {
+
+                if(
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ){
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(e){
+
+                        uploadedImages.push(
+                            e.target.result
+                        );
+
+
+                        prizePositions.push(
+                            createRandomPosition()
+                        );
+
+
+                        renderUploadList();
+
+                        renderPrizes();
+
+                        saveData();
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
             }
+        );
 
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function(e){
-
-                    uploadedImages.push(
-                        e.target.result
-                    );
-
-                    renderUploadList();
-
-                    renderPrizes();
-
-                    saveData();
-
-                };
-
-            reader.readAsDataURL(file);
-
-        });
 
         imageInput.value = "";
 
@@ -2160,6 +2601,7 @@ function renderUploadList(){
 
     uploadList.innerHTML = "";
 
+
     uploadedImages.forEach(
         (src,index) => {
 
@@ -2170,6 +2612,7 @@ function renderUploadList(){
 
             item.className =
                 "upload-item";
+
 
             const img =
                 document.createElement(
@@ -2187,7 +2630,9 @@ function renderUploadList(){
             remove.className =
                 "remove-img";
 
-            remove.textContent = "×";
+            remove.textContent =
+                "×";
+
 
             remove.onclick =
                 function(){
@@ -2196,6 +2641,13 @@ function renderUploadList(){
                         index,
                         1
                     );
+
+
+                    prizePositions.splice(
+                        index,
+                        1
+                    );
+
 
                     renderUploadList();
 
@@ -2219,34 +2671,34 @@ function renderUploadList(){
 
 
 /* =====================================
-   ★ 正方形奖品随机摆放
+   ★ 奖品随机摆放
 ===================================== */
 
 function renderPrizes(){
 
     prizes.innerHTML = "";
 
+
     if(
         uploadedImages.length === 0
     ){
 
-        empty.style.display = "block";
+        empty.style.display =
+            "block";
 
         return;
 
     }
 
-    empty.style.display = "none";
+
+    empty.style.display =
+        "none";
 
 
-    /*
-       最多显示7个奖品
-       每个奖品都有独立正方形格子
-    */
+    ensurePrizePositions();
 
-    uploadedImages
-    .slice(0,7)
-    .forEach(
+
+    uploadedImages.forEach(
         (src,index) => {
 
             const slot =
@@ -2254,11 +2706,33 @@ function renderPrizes(){
                     "div"
                 );
 
+
             slot.className =
                 "prize-slot";
 
+
+            const pos =
+                prizePositions[index];
+
+
+            /*
+               ★ 完全随机位置
+            */
+
+            slot.style.left =
+                pos.left + "%";
+
+
+            slot.style.bottom =
+                pos.bottom + "px";
+
+
+            slot.style.transform =
+                `translateX(-50%) rotate(${pos.rotate}deg)`;
+
+
             slot.style.animationDelay =
-                `${index * .12}s`;
+                `${index * .15}s`;
 
 
             const img =
@@ -2266,10 +2740,35 @@ function renderPrizes(){
                     "img"
                 );
 
+
             img.className =
                 "prize";
 
+
             img.src = src;
+
+
+            /*
+               ★ 不裁切
+               ★ 不变形
+               ★ 透明底保持透明
+            */
+
+            img.onload =
+                function(){
+
+                    /*
+                       保持图片自己的
+                       宽高比例
+                    */
+
+                    img.style.width =
+                        "auto";
+
+                    img.style.height =
+                        "auto";
+
+                };
 
 
             slot.appendChild(img);
@@ -2283,7 +2782,7 @@ function renderPrizes(){
 
 
 /* =====================================
-   随机摆放
+   ★ 随机摆放按钮
 ===================================== */
 
 document
@@ -2292,10 +2791,37 @@ document
     "click",
     function(){
 
+        /*
+           给每一个奖品重新随机位置
+        */
+
+        prizePositions =
+            uploadedImages.map(
+                () =>
+                    createRandomPosition()
+            );
+
+
+        /*
+           同时随机一下奖品顺序
+        */
+
         uploadedImages.sort(
             () =>
                 Math.random() - .5
         );
+
+
+        /*
+           顺序改变以后重新生成位置
+        */
+
+        prizePositions =
+            uploadedImages.map(
+                () =>
+                    createRandomPosition()
+            );
+
 
         renderUploadList();
 
@@ -2322,10 +2848,16 @@ document
                 "确定要清空所有娃娃吗？"
             )
         ){
+
             return;
+
         }
 
+
         uploadedImages = [];
+
+        prizePositions = [];
+
 
         renderUploadList();
 
@@ -2338,16 +2870,20 @@ document
 
 
 /* =====================================
-   移动
+   移动爪子
 ===================================== */
 
 function moveCrane(amount){
 
     if(isPlaying){
+
         return;
+
     }
 
+
     cranePosition += amount;
+
 
     cranePosition =
         Math.max(
@@ -2358,33 +2894,41 @@ function moveCrane(amount){
             )
         );
 
+
     crane.style.left =
         cranePosition + "%";
+
 
     slider.style.left =
         cranePosition + "%";
 
 }
 
+
 leftBtn.addEventListener(
     "click",
-    () => moveCrane(-7)
+    () =>
+        moveCrane(-7)
 );
+
 
 rightBtn.addEventListener(
     "click",
-    () => moveCrane(7)
+    () =>
+        moveCrane(7)
 );
 
 
 /* =====================================
-   ★★★ 抓取 ★★★
+   ★★★ 抓取动画 ★★★
 ===================================== */
 
 async function grab(){
 
     if(isPlaying){
+
         return;
+
     }
 
 
@@ -2395,21 +2939,27 @@ async function grab(){
         resultTitle.textContent =
             "还没有娃娃哦 ♡";
 
+
         resultText.textContent =
             "先上传一些喜欢的图片吧！";
 
+
         successIcon.textContent =
             "🧸";
+
 
         successModal.classList.add(
             "show"
         );
 
+
         return;
+
     }
 
 
     isPlaying = true;
+
 
     grabBtn.disabled = true;
 
@@ -2419,7 +2969,7 @@ async function grab(){
 
 
     /*
-       ★ 先随机决定这次抓哪个
+       ★ 随机选择这次抓的图片
     */
 
     const grabbedIndex =
@@ -2428,6 +2978,7 @@ async function grab(){
             uploadedImages.length
         );
 
+
     const grabbedSrc =
         uploadedImages[
             grabbedIndex
@@ -2435,11 +2986,12 @@ async function grab(){
 
 
     /*
-       ★ 把图片放进爪子
+       ★ 放入爪子下面
     */
 
     grabbedImage.src =
         grabbedSrc;
+
 
     grabbedItem.classList.remove(
         "show"
@@ -2454,34 +3006,32 @@ async function grab(){
         "dropping"
     );
 
+
     await wait(700);
 
 
     /*
-       ② 两爪闭合
+       ② 爪子合拢
     */
 
     claw.classList.add(
         "closed"
     );
 
-    await wait(450);
+
+    await wait(400);
 
 
     /*
-       ③ 图片被抓住
-       这里开始显示
+       ③ 显示被抓住的图片
     */
 
     grabbedItem.classList.add(
         "show"
     );
 
-    crane.classList.add(
-        "grabbing"
-    );
 
-    await wait(350);
+    await wait(400);
 
 
     /*
@@ -2492,11 +3042,12 @@ async function grab(){
         "dropping"
     );
 
+
     await wait(900);
 
 
     /*
-       ⑤ 判断是否成功
+       ⑤ 判断成功率
     */
 
     let rate =
@@ -2505,11 +3056,15 @@ async function grab(){
             10
         );
 
+
     if(
         isNaN(rate)
     ){
+
         rate = 70;
+
     }
+
 
     rate =
         Math.max(
@@ -2522,23 +3077,32 @@ async function grab(){
 
 
     const success =
-        Math.random() * 100 < rate;
+        Math.random() *
+        100 <
+        rate;
 
 
-    /*
-       ★ 成功
-    */
+    /* ==============================
+       成功
+    =============================== */
 
     if(success){
 
         /*
-           奖品从机器里消失
+           从奖品数组删除
         */
 
         uploadedImages.splice(
             grabbedIndex,
             1
         );
+
+
+        prizePositions.splice(
+            grabbedIndex,
+            1
+        );
+
 
         renderUploadList();
 
@@ -2551,11 +3115,14 @@ async function grab(){
             successInput.value ||
             "抓取成功啦！♡";
 
+
         resultText.textContent =
             "恭喜你抓到了一个喜欢的娃娃！";
 
+
         successIcon.textContent =
             "🧸";
+
 
         successModal.classList.add(
             "show"
@@ -2573,21 +3140,24 @@ async function grab(){
     }
 
 
-    /*
-       ★ 失败
-    */
+    /* ==============================
+       失败
+    =============================== */
 
     else{
 
         resultTitle.textContent =
             "差一点点！";
 
+
         resultText.textContent =
             failInput.value ||
             "再试一次吧！";
 
+
         successIcon.textContent =
             "🥺";
+
 
         successModal.classList.add(
             "show"
@@ -2597,18 +3167,11 @@ async function grab(){
 
 
     /*
-       ⑥ 清除抓住的图片
+       ⑥ 清除被抓住的图片
     */
 
     await wait(350);
 
-    crane.classList.remove(
-        "grabbing"
-    );
-
-    claw.classList.remove(
-        "closed"
-    );
 
     grabbedItem.classList.remove(
         "show"
@@ -2619,12 +3182,26 @@ async function grab(){
 
 
     /*
-       ⑦ 恢复操作
+       ⑦ 爪子打开
+    */
+
+    await wait(250);
+
+
+    claw.classList.remove(
+        "closed"
+    );
+
+
+    /*
+       ⑧ 恢复操作
     */
 
     await wait(300);
 
+
     isPlaying = false;
+
 
     grabBtn.disabled = false;
 
@@ -2646,23 +3223,6 @@ grabBtn.addEventListener(
 
 
 /* =====================================
-   等待
-===================================== */
-
-function wait(ms){
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-
-}
-
-
-/* =====================================
    弹窗
 ===================================== */
 
@@ -2676,6 +3236,7 @@ closeModal.addEventListener(
 
     }
 );
+
 
 successModal.addEventListener(
     "click",
@@ -2712,8 +3273,8 @@ function createSparkles(){
 
 
     for(
-        let i=0;
-        i<14;
+        let i = 0;
+        i < 14;
         i++
     ){
 
@@ -2722,8 +3283,10 @@ function createSparkles(){
                 "div"
             );
 
+
         sparkle.className =
             "sparkle";
+
 
         sparkle.textContent =
             symbols[
@@ -2733,26 +3296,32 @@ function createSparkles(){
                 )
             ];
 
+
         sparkle.style.left =
             Math.random() *
             100 +
             "vw";
+
 
         sparkle.style.top =
             Math.random() *
             100 +
             "vh";
 
+
         sparkle.style.fontSize =
             (
                 12 +
-                Math.random()*18
+                Math.random() *
+                18
             ) +
             "px";
+
 
         document.body.appendChild(
             sparkle
         );
+
 
         setTimeout(
             () =>
@@ -2766,45 +3335,79 @@ function createSparkles(){
 
 
 /* =====================================
+   面板展开
+===================================== */
+
+document
+.querySelectorAll(".section-head")
+.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                button
+                .parentElement
+                .classList
+                .toggle("open");
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================
    颜色
 ===================================== */
 
 document
 .querySelectorAll(".color-btn")
-.forEach(button => {
+.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        function(){
+        button.addEventListener(
+            "click",
+            function(){
 
-            const color =
-                button.dataset.color;
+                const color =
+                    button.dataset.color;
 
-            setMachineColor(color);
 
-            document
-            .querySelectorAll(
-                ".color-btn"
-            )
-            .forEach(btn =>
-                btn.classList.remove(
-                    "active"
+                setMachineColor(
+                    color
+                );
+
+
+                document
+                .querySelectorAll(
+                    ".color-btn"
                 )
-            );
+                .forEach(
+                    btn =>
+                        btn.classList
+                        .remove("active")
+                );
 
-            button.classList.add(
-                "active"
-            );
 
-            customColor.value =
-                color;
+                button.classList.add(
+                    "active"
+                );
 
-            saveData();
 
-        }
-    );
+                customColor.value =
+                    color;
 
-});
+
+                saveData();
+
+            }
+        );
+
+    }
+);
 
 
 customColor.addEventListener(
@@ -2830,6 +3433,7 @@ function setMachineColor(color){
         color
     );
 
+
     document.documentElement
     .style
     .setProperty(
@@ -2854,17 +3458,21 @@ function shadeColor(
             16
         );
 
+
     let r =
         (num >> 16) +
         percent;
+
 
     let g =
         ((num >> 8) & 255) +
         percent;
 
+
     let b =
         (num & 255) +
         percent;
+
 
     r =
         Math.max(
@@ -2875,6 +3483,7 @@ function shadeColor(
             )
         );
 
+
     g =
         Math.max(
             0,
@@ -2884,6 +3493,7 @@ function shadeColor(
             )
         );
 
+
     b =
         Math.max(
             0,
@@ -2892,6 +3502,7 @@ function shadeColor(
                 b
             )
         );
+
 
     return "#" +
         (
@@ -2907,61 +3518,63 @@ function shadeColor(
 
 
 /* =====================================
-   形状设置
+   形状
 ===================================== */
 
 document
 .querySelectorAll(".choice")
-.forEach(button => {
+.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        function(){
+        button.addEventListener(
+            "click",
+            function(){
 
-            document
-            .querySelectorAll(
-                ".choice"
-            )
-            .forEach(btn =>
-                btn.classList.remove(
-                    "active"
+                document
+                .querySelectorAll(
+                    ".choice"
                 )
-            );
-
-            button.classList.add(
-                "active"
-            );
-
-            /*
-               保留原来的形状设置功能
-            */
-
-            machine.classList.remove(
-                "round",
-                "soft"
-            );
-
-            const shape =
-                button.dataset.shape;
-
-            if(
-                shape !== "normal"
-            ){
-
-                machine.classList.add(
-                    shape
+                .forEach(
+                    btn =>
+                        btn.classList
+                        .remove("active")
                 );
 
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                machine.classList.remove(
+                    "round",
+                    "soft"
+                );
+
+
+                const shape =
+                    button.dataset.shape;
+
+
+                if(
+                    shape !== "normal"
+                ){
+
+                    machine.classList.add(
+                        shape
+                    );
+
+                }
+
             }
+        );
 
-        }
-    );
-
-});
+    }
+);
 
 
 /* =====================================
-   文字
+   标题
 ===================================== */
 
 titleInput.addEventListener(
@@ -2976,6 +3589,10 @@ titleInput.addEventListener(
     }
 );
 
+
+/* =====================================
+   出口
+===================================== */
 
 exitInput.addEventListener(
     "input",
@@ -2999,8 +3616,11 @@ function saveData(){
     if(
         !saveSwitch.checked
     ){
+
         return;
+
     }
+
 
     try{
 
@@ -3011,20 +3631,32 @@ function saveData(){
             )
         );
 
+
+        localStorage.setItem(
+            "myClawPositions",
+            JSON.stringify(
+                prizePositions
+            )
+        );
+
+
         localStorage.setItem(
             "myClawColor",
             customColor.value
         );
+
 
         localStorage.setItem(
             "myClawTitle",
             titleInput.value
         );
 
+
         localStorage.setItem(
             "myClawExit",
             exitInput.value
         );
+
 
     }catch(error){
 
@@ -3051,6 +3683,7 @@ function loadData(){
                 "myClawImages"
             );
 
+
         if(savedImages){
 
             uploadedImages =
@@ -3061,10 +3694,27 @@ function loadData(){
         }
 
 
+        const savedPositions =
+            localStorage.getItem(
+                "myClawPositions"
+            );
+
+
+        if(savedPositions){
+
+            prizePositions =
+                JSON.parse(
+                    savedPositions
+                );
+
+        }
+
+
         const savedColor =
             localStorage.getItem(
                 "myClawColor"
             );
+
 
         if(savedColor){
 
@@ -3083,6 +3733,7 @@ function loadData(){
                 "myClawTitle"
             );
 
+
         if(savedTitle){
 
             titleInput.value =
@@ -3099,6 +3750,7 @@ function loadData(){
                 "myClawExit"
             );
 
+
         if(savedExit){
 
             exitInput.value =
@@ -3110,9 +3762,13 @@ function loadData(){
         }
 
 
+        ensurePrizePositions();
+
+
         renderUploadList();
 
         renderPrizes();
+
 
     }catch(error){
 
@@ -3132,8 +3788,10 @@ function loadData(){
 
 loadData();
 
+
 crane.style.left =
     cranePosition + "%";
+
 
 slider.style.left =
     cranePosition + "%";
@@ -3148,24 +3806,29 @@ document.addEventListener(
     function(event){
 
         if(
-            event.key === "ArrowLeft"
+            event.key ===
+            "ArrowLeft"
         ){
 
             moveCrane(-7);
 
         }
 
+
         if(
-            event.key === "ArrowRight"
+            event.key ===
+            "ArrowRight"
         ){
 
             moveCrane(7);
 
         }
 
+
         if(
             event.key === " " &&
-            document.activeElement.tagName !== "INPUT"
+            document.activeElement.tagName !==
+            "INPUT"
         ){
 
             event.preventDefault();
