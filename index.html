@@ -377,33 +377,20 @@ body{
 }
 
 
-/* =====================================================
-   ★★★★★ CATCHU 风格新爪子 ★★★★★
-
-   结构：
-
-             ┌─────┐
-             │     │
-              ╲   ╱
-               ╲ ╱
-               ╱ ╲
-              ╱   ╲
-             ╱     ╲
-
-   小型吊头
-   + 两根纤细的折弯金属爪
-   + 尖端向内
-
-===================================================== */
+/* =====================================
+   爪子
+   保持上一版主体结构
+   ★ 已去掉最下面的爪尖
+===================================== */
 
 .claw{
     position:absolute;
 
-    top:66px;
+    top:65px;
     left:50%;
 
-    width:76px;
-    height:86px;
+    width:64px;
+    height:82px;
 
     transform:translateX(-50%);
 
@@ -413,68 +400,102 @@ body{
 }
 
 .crane.dropping .claw{
-    top:251px;
+    top:250px;
 }
 
 
 /* =====================================
-   爪子顶部小连接盒
-
-   模仿参考图中
-   吊绳下面那个小小的米白色连接块
+   中央竖杆
 ===================================== */
 
-.claw-body{
+.claw-center{
     position:absolute;
 
+    top:-4px;
     left:50%;
-    top:0;
 
-    width:43px;
-    height:25px;
+    width:5px;
+    height:28px;
 
     transform:translateX(-50%);
 
-    border:3px solid #9b9093;
-
-    border-radius:8px 8px 7px 7px;
+    border-radius:5px;
 
     background:
         linear-gradient(
-            180deg,
-            #fffdf9,
-            #f3ece8
+            90deg,
+            #898186,
+            #faf8f9 48%,
+            #91898e
         );
 
     box-shadow:
-        0 2px 4px rgba(70,55,60,.16),
-        inset 0 1px 2px white;
+        0 2px 3px rgba(70,55,65,.2);
 
-    z-index:10;
+    z-index:4;
 }
 
 
-/* 顶部连接的小圆点 */
+/* =====================================
+   中间圆形连接点
+===================================== */
 
-.claw-body:before{
-    content:"";
-
+.claw-joint{
     position:absolute;
 
+    top:17px;
     left:50%;
-    top:-6px;
 
-    width:8px;
-    height:8px;
+    width:14px;
+    height:14px;
 
     transform:translateX(-50%);
 
     border-radius:50%;
 
-    background:#8e8589;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #c4bdc1 55%,
+            #817a80
+        );
+
+    border:2px solid white;
 
     box-shadow:
-        0 0 0 2px #f7f3f0;
+        0 2px 5px rgba(60,45,52,.25);
+
+    z-index:9;
+}
+
+
+/* =====================================
+   下面的小连接杆
+===================================== */
+
+.claw-neck{
+    position:absolute;
+
+    top:29px;
+    left:50%;
+
+    width:5px;
+    height:9px;
+
+    transform:translateX(-50%);
+
+    border-radius:4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #898186,
+            #faf8f9 48%,
+            #91898e
+        );
+
+    z-index:4;
 }
 
 
@@ -485,106 +506,77 @@ body{
 .claw-left{
     position:absolute;
 
-    left:29px;
-    top:20px;
+    left:50%;
+    top:32px;
 
-    width:4px;
-    height:47px;
+    width:5px;
+    height:45px;
 
-    border-radius:5px;
+    border-radius:6px;
 
     background:
         linear-gradient(
             90deg,
-            #82797d,
-            #faf8f7 48%,
-            #8c8387
+            #858087,
+            #fbfafb 45%,
+            #91898e
         );
 
     box-shadow:
-        0 2px 3px rgba(70,55,60,.2);
+        0 2px 4px rgba(70,55,65,.23);
 
-    transform-origin:
-        50% 0;
+    transform-origin:50% 0;
 
     transform:
-        rotate(37deg);
+        translateX(-50%)
+        rotate(-42deg);
 
     transition:
         transform .35s ease;
 
-    z-index:7;
+    z-index:6;
 }
 
 
-/* 左爪下方弯折段 */
+/* =====================================
+   左爪下方弯曲部分
+   ★ 保留
+===================================== */
 
 .claw-left:after{
     content:"";
 
     position:absolute;
 
-    left:-1px;
-    bottom:-20px;
-
-    width:4px;
-    height:25px;
-
-    border-radius:5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #82797d,
-            #faf8f7 48%,
-            #8c8387
-        );
-
-    transform-origin:
-        50% 0;
-
-    transform:
-        rotate(-76deg);
-
-    box-shadow:
-        0 2px 3px rgba(70,55,60,.18);
-
-    transition:
-        transform .35s ease;
-}
-
-
-/* 左爪尖端 */
-
-.claw-left-tip{
-    position:absolute;
-
-    left:4px;
-    top:67px;
+    left:0;
+    bottom:-18px;
 
     width:5px;
-    height:12px;
+    height:25px;
 
-    border-radius:3px;
+    border-radius:6px;
 
     background:
         linear-gradient(
             90deg,
-            #777074,
-            #aaa3a6
+            #858087,
+            #fbfafb 45%,
+            #91898e
         );
 
+    transform-origin:50% 0;
+
     transform:
-        rotate(22deg);
+        rotate(82deg);
 
-    transform-origin:
-        50% 0;
-
-    transition:
-        transform .35s ease;
-
-    z-index:8;
+    box-shadow:
+        0 2px 3px rgba(70,55,65,.2);
 }
+
+
+/* =====================================
+   ★ 已删除左爪尖
+===================================== */
 
 
 /* =====================================
@@ -594,159 +586,120 @@ body{
 .claw-right{
     position:absolute;
 
-    right:29px;
-    top:20px;
+    left:50%;
+    top:32px;
 
-    width:4px;
-    height:47px;
+    width:5px;
+    height:45px;
 
-    border-radius:5px;
+    border-radius:6px;
 
     background:
         linear-gradient(
             90deg,
-            #82797d,
-            #faf8f7 48%,
-            #8c8387
+            #858087,
+            #fbfafb 45%,
+            #91898e
         );
 
     box-shadow:
-        0 2px 3px rgba(70,55,60,.2);
+        0 2px 4px rgba(70,55,65,.23);
 
-    transform-origin:
-        50% 0;
+    transform-origin:50% 0;
 
     transform:
-        rotate(-37deg);
+        translateX(-50%)
+        rotate(42deg);
 
     transition:
         transform .35s ease;
 
-    z-index:7;
+    z-index:6;
 }
 
 
-/* 右爪下方弯折段 */
+/* =====================================
+   右爪下方弯曲部分
+   ★ 保留
+===================================== */
 
 .claw-right:after{
     content:"";
 
     position:absolute;
 
-    right:-1px;
-    bottom:-20px;
-
-    width:4px;
-    height:25px;
-
-    border-radius:5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #82797d,
-            #faf8f7 48%,
-            #8c8387
-        );
-
-    transform-origin:
-        50% 0;
-
-    transform:
-        rotate(76deg);
-
-    box-shadow:
-        0 2px 3px rgba(70,55,60,.18);
-
-    transition:
-        transform .35s ease;
-}
-
-
-/* 右爪尖端 */
-
-.claw-right-tip{
-    position:absolute;
-
-    right:4px;
-    top:67px;
+    left:0;
+    bottom:-18px;
 
     width:5px;
-    height:12px;
+    height:25px;
 
-    border-radius:3px;
+    border-radius:6px;
 
     background:
         linear-gradient(
             90deg,
-            #777074,
-            #aaa3a6
+            #858087,
+            #fbfafb 45%,
+            #91898e
         );
 
+    transform-origin:50% 0;
+
     transform:
-        rotate(-22deg);
+        rotate(-82deg);
 
-    transform-origin:
-        50% 0;
-
-    transition:
-        transform .35s ease;
-
-    z-index:8;
+    box-shadow:
+        0 2px 3px rgba(70,55,65,.2);
 }
 
 
-/* =====================================================
-   ★ 合拢
+/* =====================================
+   ★ 已删除右爪尖
+===================================== */
 
-   两根爪子向里面靠
-===================================================== */
+
+/* =====================================
+   合拢
+===================================== */
 
 .claw.closed .claw-left{
     transform:
-        rotate(24deg);
+        translateX(-50%)
+        rotate(-24deg);
 }
 
 .claw.closed .claw-right{
     transform:
-        rotate(-24deg);
+        translateX(-50%)
+        rotate(24deg);
 }
 
 .claw.closed .claw-left:after{
     transform:
-        rotate(-55deg);
+        rotate(55deg);
 }
 
 .claw.closed .claw-right:after{
     transform:
-        rotate(55deg);
-}
-
-.claw.closed .claw-left-tip{
-    transform:
-        rotate(-8deg);
-}
-
-.claw.closed .claw-right-tip{
-    transform:
-        rotate(8deg);
+        rotate(-55deg);
 }
 
 
 /* =====================================
    被抓住的图片
-   保持原比例
+   ★ 不裁切
+   ★ 保持原始比例
 ===================================== */
 
 .grabbed-item{
     position:absolute;
 
     left:50%;
-
     top:91px;
 
-    width:70px;
-    height:70px;
+    width:90px;
+    height:90px;
 
     transform:
         translateX(-50%)
@@ -777,18 +730,19 @@ body{
 }
 
 
-/*
-   图片跟着爪子下降
-*/
+/* 图片跟随下降 */
 
 .crane.dropping .grabbed-item{
     top:276px;
 }
 
 
-/*
-   不裁切
-*/
+/* =====================================
+   图片本身
+   ★ 不裁切
+   ★ 不强制正方形
+   ★ 不变形
+===================================== */
 
 .grabbed-item img{
     display:block;
@@ -796,10 +750,14 @@ body{
     width:auto;
     height:auto;
 
-    max-width:70px;
-    max-height:70px;
+    max-width:90px;
+    max-height:90px;
 
     object-fit:contain;
+
+    border-radius:0;
+
+    background:transparent;
 
     filter:
         drop-shadow(
@@ -809,7 +767,8 @@ body{
 
 
 /* =====================================
-   奖品
+   奖品区域
+   ★ 保持现在的随机摆放
 ===================================== */
 
 .prizes{
@@ -826,16 +785,17 @@ body{
 }
 
 
-/*
-   奖品不使用正方形盒子
-*/
+/* =====================================
+   奖品容器
+   ★ 没有正方形盒子
+===================================== */
 
 .prize-slot{
     position:absolute;
 
     display:flex;
 
-    align-items:center;
+    align-items:flex-end;
     justify-content:center;
 
     overflow:visible;
@@ -851,9 +811,10 @@ body{
 }
 
 
-/*
-   保持图片原比例
-*/
+/* =====================================
+   ★ 奖品图片
+   PNG / JPG / WEBP 都保持原比例
+===================================== */
 
 .prize{
     display:block;
@@ -861,17 +822,36 @@ body{
     width:auto;
     height:auto;
 
+    /*
+       这里只限制最大显示范围，
+       不会把图片裁成正方形。
+    */
+
     max-width:105px;
-    max-height:100px;
+    max-height:105px;
+
+    min-width:0;
+    min-height:0;
 
     object-fit:contain;
+
+    object-position:center;
 
     border-radius:0;
 
     background:transparent;
 
-    box-shadow:
-        0 5px 12px rgba(100,70,85,.12);
+    box-shadow:none;
+
+    /*
+       drop-shadow 不会破坏 PNG 透明轮廓，
+       只给娃娃一点自然的立体感。
+    */
+
+    filter:
+        drop-shadow(
+            0 4px 7px rgba(100,70,85,.14)
+        );
 }
 
 
@@ -1647,25 +1627,6 @@ input:focus{
         max-height:85px;
     }
 
-    /*
-       手机端爪子稍微缩小
-    */
-
-    .claw{
-        transform:
-            translateX(-50%)
-            scale(.9);
-
-        transform-origin:
-            top center;
-    }
-
-    .crane.dropping .claw{
-        transform:
-            translateX(-50%)
-            scale(.9);
-    }
-
 }
 
 </style>
@@ -1675,7 +1636,6 @@ input:focus{
 <body>
 
 <div class="page">
-
 
     <div class="page-title">
 
@@ -1688,7 +1648,6 @@ input:focus{
         </p>
 
     </div>
-
 
 
     <div class="layout">
@@ -1726,12 +1685,10 @@ input:focus{
             </div>
 
 
-
             <div
                 class="glass"
                 id="glass"
             >
-
 
                 <div class="rail"></div>
 
@@ -1740,7 +1697,6 @@ input:focus{
                     class="slider"
                     id="slider"
                 ></div>
-
 
 
                 <!-- ==================
@@ -1752,16 +1708,15 @@ input:focus{
                     id="crane"
                 >
 
-
                     <div class="crane-head"></div>
 
 
                     <div class="cable"></div>
 
 
-
                     <!-- ==================
-                         ★ CATCHU风格爪子
+                         爪子
+                         ★ 已去掉爪尖
                     =================== -->
 
                     <div
@@ -1769,26 +1724,17 @@ input:focus{
                         id="claw"
                     >
 
-                        <!-- 顶部连接盒 -->
+                        <div class="claw-center"></div>
 
-                        <div class="claw-body"></div>
+                        <div class="claw-joint"></div>
 
-
-                        <!-- 左爪 -->
+                        <div class="claw-neck"></div>
 
                         <div class="claw-left"></div>
 
-                        <div class="claw-left-tip"></div>
-
-
-                        <!-- 右爪 -->
-
                         <div class="claw-right"></div>
 
-                        <div class="claw-right-tip"></div>
-
                     </div>
-
 
 
                     <!-- ==================
@@ -1808,9 +1754,7 @@ input:focus{
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- ==================
@@ -1843,13 +1787,11 @@ input:focus{
             </div>
 
 
-
             <!-- ==================
                  控制
             =================== -->
 
             <div class="controls">
-
 
                 <button
                     class="move-btn"
@@ -1874,12 +1816,10 @@ input:focus{
                     ▶
                 </button>
 
-
             </div>
 
 
         </div>
-
 
 
         <!-- ==========================
@@ -1892,7 +1832,6 @@ input:focus{
             <div class="editor-title">
                 ♡ 娃娃机设置 ♡
             </div>
-
 
 
             <!-- 奖品 -->
@@ -1913,7 +1852,6 @@ input:focus{
 
 
                 <div class="section-body">
-
 
                     <label
                         class="upload-label"
@@ -1944,7 +1882,6 @@ input:focus{
 
                     <div class="small-buttons">
 
-
                         <button
                             class="small-btn"
                             id="randomBtn"
@@ -1960,14 +1897,11 @@ input:focus{
                             🗑 清空
                         </button>
 
-
                     </div>
-
 
                 </div>
 
             </div>
-
 
 
             <!-- 外观 -->
@@ -1989,7 +1923,6 @@ input:focus{
 
                 <div class="section-body">
 
-
                     <label class="label">
                         机器颜色
                     </label>
@@ -1997,13 +1930,11 @@ input:focus{
 
                     <div class="color-grid">
 
-
                         <button
                             class="color-btn active"
                             data-color="#e9a9c4"
                             style="background:#e9a9c4"
                         ></button>
-
 
                         <button
                             class="color-btn"
@@ -2011,13 +1942,11 @@ input:focus{
                             style="background:#b9b5df"
                         ></button>
 
-
                         <button
                             class="color-btn"
                             data-color="#a9d7cf"
                             style="background:#a9d7cf"
                         ></button>
-
 
                         <button
                             class="color-btn"
@@ -2025,13 +1954,11 @@ input:focus{
                             style="background:#f0c48c"
                         ></button>
 
-
                         <button
                             class="color-btn"
                             data-color="#d7b6a8"
                             style="background:#d7b6a8"
                         ></button>
-
 
                         <button
                             class="color-btn"
@@ -2039,9 +1966,7 @@ input:focus{
                             style="background:#a9c6e8"
                         ></button>
 
-
                     </div>
-
 
 
                     <label class="label">
@@ -2056,14 +1981,12 @@ input:focus{
                     >
 
 
-
                     <label class="label">
                         机器形状
                     </label>
 
 
                     <div class="choice-grid">
-
 
                         <button
                             class="choice active"
@@ -2072,14 +1995,12 @@ input:focus{
                             标准
                         </button>
 
-
                         <button
                             class="choice"
                             data-shape="round"
                         >
                             圆润
                         </button>
-
 
                         <button
                             class="choice"
@@ -2088,14 +2009,11 @@ input:focus{
                             软萌
                         </button>
 
-
                     </div>
-
 
                 </div>
 
             </div>
-
 
 
             <!-- 文字 -->
@@ -2116,7 +2034,6 @@ input:focus{
 
 
                 <div class="section-body">
-
 
                     <label class="label">
                         机器标题
@@ -2165,11 +2082,9 @@ input:focus{
                         value="差一点点，再试一次吧！"
                     >
 
-
                 </div>
 
             </div>
-
 
 
             <!-- 游戏 -->
@@ -2190,7 +2105,6 @@ input:focus{
 
 
                 <div class="section-body">
-
 
                     <label class="label">
                         抓取成功概率（1～100）
@@ -2228,7 +2142,6 @@ input:focus{
                     </div>
 
 
-
                     <div class="switch-row">
 
                         <span>
@@ -2250,7 +2163,6 @@ input:focus{
 
                     </div>
 
-
                 </div>
 
             </div>
@@ -2258,11 +2170,9 @@ input:focus{
 
         </div>
 
-
     </div>
 
 </div>
-
 
 
 <!-- ==========================
@@ -2274,9 +2184,7 @@ input:focus{
     id="successModal"
 >
 
-
     <div class="success-card">
-
 
         <div
             class="success-icon"
@@ -2303,12 +2211,9 @@ input:focus{
             好耶！♡
         </button>
 
-
     </div>
 
-
 </div>
-
 
 
 <script>
@@ -2474,6 +2379,7 @@ function ensurePrizePositions(){
 
     }
 
+
     if(
         prizePositions.length >
         uploadedImages.length
@@ -2636,7 +2542,7 @@ function renderUploadList(){
 
 
 /* =====================================
-   奖品随机摆放
+   ★ 奖品随机摆放
 ===================================== */
 
 function renderPrizes(){
@@ -2709,6 +2615,18 @@ function renderPrizes(){
             img.src = src;
 
 
+            /*
+               ★★★ 关键：
+               不设置固定 width / height
+
+               浏览器会按照图片自己的
+               naturalWidth / naturalHeight
+               自动保持比例。
+
+               PNG 透明区域保持透明，
+               JPG 也不会被裁成正方形。
+            */
+
             img.onload =
                 function(){
 
@@ -2740,13 +2658,6 @@ document
 .addEventListener(
     "click",
     function(){
-
-        prizePositions =
-            uploadedImages.map(
-                () =>
-                    createRandomPosition()
-            );
-
 
         uploadedImages.sort(
             () =>
@@ -2906,10 +2817,6 @@ async function grab(){
     rightBtn.disabled = true;
 
 
-    /*
-       随机选择奖品
-    */
-
     const grabbedIndex =
         Math.floor(
             Math.random() *
@@ -2945,7 +2852,7 @@ async function grab(){
 
 
     /*
-       ② 爪子合拢
+       ② 合拢
     */
 
     claw.classList.add(
@@ -2957,7 +2864,7 @@ async function grab(){
 
 
     /*
-       ③ 图片出现
+       ③ 显示被抓住的图片
     */
 
     grabbedItem.classList.add(
@@ -3097,7 +3004,7 @@ async function grab(){
 
 
     /*
-       ⑥ 清除图片
+       ⑥ 清除抓取图片
     */
 
     await wait(350);
@@ -3112,7 +3019,7 @@ async function grab(){
 
 
     /*
-       ⑦ 打开爪子
+       ⑦ 爪子打开
     */
 
     await wait(250);
@@ -3124,7 +3031,7 @@ async function grab(){
 
 
     /*
-       ⑧ 恢复
+       ⑧ 恢复操作
     */
 
     await wait(300);
@@ -3694,7 +3601,6 @@ function loadData(){
 
         ensurePrizePositions();
 
-
         renderUploadList();
 
         renderPrizes();
@@ -3773,4 +3679,4 @@ document.addEventListener(
 </script>
 
 </body>
-    </html>
+</html>
