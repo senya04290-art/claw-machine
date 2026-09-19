@@ -367,7 +367,7 @@ body{
             #978d93
         );
 
-    transition:height .6s ease;
+    transition:height .9s ease;
 
     z-index:4;
 }
@@ -378,9 +378,9 @@ body{
 
 
 /* =====================================
-   爪子
-   保持上一版主体结构
-   ★ 已去掉最下面的爪尖
+   ★ 爪子
+   保持主体结构
+   ★ 去掉爪尖
 ===================================== */
 
 .claw{
@@ -394,10 +394,13 @@ body{
 
     transform:translateX(-50%);
 
-    transition:top .6s ease;
+    transition:top .9s ease;
 
     z-index:8;
 }
+
+
+/* 下降时 */
 
 .crane.dropping .claw{
     top:250px;
@@ -437,7 +440,7 @@ body{
 
 
 /* =====================================
-   中间圆形连接点
+   圆形连接点
 ===================================== */
 
 .claw-joint{
@@ -471,7 +474,7 @@ body{
 
 
 /* =====================================
-   下面的小连接杆
+   中间连接杆
 ===================================== */
 
 .claw-neck{
@@ -500,7 +503,8 @@ body{
 
 
 /* =====================================
-   左爪
+   左爪主体
+   ★ 不再有爪尖
 ===================================== */
 
 .claw-left{
@@ -532,16 +536,13 @@ body{
         rotate(-42deg);
 
     transition:
-        transform .35s ease;
+        transform .45s ease;
 
     z-index:6;
 }
 
 
-/* =====================================
-   左爪下方弯曲部分
-   ★ 保留
-===================================== */
+/* 左爪弯曲部分 */
 
 .claw-left:after{
     content:"";
@@ -566,8 +567,7 @@ body{
 
     transform-origin:50% 0;
 
-    transform:
-        rotate(82deg);
+    transform:rotate(82deg);
 
     box-shadow:
         0 2px 3px rgba(70,55,65,.2);
@@ -575,12 +575,8 @@ body{
 
 
 /* =====================================
-   ★ 已删除左爪尖
-===================================== */
-
-
-/* =====================================
-   右爪
+   右爪主体
+   ★ 不再有爪尖
 ===================================== */
 
 .claw-right{
@@ -612,16 +608,13 @@ body{
         rotate(42deg);
 
     transition:
-        transform .35s ease;
+        transform .45s ease;
 
     z-index:6;
 }
 
 
-/* =====================================
-   右爪下方弯曲部分
-   ★ 保留
-===================================== */
+/* 右爪弯曲部分 */
 
 .claw-right:after{
     content:"";
@@ -646,17 +639,11 @@ body{
 
     transform-origin:50% 0;
 
-    transform:
-        rotate(-82deg);
+    transform:rotate(-82deg);
 
     box-shadow:
         0 2px 3px rgba(70,55,65,.2);
 }
-
-
-/* =====================================
-   ★ 已删除右爪尖
-===================================== */
 
 
 /* =====================================
@@ -688,8 +675,7 @@ body{
 
 /* =====================================
    被抓住的图片
-   ★ 不裁切
-   ★ 保持原始比例
+   ★ 原比例
 ===================================== */
 
 .grabbed-item{
@@ -698,12 +684,15 @@ body{
     left:50%;
     top:91px;
 
-    width:90px;
-    height:90px;
+    width:auto;
+    height:auto;
+
+    min-width:1px;
+    min-height:1px;
 
     transform:
         translateX(-50%)
-        scale(.7);
+        scale(.65);
 
     display:flex;
 
@@ -717,8 +706,9 @@ body{
     z-index:3;
 
     transition:
-        opacity .25s ease,
-        transform .3s ease;
+        opacity .35s ease,
+        transform .4s ease,
+        top .9s ease;
 }
 
 .grabbed-item.show{
@@ -730,19 +720,20 @@ body{
 }
 
 
-/* 图片跟随下降 */
+/*
+   图片跟随爪子下降
+*/
 
 .crane.dropping .grabbed-item{
     top:276px;
 }
 
 
-/* =====================================
-   图片本身
+/*
    ★ 不裁切
-   ★ 不强制正方形
    ★ 不变形
-===================================== */
+   ★ 保持上传图片原比例
+*/
 
 .grabbed-item img{
     display:block;
@@ -755,20 +746,20 @@ body{
 
     object-fit:contain;
 
-    border-radius:0;
-
     background:transparent;
+
+    border:0;
 
     filter:
         drop-shadow(
-            0 4px 5px rgba(70,50,60,.22)
+            0 4px 6px rgba(70,50,60,.22)
         );
 }
 
 
 /* =====================================
-   奖品区域
-   ★ 保持现在的随机摆放
+   奖品
+   ★ 不使用正方形
 ===================================== */
 
 .prizes{
@@ -785,17 +776,14 @@ body{
 }
 
 
-/* =====================================
-   奖品容器
-   ★ 没有正方形盒子
-===================================== */
+/* 奖品容器没有固定正方形 */
 
 .prize-slot{
     position:absolute;
 
     display:flex;
 
-    align-items:flex-end;
+    align-items:center;
     justify-content:center;
 
     overflow:visible;
@@ -813,7 +801,7 @@ body{
 
 /* =====================================
    ★ 奖品图片
-   PNG / JPG / WEBP 都保持原比例
+   保持原始比例
 ===================================== */
 
 .prize{
@@ -822,36 +810,19 @@ body{
     width:auto;
     height:auto;
 
-    /*
-       这里只限制最大显示范围，
-       不会把图片裁成正方形。
-    */
-
     max-width:105px;
-    max-height:105px;
-
-    min-width:0;
-    min-height:0;
+    max-height:100px;
 
     object-fit:contain;
-
-    object-position:center;
 
     border-radius:0;
 
     background:transparent;
 
-    box-shadow:none;
+    border:0;
 
-    /*
-       drop-shadow 不会破坏 PNG 透明轮廓，
-       只给娃娃一点自然的立体感。
-    */
-
-    filter:
-        drop-shadow(
-            0 4px 7px rgba(100,70,85,.14)
-        );
+    box-shadow:
+        0 5px 12px rgba(100,70,85,.12);
 }
 
 
@@ -1093,9 +1064,7 @@ body{
     transition:.25s;
 }
 
-.section.open
-.section-head
-span:last-child{
+.section.open .section-head span:last-child{
     transform:rotate(180deg);
 }
 
@@ -1410,13 +1379,11 @@ input:focus{
     transition:.25s;
 }
 
-.switch input:checked
-+ .switch-track{
+.switch input:checked + .switch-track{
     background:#dda0b8;
 }
 
-.switch input:checked
-+ .switch-track:before{
+.switch input:checked + .switch-track:before{
     transform:
         translateX(19px);
 }
@@ -1424,6 +1391,7 @@ input:focus{
 
 /* =====================================
    弹窗
+   ★ 成功时显示抓到的图片
 ===================================== */
 
 .success-modal{
@@ -1451,7 +1419,7 @@ input:focus{
 }
 
 .success-card{
-    width:min(330px,100%);
+    width:min(350px,100%);
 
     padding:
         25px
@@ -1485,6 +1453,67 @@ input:focus{
 
 }
 
+
+/* =====================================
+   ★ 抓到的物品图片区域
+===================================== */
+
+.result-image-wrap{
+    width:100%;
+
+    min-height:100px;
+
+    margin:
+        0 auto 13px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:visible;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff4f8,
+            #fff
+        );
+
+    border-radius:18px;
+}
+
+
+/* ★ 不裁切 */
+
+.result-image{
+    display:none;
+
+    width:auto;
+    height:auto;
+
+    max-width:180px;
+    max-height:150px;
+
+    object-fit:contain;
+
+    background:transparent;
+
+    border:0;
+
+    filter:
+        drop-shadow(
+            0 6px 10px rgba(90,60,75,.2)
+        );
+}
+
+.result-image.show{
+    display:block;
+}
+
+
+/* 原来的图标 */
+
 .success-icon{
     width:76px;
     height:76px;
@@ -1502,6 +1531,10 @@ input:focus{
     font-size:42px;
 
     background:#fff0f5;
+}
+
+.success-card.has-image .success-icon{
+    display:none;
 }
 
 .success-card h2{
@@ -1627,6 +1660,11 @@ input:focus{
         max-height:85px;
     }
 
+    .result-image{
+        max-width:150px;
+        max-height:125px;
+    }
+
 }
 
 </style>
@@ -1636,6 +1674,7 @@ input:focus{
 <body>
 
 <div class="page">
+
 
     <div class="page-title">
 
@@ -1648,6 +1687,7 @@ input:focus{
         </p>
 
     </div>
+
 
 
     <div class="layout">
@@ -1685,10 +1725,12 @@ input:focus{
             </div>
 
 
+
             <div
                 class="glass"
                 id="glass"
             >
+
 
                 <div class="rail"></div>
 
@@ -1697,6 +1739,7 @@ input:focus{
                     class="slider"
                     id="slider"
                 ></div>
+
 
 
                 <!-- ==================
@@ -1708,10 +1751,12 @@ input:focus{
                     id="crane"
                 >
 
+
                     <div class="crane-head"></div>
 
 
                     <div class="cable"></div>
+
 
 
                     <!-- ==================
@@ -1724,6 +1769,7 @@ input:focus{
                         id="claw"
                     >
 
+
                         <div class="claw-center"></div>
 
                         <div class="claw-joint"></div>
@@ -1734,7 +1780,9 @@ input:focus{
 
                         <div class="claw-right"></div>
 
+
                     </div>
+
 
 
                     <!-- ==================
@@ -1754,7 +1802,9 @@ input:focus{
 
                     </div>
 
+
                 </div>
+
 
 
                 <!-- ==================
@@ -1787,11 +1837,13 @@ input:focus{
             </div>
 
 
+
             <!-- ==================
                  控制
             =================== -->
 
             <div class="controls">
+
 
                 <button
                     class="move-btn"
@@ -1816,10 +1868,12 @@ input:focus{
                     ▶
                 </button>
 
+
             </div>
 
 
         </div>
+
 
 
         <!-- ==========================
@@ -1832,6 +1886,7 @@ input:focus{
             <div class="editor-title">
                 ♡ 娃娃机设置 ♡
             </div>
+
 
 
             <!-- 奖品 -->
@@ -1852,6 +1907,7 @@ input:focus{
 
 
                 <div class="section-body">
+
 
                     <label
                         class="upload-label"
@@ -1882,6 +1938,7 @@ input:focus{
 
                     <div class="small-buttons">
 
+
                         <button
                             class="small-btn"
                             id="randomBtn"
@@ -1897,11 +1954,14 @@ input:focus{
                             🗑 清空
                         </button>
 
+
                     </div>
+
 
                 </div>
 
             </div>
+
 
 
             <!-- 外观 -->
@@ -1923,6 +1983,7 @@ input:focus{
 
                 <div class="section-body">
 
+
                     <label class="label">
                         机器颜色
                     </label>
@@ -1930,11 +1991,13 @@ input:focus{
 
                     <div class="color-grid">
 
+
                         <button
                             class="color-btn active"
                             data-color="#e9a9c4"
                             style="background:#e9a9c4"
                         ></button>
+
 
                         <button
                             class="color-btn"
@@ -1942,11 +2005,13 @@ input:focus{
                             style="background:#b9b5df"
                         ></button>
 
+
                         <button
                             class="color-btn"
                             data-color="#a9d7cf"
                             style="background:#a9d7cf"
                         ></button>
+
 
                         <button
                             class="color-btn"
@@ -1954,11 +2019,13 @@ input:focus{
                             style="background:#f0c48c"
                         ></button>
 
+
                         <button
                             class="color-btn"
                             data-color="#d7b6a8"
                             style="background:#d7b6a8"
                         ></button>
+
 
                         <button
                             class="color-btn"
@@ -1966,7 +2033,9 @@ input:focus{
                             style="background:#a9c6e8"
                         ></button>
 
+
                     </div>
+
 
 
                     <label class="label">
@@ -1981,12 +2050,14 @@ input:focus{
                     >
 
 
+
                     <label class="label">
                         机器形状
                     </label>
 
 
                     <div class="choice-grid">
+
 
                         <button
                             class="choice active"
@@ -1995,12 +2066,14 @@ input:focus{
                             标准
                         </button>
 
+
                         <button
                             class="choice"
                             data-shape="round"
                         >
                             圆润
                         </button>
+
 
                         <button
                             class="choice"
@@ -2009,11 +2082,14 @@ input:focus{
                             软萌
                         </button>
 
+
                     </div>
+
 
                 </div>
 
             </div>
+
 
 
             <!-- 文字 -->
@@ -2034,6 +2110,7 @@ input:focus{
 
 
                 <div class="section-body">
+
 
                     <label class="label">
                         机器标题
@@ -2082,9 +2159,11 @@ input:focus{
                         value="差一点点，再试一次吧！"
                     >
 
+
                 </div>
 
             </div>
+
 
 
             <!-- 游戏 -->
@@ -2105,6 +2184,7 @@ input:focus{
 
 
                 <div class="section-body">
+
 
                     <label class="label">
                         抓取成功概率（1～100）
@@ -2142,6 +2222,7 @@ input:focus{
                     </div>
 
 
+
                     <div class="switch-row">
 
                         <span>
@@ -2163,6 +2244,7 @@ input:focus{
 
                     </div>
 
+
                 </div>
 
             </div>
@@ -2170,9 +2252,11 @@ input:focus{
 
         </div>
 
+
     </div>
 
 </div>
+
 
 
 <!-- ==========================
@@ -2184,7 +2268,29 @@ input:focus{
     id="successModal"
 >
 
-    <div class="success-card">
+
+    <div
+        class="success-card"
+        id="successCard"
+    >
+
+
+        <!-- ★ 抓到的物品 -->
+
+        <div
+            class="result-image-wrap"
+            id="resultImageWrap"
+        >
+
+            <img
+                class="result-image"
+                id="resultImage"
+                src=""
+                alt="抓到的物品"
+            >
+
+        </div>
+
 
         <div
             class="success-icon"
@@ -2211,9 +2317,12 @@ input:focus{
             好耶！♡
         </button>
 
+
     </div>
 
+
 </div>
+
 
 
 <script>
@@ -2269,6 +2378,12 @@ const resultText =
 
 const successIcon =
     document.getElementById("successIcon");
+
+const successCard =
+    document.getElementById("successCard");
+
+const resultImage =
+    document.getElementById("resultImage");
 
 const titleInput =
     document.getElementById("titleInput");
@@ -2363,7 +2478,7 @@ function createRandomPosition(){
 
 
 /* =====================================
-   奖品位置
+   确保位置
 ===================================== */
 
 function ensurePrizePositions(){
@@ -2378,7 +2493,6 @@ function ensurePrizePositions(){
         );
 
     }
-
 
     if(
         prizePositions.length >
@@ -2542,7 +2656,8 @@ function renderUploadList(){
 
 
 /* =====================================
-   ★ 奖品随机摆放
+   奖品渲染
+   ★ 保持原比例
 ===================================== */
 
 function renderPrizes(){
@@ -2612,31 +2727,21 @@ function renderPrizes(){
                 "prize";
 
 
-            img.src = src;
+            img.src =
+                src;
 
 
             /*
-               ★★★ 关键：
-               不设置固定 width / height
-
-               浏览器会按照图片自己的
-               naturalWidth / naturalHeight
-               自动保持比例。
-
-               PNG 透明区域保持透明，
-               JPG 也不会被裁成正方形。
+               ★ 不裁切
+               ★ 不强制正方形
+               ★ 保持原始比例
             */
 
-            img.onload =
-                function(){
+            img.style.width =
+                "auto";
 
-                    img.style.width =
-                        "auto";
-
-                    img.style.height =
-                        "auto";
-
-                };
+            img.style.height =
+                "auto";
 
 
             slot.appendChild(img);
@@ -2769,7 +2874,8 @@ rightBtn.addEventListener(
 
 
 /* =====================================
-   抓取动画
+   ★★★ 抓取动画
+   ★ 整体放慢
 ===================================== */
 
 async function grab(){
@@ -2784,6 +2890,16 @@ async function grab(){
     if(
         uploadedImages.length === 0
     ){
+
+        resultImage.src = "";
+
+        resultImage.classList.remove(
+            "show"
+        );
+
+        successCard.classList.remove(
+            "has-image"
+        );
 
         resultTitle.textContent =
             "还没有娃娃哦 ♡";
@@ -2817,6 +2933,10 @@ async function grab(){
     rightBtn.disabled = true;
 
 
+    /*
+       随机选择抓取目标
+    */
+
     const grabbedIndex =
         Math.floor(
             Math.random() *
@@ -2830,6 +2950,10 @@ async function grab(){
         ];
 
 
+    /*
+       抓取图片
+    */
+
     grabbedImage.src =
         grabbedSrc;
 
@@ -2840,7 +2964,9 @@ async function grab(){
 
 
     /*
-       ① 下降
+       ① 慢慢下降
+       原本约700ms
+       现在 1200ms
     */
 
     crane.classList.add(
@@ -2848,11 +2974,19 @@ async function grab(){
     );
 
 
-    await wait(700);
+    await wait(1200);
 
 
     /*
-       ② 合拢
+       ② 停一下
+       模拟真正的机械停顿
+    */
+
+    await wait(250);
+
+
+    /*
+       ③ 爪子慢慢合拢
     */
 
     claw.classList.add(
@@ -2860,11 +2994,11 @@ async function grab(){
     );
 
 
-    await wait(400);
+    await wait(650);
 
 
     /*
-       ③ 显示被抓住的图片
+       ④ 被抓住的图片出现
     */
 
     grabbedItem.classList.add(
@@ -2872,11 +3006,18 @@ async function grab(){
     );
 
 
-    await wait(400);
+    await wait(500);
 
 
     /*
-       ④ 上升
+       ⑤ 停顿一下再上升
+    */
+
+    await wait(250);
+
+
+    /*
+       ⑥ 慢慢上升
     */
 
     crane.classList.remove(
@@ -2884,11 +3025,11 @@ async function grab(){
     );
 
 
-    await wait(900);
+    await wait(1350);
 
 
     /*
-       ⑤ 成功率
+       ⑦ 判断成功率
     */
 
     let rate =
@@ -2928,6 +3069,28 @@ async function grab(){
     ================================= */
 
     if(success){
+
+        /*
+           ★ 弹窗显示本次抓到的物品
+        */
+
+        resultImage.src =
+            grabbedSrc;
+
+
+        resultImage.classList.add(
+            "show"
+        );
+
+
+        successCard.classList.add(
+            "has-image"
+        );
+
+
+        /*
+           删除奖品
+        */
 
         uploadedImages.splice(
             grabbedIndex,
@@ -2983,6 +3146,21 @@ async function grab(){
 
     else{
 
+        /*
+           失败时不显示抓到的物品
+        */
+
+        resultImage.src = "";
+
+        resultImage.classList.remove(
+            "show"
+        );
+
+        successCard.classList.remove(
+            "has-image"
+        );
+
+
         resultTitle.textContent =
             "差一点点！";
 
@@ -3004,11 +3182,15 @@ async function grab(){
 
 
     /*
-       ⑥ 清除抓取图片
+       ⑧ 让抓取画面停留一下
     */
 
-    await wait(350);
+    await wait(650);
 
+
+    /*
+       ⑨ 清除吊着的图片
+    */
 
     grabbedItem.classList.remove(
         "show"
@@ -3019,10 +3201,10 @@ async function grab(){
 
 
     /*
-       ⑦ 爪子打开
+       ⑩ 爪子慢慢打开
     */
 
-    await wait(250);
+    await wait(450);
 
 
     claw.classList.remove(
@@ -3031,10 +3213,10 @@ async function grab(){
 
 
     /*
-       ⑧ 恢复操作
+       ⑪ 最后恢复操作
     */
 
-    await wait(300);
+    await wait(450);
 
 
     isPlaying = false;
@@ -3071,6 +3253,16 @@ closeModal.addEventListener(
             "show"
         );
 
+        resultImage.src = "";
+
+        resultImage.classList.remove(
+            "show"
+        );
+
+        successCard.classList.remove(
+            "has-image"
+        );
+
     }
 );
 
@@ -3086,6 +3278,16 @@ successModal.addEventListener(
 
             successModal.classList.remove(
                 "show"
+            );
+
+            resultImage.src = "";
+
+            resultImage.classList.remove(
+                "show"
+            );
+
+            successCard.classList.remove(
+                "has-image"
             );
 
         }
@@ -3445,6 +3647,70 @@ exitInput.addEventListener(
 
 
 /* =====================================
+   成功 / 失败文字保存
+===================================== */
+
+successInput.addEventListener(
+    "input",
+    function(){
+
+        saveData();
+
+    }
+);
+
+
+failInput.addEventListener(
+    "input",
+    function(){
+
+        saveData();
+
+    }
+);
+
+
+/* =====================================
+   游戏设置保存
+===================================== */
+
+successRate.addEventListener(
+    "input",
+    function(){
+
+        saveData();
+
+    }
+);
+
+
+effectSwitch.addEventListener(
+    "change",
+    function(){
+
+        saveData();
+
+    }
+);
+
+
+saveSwitch.addEventListener(
+    "change",
+    function(){
+
+        if(
+            saveSwitch.checked
+        ){
+
+            saveData();
+
+        }
+
+    }
+);
+
+
+/* =====================================
    保存
 ===================================== */
 
@@ -3492,6 +3758,30 @@ function saveData(){
         localStorage.setItem(
             "myClawExit",
             exitInput.value
+        );
+
+
+        localStorage.setItem(
+            "myClawSuccess",
+            successInput.value
+        );
+
+
+        localStorage.setItem(
+            "myClawFail",
+            failInput.value
+        );
+
+
+        localStorage.setItem(
+            "myClawRate",
+            successRate.value
+        );
+
+
+        localStorage.setItem(
+            "myClawEffects",
+            effectSwitch.checked
         );
 
 
@@ -3599,7 +3889,64 @@ function loadData(){
         }
 
 
+        const savedSuccess =
+            localStorage.getItem(
+                "myClawSuccess"
+            );
+
+
+        if(savedSuccess){
+
+            successInput.value =
+                savedSuccess;
+
+        }
+
+
+        const savedFail =
+            localStorage.getItem(
+                "myClawFail"
+            );
+
+
+        if(savedFail){
+
+            failInput.value =
+                savedFail;
+
+        }
+
+
+        const savedRate =
+            localStorage.getItem(
+                "myClawRate"
+            );
+
+
+        if(savedRate){
+
+            successRate.value =
+                savedRate;
+
+        }
+
+
+        const savedEffects =
+            localStorage.getItem(
+                "myClawEffects"
+            );
+
+
+        if(savedEffects !== null){
+
+            effectSwitch.checked =
+                savedEffects === "true";
+
+        }
+
+
         ensurePrizePositions();
+
 
         renderUploadList();
 
@@ -3634,7 +3981,7 @@ slider.style.left =
 
 
 /* =====================================
-   键盘
+   键盘控制
 ===================================== */
 
 document.addEventListener(
